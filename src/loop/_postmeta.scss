@@ -1,0 +1,85 @@
+/**
+ * Post Meta Stylesheet
+ *
+ * Controls the way metadata about each post is displayed. Post meta is
+ * currently generated in the Loop.
+ *
+ * @author 	danfoy <danfoy.com>
+ * @package df19
+ * @since 	1.0.0
+ *
+ */
+
+.post-meta { // <ul>
+	font-family: $sans-serif;
+	font-size: 0.8em;
+	padding: 0 gutter(1);
+
+	/**
+	 * Remove padding and list styles from lists
+	 */
+	li,
+	* li {
+		list-style-type: none;
+		padding-left: none;
+	}
+
+	&-date,
+	&-comments {
+		display: block;
+	}
+
+	// Separate out sections
+	&-comments, // <li>
+	&-tax {     // <div>
+		padding-top: 1em;
+	}
+
+	&-tax li {
+		padding-bottom: 0.5em;
+	}
+
+
+	// Remove padding and block positioning from nested lists
+	&-categories, // <ul>
+	&-tags {      // <ul>
+		padding: 0;
+		display: inline; //  Float tags and categories onto one line
+
+		li {
+			display: inline-block;
+		}
+	}
+
+	// Meta is inline - needs spaces between items.
+	&-date,
+	&-comments,
+	&-categories li,
+	&-tags li {
+		padding-right: 0.5em;
+	}
+
+	/**
+	 * Icons for post meta
+	 *
+	 * Icons are added to post meta items in CSS to keep HTML clean and semantic.
+	 *
+	 */
+	// This first section adds the relevant spacing to the pseudo elements.
+	&-date::before,
+	&-comments::before,
+	&-categories li::before,
+	&-tags li::before {
+		padding-right: 0.1em;
+		width: 1em;
+		text-align: center;
+		display: inline-block;
+	}
+	// Logos are added as Unicode characters.
+	// Handy list of HTML entities, hex codes, and unicode values:
+	// https://www.toptal.com/designers/htmlarrows/
+	&-date::before 			{ content: "\00040"; }	// @ An AT symbol
+	&-comments::before 		{ content: "\00021"; }	// ! An exclamation mark
+	&-tags li::before 		{ content: "\0023"; }	// # A hash symbol
+	&-categories li::before { content: "/";	}		// / A forward slash
+}

@@ -1,0 +1,25 @@
+# .gitignore for danfoy2019
+#
+# 
+#
+# Don't include output
+# (to avoid annoying diff messages)
+dist/
+#
+# Submodules
+chassis/
+node_modules/
+#
+# Files which might contain sensitive information
+chassis-backup.sql
+credentials.md
+#
+# Reference material
+reference/
+#
+# OS files
+.DS_Store
+#
+# Misc created by dev environments
+.phpintel
+*.sublime*

@@ -1,0 +1,78 @@
+/**
+ * Global Typography Stylesheet
+ *
+ * Set up general global styles for site.
+ *
+ * Font shorthand:
+ * font: font-style font-variant font-weight font-size/line-height font-family;
+ */
+
+/**
+ * Variables
+ */
+$serif: 'Crimson Text', serif;
+$sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+body {
+	font-family: $sans-serif;
+	font-feature-settings: "liga" 1, "dlig" 1;	// Enable ligatures
+}
+
+h1 {
+	font-size: 2em;
+	font-weight: 400;
+}
+
+h2 {
+	font-size: 2em;
+	font-weight: 300;
+	margin: 1em 0 0.5em 0;
+}
+
+h3 {
+	font-size: 1.4em;
+	font-weight: 400;
+	margin: 1em 0 0.5em 0;
+}
+
+h4 {
+	font-size: 1em;
+	font-weight: 700;
+}
+
+.post-title a {
+	text-decoration: none;
+}
+
+.post-content {
+	font-family: $serif;
+
+	p,
+	ul,
+	ol {
+		line-height: 1.4; // Standard line-height on paragraphs and lists
+	}
+	li {
+		margin-bottom: 0.5em; // Breathing room between list items
+	}
+}
+.wp-caption-text {
+	font-family: $sans-serif;
+	font-size: 0.7em;
+}
+
+blockquote {
+	font-style: italic;
+	margin: 0 1em;
+
+	em {
+		font-style: normal;
+	}
+}
+
+// I use horizontal rules to break up text.
+// So they're typography. Right?
+hr {
+	border: 0.05rem solid;
+}

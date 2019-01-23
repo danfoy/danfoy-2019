@@ -1,0 +1,60 @@
+/**
+ * Global image settings
+ *
+ * @package df19
+ * @author danfoy (danfoy.com)
+ * @since 1.0.0
+ */
+
+/**
+ * Responsive Images
+ */
+img {
+	width: auto !important; 	// Remove inline width
+	height: auto !important;	// Remove inlight height
+	max-width: 100%;			// No wider than the parent element
+	max-height: 100vh;			// No taller than the viewport
+}
+figure {
+	width: auto !important;		// Figures also have inline width attributes
+}
+
+// If an image doesn't have an alignment, it is almost certainly intended to be
+// displayed as block. Grids of images should use WordPress' built-in gallery
+// functionality instead.
+img.alignnone {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Images that are left/right aligned should take up no more than half their
+// parent container, because .align{left/right} adds a float and without this
+// you can end up with tiny columns of text in some cases.
+//
+// It would be nice to do this conditionally with image sizes for larger
+// viewports, but unfortunately WordPress still classes a 100px image as
+// 'fullsize' if that's its native resolution.
+img.alignleft,
+img.alignright {
+	max-width: 50%;
+}
+
+
+/**
+ * Responsive Embeds
+ */
+.post-content {
+	iframe {
+		max-width: 100%;
+		max-height: 100%;
+		display: block;
+		margin: 0 auto;
+		border: 0;				// Remove UASS iFrame border
+
+		// Iframes in posts marked as video
+		.format-video & {
+			height: calc( (100% / 16) * 9 ); // Size window to 16:9
+		}
+	}
+}

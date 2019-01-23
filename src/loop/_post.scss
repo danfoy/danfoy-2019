@@ -1,0 +1,14 @@
+/**
+ *
+ */
+
+// Target just articles within archives
+.blog,
+.archive,
+.category {
+
+	.post {
+		margin-bottom: gutter(3); // Add space between articles
+	}
+
+}

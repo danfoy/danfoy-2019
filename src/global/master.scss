@@ -1,0 +1,44 @@
+/**
+ * Master SASS file for danfoy-2019
+ *
+ * This SASS file imports all the styles for danfoy-2019. I have gone for a
+ * modular design this time around, but styles must be added in here manually
+ * for each module.
+ *
+ * @package df19
+ */
+
+
+/*!
+Theme Name: danfoy-2019
+Theme URI:
+Author: danfoy
+Author URI: https://www.danfoy.com
+Description: Theme for danfoy.com, 2019 edition
+Version: 1.0.0
+License:
+License URI:
+Text Domain: df19
+Tags:
+*/
+
+
+// Normalize defaults across browsers
+@import "../vendor/normalize";
+
+// Global styles
+@import "structure";
+@import "colours";
+@import "typography";
+@import "media";
+
+// Site masthead
+@import "../header/header";
+
+// Generic loop styles
+@import "../loop/post";
+@import "../loop/postmeta";
+@import "../loop/pagination";
+
+// Generic comment styles
+@import "../comments/comments";

@@ -1,0 +1,131 @@
+/**
+ * Comments Stylesheet
+ *
+ * @package df2019
+ * @author	danfoy (danfoy.com)
+ * @since 	1.0.0
+ */
+
+
+// Serif fonts for content
+.comment-content,
+.comment-input-textarea { // <div>
+	font-family: $serif;
+	line-height: 1.4;		// Match paragraph style
+}
+
+.post-comments { // <aside>
+	margin-top: gutter(3);			// Breathing space from .post-meta
+	font-family: $sans-serif;
+}
+
+.post-comments-title,
+.comment-form-title {
+	padding: 0 gutter(1); 		// Line up titles with site margins
+}
+
+.post-comments-list { // <ol>
+	padding: 0 gutter(1); 			// Line up with global padding
+	list-style-type: none;
+}
+
+.comment { // <li>
+	margin-bottom: 2em; 		// Space out individual comments
+}
+
+.comment-meta {
+	position: relative;			// So .avatar can be positioned absolutely
+	min-height: 6.4rem;			// At least as high as avatar
+	padding-left: 7.4rem;		// Allow space +10px margin for avatar
+	display: flex;
+	flex-direction: column;		// Stack items vertically
+	justify-content: flex-end;	// Align to the bottom edge
+
+	.comment-author {
+
+		.avatar { // <img>
+			position: absolute;	// Necessary due to how WP structures this
+			top: 0;
+			left: 0;
+			border-radius: 32px;// Circularize the gravatar
+		}
+
+		.fn { // <b> Comment author name. Seriously who named this.
+			display: block;
+			margin-bottom: 0.5em;
+		}
+
+		.says { // <span>
+			display: none;		// Remove 'says' text added by WordPress
+		}
+	}
+
+	.comment-metadata {
+		font-size: gutter(0.7);	// Metadata should be smaller than content
+
+		.edit-link {
+			padding-left: 1em; 	// Space out the edit link from the date
+		}
+	}
+}
+
+
+.comment .reply {
+	text-align: right;			// Reply link looks more balanced opposite gravatar
+}
+
+.comment-respond {
+
+	// /* Built-in */
+
+	// label,
+	// .comment-reply-title,
+	// .comment-form-login-link ,
+	// .comment-form-user,
+	// .comment-form-above-textarea,
+	// .comment-form-below-textarea,
+	// .form-submit {
+	// 	margin-left: gutter(1);
+	// 	margin-right: gutter(1);
+	// }
+
+	// input,
+	// textarea {
+	// 	width: 100%;
+	// 	margin: 0 gutter(1);
+	// 	padding: gutter(0.5);
+	// 	border: 1px solid black;
+	// 	box-sizing: border-box;
+	// }
+
+	// textarea {
+	// 	font-family: $serif;
+	// }
+
+	/* Custom style */
+
+	.comment-form-element {
+		// form elements have half the margin of all other elements, but the same
+		// again as padding. This makes their content line up with the site content.
+		//
+		// Funky interpolation syntax is so sass parses the rem func inside calc
+		width: calc(100% - #{gutter(1)} );
+		margin: gutter(0.5);
+		padding: gutter(0.5);
+		border: 1px solid black;
+		display: block;
+		box-sizing: border-box;
+	}
+
+	.comment-input-textarea {
+		height: 7em;
+	}
+
+	input {
+		font-family: $sans-serif; // doesn't affect textarea
+	}
+	input[type="submit"] {
+		cursor: pointer;
+	}
+
+}
