@@ -20,7 +20,7 @@ hosts:
 # Site Configuration
 # (When overriding, include all values)
 site:
-    name: danfoy dot com
+    name: danfoy local
 
 # Database configuration
 # (When overriding, include all values)
@@ -80,7 +80,7 @@ extensions:
 
 # PHP version
 # Values: 5.6, 7.0, 7.1, 7.2 (or 5.6.30)
-php: 7.0
+php: 7.2
 
 # VirtualBox-specific customisations.
 virtualbox:
