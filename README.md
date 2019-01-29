@@ -19,5 +19,6 @@ This repo generates the [WordPress](https://www.wordpress.org) theme for [danfoy
 - [Babel](https://babeljs.io) compilation from ES6 -> ES5
 - [UglifyJS](http://lisperator.net/uglifyjs/) for ES minification and sourcemapping
 - Migration to [Gulp 4](https://medium.com/gulpjs/version-4-now-default-92c6cd4beb45)
+- Fancy scrolling effects with [ScrollMagic](http://scrollmagic.io)
 
-I write a new WordPress theme for my site every other year or so. The last version focused on improving the way photos and galleries were displayed, using WordPress's Post Format features. In the projects I've done between then and now have all used build systems, initially [Grunt](https://gruntjs.com/) and now mainly [Gulp](https://gulpjs.com)) (I consider [WebPack](https://webpack.js.org/) to be an awkward fit for WordPress). As my projects become increasingly modularized, my own site has become increasingly painful to maintain and upgrade. So, time for a new ground-up rewrite.
+I write a new WordPress theme for my site every other year or so. The last version focused on improving the way photos and galleries were displayed, using WordPress's Post Format features. In the projects I've done between then and now have all used build systems, initially [Grunt](https://gruntjs.com/) and now mainly [Gulp](https://gulpjs.com) (I consider [WebPack](https://webpack.js.org/) to be an awkward fit for WordPress). As my projects become increasingly modularized, my own site has become increasingly painful to maintain and upgrade. So, time for a new ground-up rewrite.
