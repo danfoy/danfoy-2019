@@ -2,9 +2,11 @@
 /**
  * Comments template
  *
- * @package df19
- * @author 	danfoy <danfoy.com>
- * @since 	1.0.0
+ * @package 	df19
+ * @subpackage 	comments
+ * @author 		danfoy <danfoy.com>
+ * @since 		1.0.0
+ * 
  */
 
 /**
@@ -16,71 +18,89 @@
  * The section should show if comments exist. It should also show if comments
  * are open, but if comments are closed and there are none to show it just
  * gets skipped entirely.
+ * 
  */
 if ( have_comments() || comments_open() ) {
-?>
-	<aside class="post-comments" id="comments">
+
+	/**
+	 * Get the comment and ping counts
+	 */
+	// Count comments
+	$comment_count = get_comments( array(
+		'status' => 'approve',
+		'post_id'=> get_the_ID(),
+		'type'=> 'comment',
+		'count' => true)
+	 );
+	// Count pings
+	$ping_count = get_comments( array(
+		'status' => 'approve',
+		'post_id'=> get_the_ID(),
+		'type'=> 'pings',
+		'count' => true)
+	 );
+	// String containing supplementary classes for aside.post-comments
+	$custom_post_comments_class  = $comment_count || $ping_count
+		? ' has-responses'
+		: ' no-responses';
+	$custom_post_comments_class .= $comment_count
+		? ' has-comments'
+		: ' no-comments';
+	$custom_post_comments_class .= $ping_count
+		? ' has-pings'
+		: ' no-pings';
+
+	?>
+	<aside class="responses<?php echo $custom_post_comments_class; ?>" id="comments">
+		<h2 class="responses-title"><?php comments_number( 'No reponses', '% response', '% responses' ); ?></h2>
 		<?php
 
-		if ( have_comments() ) {
 
-			$comment_count = get_comments( array(
-				'status' => 'approve',
-				'post_id'=> get_the_ID(),
-				'type'=> 'comment',
-				'count' => true)
-			 );
+		/**
+		 * Display pingbacks
+		 */
+		if ( $ping_count ) {
+				
+			echo '<h3 class="post-pings-title">Incoming links</h3>' . "\n";
 
-			$ping_count = get_comments( array(
-				'status' => 'approve',
-				'post_id'=> get_the_ID(),
-				'type'=> 'pings',
-				'count' => true)
-			 );
+			echo '<ol class="post-pings-list">' . "\n";
+				wp_list_comments( array(
+					'style'				=> 'ol',
+					'type'				=> 'pings',
+					'format'			=> 'html5',
+					'short_ping'		=> true,
+					)
+				);
+			echo '</ol>' . "\n";
+		};
 
-			if ( $comment_count ) {
-				// A manual comments_number() which doesn't count pings
-				$comment_title = $comment_count > 1 ? $comment_count . ' comments' : $comment_count . ' comment';
-				echo "<h2 class=\"post-comments-title\">$comment_title</h2>\n";
-				echo "<ol class=\"post-comments-list\">\n";
-					wp_list_comments( array(
-						'walker'			=> null,
-						'max_depth'			=> '',
-						'style'				=> 'ol',
-						'callback'			=> null,
-						'end-callback'		=> null,
-						'type'				=> 'comment',
-						'reply_text'		=> '<small>Reply &darr;</small>',
-						'page'				=> '',
-						'per_page'			=> '',
-						'avatar_size'		=> 64,
-						'reverse_top_level'	=> null,
-						'reverse_children'	=> '',
-						'format'			=> 'html5',
-						'echo'				=> true,
-						)
-					);
-				echo "</ol>\n";
-			};
+		/**
+		 * Display comments
+		 */
+		if ( $comment_count ) {
 
-			if ( $ping_count ) {
-				// A manual comments_number() which *only* counts pings
-				$ping_title = $ping_count > 1 ? $ping_count . ' pingbacks' : $ping_count . ' pingback';
-				echo "<h2 class=\"post-comments-title\">$ping_title</h2>\n";
-				echo "<ol class=\"post-comments-list post-pingbacks-list\">\n";
-					wp_list_comments( array(
-						'style'				=> 'ol',
-						'type'				=> 'pings',
-						'format'			=> 'html5',
-						'short_ping'		=> true,
-						)
-					);
-				echo "</ol>\n";
-			}
-		}
-		?>
+			echo '<h3 class="post-comments-title">Comments</h3>' . "\n";
+			echo '<ol class="post-comments-list">' . "\n";
+				wp_list_comments( array(
+					// 'walker'			=> null,
+					'max_depth'			=> '',
+					'style'				=> 'ol',
+					// 'callback'			=> null,
+					// 'end-callback'		=> null,
+					'type'				=> 'comment',
+					'reply_text'		=> '<small>Reply</small>',
+					// 'page'				=> '',
+					// 'per_page'			=> '',
+					'avatar_size'		=> 64,
+					// 'reverse_top_level'	=> null,
+					// 'reverse_children'	=> '',
+					'format'			=> 'html5',
+					'echo'				=> true,
+					)
+				);
+			echo '</ol>' . "\n";
+		};
 
-		<?php
 
 		// comment_form( array(
 		// 	'id_form'				=> 'commentform',
@@ -113,52 +133,93 @@ if ( have_comments() || comments_open() ) {
 
 		?>
 
-			<div id="respond" class="comment-respond">
+			<div id="respond" class="respond">
 
 				<?php
 
+				// Show login link if required
 				if ( get_option( 'comment_registration' ) && ! $user_ID ) {
 
 				?>
 					<p>You must be <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php echo urlencode(get_permalink()); ?>">logged in</a> to post a comment.</p>
 				<?php
 
+				// Otherwise show comment form
 				} else {
 
 				?>
 					<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" class="comment-form">
 						<h3 class="comment-form-title">
-							<?php
-
-							comment_form_title( 'Leave a Comment', 'Replying to %s' );
-							echo " ";
-							cancel_comment_reply_link( '&#10006;' );
-
-							?>
+							Leave a Comment
 						</h3>
-
-						<textarea class="comment-form-element comment-input-textarea" name="comment" id="comment" placeholder="Leave a comment"></textarea>
 						<?php
+
+						// Add some hidden form fields which enable nested comments
+						comment_id_fields();
 
 						// User info for logged-in users
 						// (just me then I guess)
 						if ( $user_ID ) {
 
-						?>
-							<ul class="comment-meta">
-								<li class="comment-author"><a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a> <?php $current_user = wp_get_current_user(); $useremail = $current_user->user_email; echo get_avatar($useremail, 64); ?></li>
-								<li><time datetime="<?php echo date('c'); ?>" class="post-date"><?php echo date('j M Y'); ?></time></l64
-							</ul>
+							$current_user = wp_get_current_user();
+							$user_email = $current_user->user_email;
+							$user_handle = $current_user->display_name;
+
+							?>
+							<div class="comment-meta">
+								<div class="comment-author">
+									<a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php">
+										<?php
+
+										// To match built-in structure
+										echo '<b class="fn">';
+											echo $user_handle;
+										echo '</b>' . "\n";
+
+										echo get_avatar($user_email, 64);
+
+										?>
+									</a>
+								</div>
+								<div class="comment-metadata">
+									<?php
+
+									comment_form_title( date('j F Y'), "Replying to %s" );
+									echo " ";
+									cancel_comment_reply_link( 'Cancel reply' );
+
+									?>
+								</div>
+							</div>
 						<?php
 
-						// Login form for everyone else
-						} else {
+						}; // ? logged-in
 
 						?>
+						<label for="comment" class="comment-form-label">Comment</label>
+						<textarea class="comment-form-element comment-input-textarea" name="comment" id="comment" placeholder="Type here to leave a comment"></textarea>
+						<?php
+
+						// Comment author meta section
+						// (when not logged in to WordPress)
+						if ( ! $user_ID ) {
+
+						?>
+							<div class="comment-metadata">
+							<?php cancel_comment_reply_link( 'Cancel reply' ); ?>
+							</div>
+
 							<div class="comment-input-author-details">
-								<input class="comment-form-element comment-input-author" type="text" name="author" id="author" placeholder="Name <?php if($req) echo "(required)"; ?>" value="<?php echo $comment_author; ?>">
-								<input class="comment-form-element comment-input-email" type="text" name="email" id="email" placeholder="Email (not published) <?php if($req) echo "(required)"; ?>" value="<?php echo $comment_author_email; ?>">
+
+								<label for="author" class="comment-form-label">Name<?php if($req) echo '<span class="required">*</a>'; ?></label>
+								<input class="comment-form-element comment-input-author" type="text" name="author" id="author" placeholder="Name<?php if($req) echo "*"; ?>" value="<?php echo $comment_author; ?>" />
+
+								<label for="email" class="comment-form-label">Email<?php if($req) echo '<span class="required">*</a>'; ?></label>
+								<input class="comment-form-element comment-input-email" type="text" name="email" id="email" placeholder="Email<?php if($req) echo '*'; ?>" value="<?php echo $comment_author_email; ?>">
+
+								<label for="url" class="comment-form-label">Website</label>
 								<input class="comment-form-element comment-input-website" type="text" name="url" id="url" placeholder="Website" value="<?php echo $comment_author_url; ?>">
+
 							</div>
 						<?php
 
@@ -178,16 +239,22 @@ if ( have_comments() || comments_open() ) {
 						?>
 					</form>
 				<?php
-				}
+				
+				}; // ? login not required
+				
 				?>
 			</div>
 		<?php
 
-	};
+		}; // ? comments_open
 
-	?>
+		// Show a message if comments are closed but comments exist
+		if ( ! comments_open() && have_comments() ) {
+			echo '<p class="respond-closed">Comments are closed</p>' . "\n";
+		}
 
+		?>
 	</aside>
 <?php
+
 }
-?>
