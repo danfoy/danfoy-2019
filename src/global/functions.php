@@ -92,7 +92,13 @@ add_action( 'wp_enqueue_scripts', 'df19_styles' );
  *
  */
 function df19_global_scripts() {
-    wp_register_script( 'modernizr', get_template_directory_uri() . '/js/modernizr.min.js' );
+    wp_enqueue_script(
+    	'modernizr',											// Handle
+		get_template_directory_uri() . '/js/modernizr.min.js',	// Location
+		array(),												// Dependencies
+		"3.6.0",												// Version
+		false													// In footer
+	);
 }
 add_action( 'wp_print_scripts', 'df19_global_scripts' );
 
