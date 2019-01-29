@@ -49,7 +49,7 @@ const
  *
  */
 gulp.task('css', () => {
-    return gulp.src('src/global/master.scss')   // list of `@include`s
+    return gulp.src('src/master.scss')   // list of `@include`s
     .pipe(plumber())                            // Fail gracefully
     .pipe(sourcemaps.init())                    // Start sourcemapping
         .pipe(sass({                            // Process SCSS

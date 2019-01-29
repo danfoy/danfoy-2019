@@ -1,0 +1,48 @@
+/**
+ * Master SASS file for danfoy-2019
+ *
+ * This SASS file imports all the styles for danfoy-2019. I have gone for a
+ * modular design this time around, but styles must be added in here manually
+ * for each module.
+ *
+ * @package df19
+ */
+
+
+/**
+ * WordPress expects `style.css` to start with a comment describing the theme.
+ * Sass and postcss will strip out most of the comments and whitespace, but the
+ * bang in the comment below will preserve the comment in the output.
+ */
+
+/*!
+Theme Name: danfoy-2019
+Theme URI:
+Author: danfoy
+Author URI: https://www.danfoy.com
+Description: Theme for danfoy.com, 2019 edition
+Version: 1.0.0
+License:
+License URI:
+Text Domain: df19
+Tags:
+*/
+
+
+
+/**
+ * Import styles for each module
+ *
+ * Each module contains an `_index.scss` partial which in turn loads that
+ * module's partials. Although this seems a bit of a faff whilst the modules
+ * are small, it means I can add/remove bits of modules without having to
+ * navigate folders to this master file, or have to deal with parent directory
+ * links.
+ * 
+ */
+
+@import "lib/";
+@import "global/";
+@import "header/";
+@import "loop/";
+@import "comments/";
