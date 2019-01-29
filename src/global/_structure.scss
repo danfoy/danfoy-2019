@@ -51,6 +51,25 @@ body {
 	}
 }
 
+/**
+ * Hide-Visually Mixin
+ *
+ * Using `display: none;` on elements hides them from screenreaders and other
+ * accessibility tools. Using this technique means they are invisible and
+ * removed from the document flow, but are still accessible.
+ *
+ * https://webaim.org/techniques/css/invisiblecontent/#techniques
+ * 
+ */
+@mixin hide-visually() {
+	position:absolute;
+	left:-10000px;
+	top:auto;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+}
+
 
 /**
  * WordPress WYSIWYG Editor alignment styles
