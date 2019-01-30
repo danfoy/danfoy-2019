@@ -24,20 +24,25 @@ if ( have_posts() ) :
 		<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 			<header class="post-header">
 
-				<h2 class="post-title">
-					<?php
+				<?php
 
-					if ( ! is_singular() ) {
-						echo '<a href="' . get_permalink() . '" title="' . the_title_attribute( array( 'echo' => false ) ) . '">';
-							the_title();
-						echo '</a>' . "\n";
-					} else {
-						the_title();
-						echo "\n";
-					}
+                /**
+                 * Open .post-title tag
+                 *
+                 * For semantics reasons, these are <h1> headings on standalone
+                 * pages, and links inside <h2> headings on archives. 
+                 * 
+                 */
+                if ( is_singular() ) {  // Single post/page pages
+                    echo '<h1 class="post-title">' . get_the_title() . "</h1> \n";
+                // 
+                } else {                // On archives
+                    echo '<h2 class="post-title"><a href="' . get_permalink() . '" title="' . the_title_attribute( array( 'echo' => false ) ) . '">';
+                        the_title();
+                    echo "</a></h2> \n";
+                };
 
-					?>
-				</h2>
+				?>
 
 			</header>
 
