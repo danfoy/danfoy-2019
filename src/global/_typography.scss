@@ -7,18 +7,26 @@
  * font: font-style font-variant font-weight font-size/line-height font-family;
  */
 
-/**
- * Variables
- */
+
+// Font Stacks
 $serif: 'Crimson Text', serif;
 $sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-
+// Global styles
 body {
 	font-family: $sans-serif;
 	font-feature-settings: "liga" 1, "dlig" 1;	// Enable ligatures
 }
 
+/**
+ * Global headings
+ *
+ * Ideally these shouldn't ever actually get used - headings should be styled
+ * directly by class, or namespaced inside .post-content. However, there are
+ * bound to be edge cases (bugs) where they appear, so I might as well refine
+ * the styles set by Normalize.
+ *
+ */
 h1 {
 	font-size: 2em;
 	font-weight: 400;
@@ -41,33 +49,19 @@ h4 {
 	font-weight: 700;
 }
 
-.post-title a {
-	text-decoration: none;
-}
-
-.post-content {
-	font-family: $serif;
-
-	p,
-	ul,
-	ol {
-		line-height: 1.4; // Standard line-height on paragraphs and lists
-	}
-	li {
-		margin-bottom: 0.5em; // Breathing room between list items
-	}
-}
-.wp-caption-text {
-	font-family: $sans-serif;
-	font-size: 0.7em;
-}
-
+/**
+ * Blockquotes
+ *
+ * These can appear in unexpected places (e.g. comments), so it's worth setting
+ * some sensible defaults
+ *
+ */
 blockquote {
-	font-style: italic;
-	margin: 0 1em;
+	font-style: italic;			// differentiate from surrounding text
+	margin: 0 1em;				// indent from surrounding text
 
 	em {
-		font-style: normal;
+		font-style: normal;		// deitalicize when surrounding text is italic
 	}
 }
 

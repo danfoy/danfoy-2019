@@ -1,5 +1,16 @@
 /**
+ * Post styles
  *
+ * Generic styles for posts go here. This includes anything which appears inside 
+ * the loop, plus some extra styles for post containers.
+ *
+ * Some of these styles will be overriden by other modules.
+ *
+ * @package     df19
+ * @subpackage  loop
+ * @author      danfoy <danfoy.com>
+ * @since       1.0.0
+ * 
  */
 
 // Target just articles within archives
@@ -7,8 +18,50 @@
 .archive,
 .category {
 
-	.post {
-		margin-bottom: gutter(3); // Add space between articles
-	}
+    .post {
+        margin-bottom: gutter(3); // Add space between articles
+    }
+}
 
+
+/**
+ * Post Title
+ *
+ * This will be a <h2> on archives and a <h1> on singular pages
+ * 
+ */
+.post-title {
+    font-weight: 300;           // Override header weights (could be h1/h2)
+    margin: 1em 0 0.5em 0;      // Override header margins (could be h1/h2)
+    
+    a {
+        text-decoration: none;  // No underline for header links
+    }
+}
+
+/**
+ * Post Content
+ *
+ * In theory, all post content should appear in here, so it can be used to
+ * namespace 'global' rules for elements. WordPress isn't particularly
+ * consistent with adding classes to post content, so it will be mainly
+ * element selectors in here.
+ * 
+ */
+.post-content {
+    font-family: $serif;        // Post content is serif for generic posts
+
+    p,
+    ul,
+    ol {
+        line-height: 1.4;       // Standard line-height on paragraphs and lists
+    }
+    li {
+        margin-bottom: 0.5em;   // Breathing room between list items
+    }
+}
+
+.wp-caption-text {
+    font-family: $sans-serif;   // Captions are always sans-serif
+    font-size: 0.7em;           // Captions are always smaller than body text
 }
