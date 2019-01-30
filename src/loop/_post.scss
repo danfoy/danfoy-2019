@@ -1,7 +1,7 @@
 /**
  * Post styles
  *
- * Generic styles for posts go here. This includes anything which appears inside 
+ * Generic styles for posts go here. This includes anything which appears inside
  * the loop, plus some extra styles for post containers.
  *
  * Some of these styles will be overriden by other modules.
@@ -10,7 +10,7 @@
  * @subpackage  loop
  * @author      danfoy <danfoy.com>
  * @since       1.0.0
- * 
+ *
  */
 
 // Target just articles within archives
@@ -28,12 +28,12 @@
  * Post Title
  *
  * This will be a <h2> on archives and a <h1> on singular pages
- * 
+ *
  */
 .post-title {
     font-weight: 300;           // Override header weights (could be h1/h2)
     margin: 1em 0 0.5em 0;      // Override header margins (could be h1/h2)
-    
+
     a {
         text-decoration: none;  // No underline for header links
     }
@@ -46,7 +46,7 @@
  * namespace 'global' rules for elements. WordPress isn't particularly
  * consistent with adding classes to post content, so it will be mainly
  * element selectors in here.
- * 
+ *
  */
 .post-content {
     font-family: $serif;        // Post content is serif for generic posts

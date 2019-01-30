@@ -29,7 +29,7 @@
  * https://gist.github.com/glueckpress/61862e1f30c865b31715
  */
 if ( ! isset( $content_width ) )
-	$content_width = 1200;
+    $content_width = 1200;
 
 
 /**
@@ -40,34 +40,34 @@ if ( ! isset( $content_width ) )
  */
 if ( function_exists( 'add_theme_support' ) ) {
 
-	// Enable post formats
-	add_theme_support( 'post-formats',  array (
-		'aside',
-		'gallery',
-		'quote',
-		'image',
-		'video',
-	) );
+    // Enable post formats
+    add_theme_support( 'post-formats',  array (
+        'aside',
+        'gallery',
+        'quote',
+        'image',
+        'video',
+    ) );
 
-	// Enable post and comment RSS feed links
-	add_theme_support( 'automatic-feed-links' );
+    // Enable post and comment RSS feed links
+    add_theme_support( 'automatic-feed-links' );
 
-	// Enable semantic HTML5 support
-	add_theme_support( 'html5', array(
-		'comment-list',
-		'comment-form',
-		'search-form',
-		'gallery',
-		'caption',
-	) );
+    // Enable semantic HTML5 support
+    add_theme_support( 'html5', array(
+        'comment-list',
+        'comment-form',
+        'search-form',
+        'gallery',
+        'caption',
+    ) );
 
-	// Add thumbnail support
-	add_theme_support( 'post-thumbnails' );
+    // Add thumbnail support
+    add_theme_support( 'post-thumbnails' );
 
-	// Customise image sizes
-	add_image_size( 'large', 700, '', true );
-	add_image_size( 'medium', 250, '', true );
-	add_image_size( 'small', 120, '', true );
+    // Customise image sizes
+    add_image_size( 'large', 700, '', true );
+    add_image_size( 'medium', 250, '', true );
+    add_image_size( 'small', 120, '', true );
 //  add_image_size( 'custom-size', 700, 200, true );
 }
 
@@ -80,8 +80,8 @@ if ( function_exists( 'add_theme_support' ) ) {
  * the need to reset your browser cache and lose all your logins.
  */
 function df19_styles() {
-	wp_register_style( 'df19_style', get_template_directory_uri() . '/style.css', array(), '1.0.0' );
-	wp_enqueue_style( 'df19_style' );
+    wp_register_style( 'df19_style', get_template_directory_uri() . '/style.css', array(), '1.0.0' );
+    wp_enqueue_style( 'df19_style' );
 }
 add_action( 'wp_enqueue_scripts', 'df19_styles' );
 
@@ -93,12 +93,12 @@ add_action( 'wp_enqueue_scripts', 'df19_styles' );
  */
 function df19_global_scripts() {
     wp_enqueue_script(
-    	'modernizr',											// Handle
-		get_template_directory_uri() . '/js/modernizr.min.js',	// Location
-		array(),												// Dependencies
-		"3.6.0",												// Version
-		false													// In footer
-	);
+        'modernizr',                                            // Handle
+        get_template_directory_uri() . '/js/modernizr.min.js',  // Location
+        array(),                                                // Dependencies
+        "3.6.0",                                                // Version
+        false                                                   // In footer
+    );
 }
 add_action( 'wp_print_scripts', 'df19_global_scripts' );
 
@@ -109,9 +109,9 @@ add_action( 'wp_print_scripts', 'df19_global_scripts' );
  * Menu locations registered here appear in the WordPress admin interface
  */
 function df19_menus() {
-	register_nav_menus( array(
-		'header-menu' => 'header-menu',
-	) );
+    register_nav_menus( array(
+        'header-menu' => 'header-menu',
+    ) );
 }
 add_action( 'init', 'df19_menus' );
 
@@ -128,7 +128,7 @@ add_action( 'init', 'df19_menus' );
  * @return  string           New string stripped of 'category' tag
  */
 function remove_category_rel_from_category_list( $thelist ) {
-	return str_replace( 'rel="category tag"', 'rel="tag"', $thelist );
+    return str_replace( 'rel="category tag"', 'rel="tag"', $thelist );
 }
 add_filter( 'the_category', 'remove_category_rel_from_category_list' );
 
@@ -145,8 +145,8 @@ add_filter( 'the_category', 'remove_category_rel_from_category_list' );
  * @return  string          Empty string
  */
 function remove_image_dimensions_attributes( $html ) {
-	$html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
-	return $html;
+    $html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
+    return $html;
 }
 // Remove images from thumbnails
 add_filter( 'post_thumbnail_html', 'remove_image_dimensions_attributes', 10 );
@@ -166,10 +166,10 @@ add_filter( 'image_send_to_editor', 'remove_image_dimensions_attributes', 10 );
  * @return string          The post content, where images are stripped of <p>s
  */
 function remove_ptags_on_media( $content ){
-	// filter from image tags
-	$content = preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
-	// filter from iframe tags, used for embeds
-	return preg_replace('/<p>\s*(<iframe .*>*.<\/iframe>)\s*<\/p>/iU', '\1', $content);
+    // filter from image tags
+    $content = preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
+    // filter from iframe tags, used for embeds
+    return preg_replace('/<p>\s*(<iframe .*>*.<\/iframe>)\s*<\/p>/iU', '\1', $content);
 }
 add_filter('the_content', 'remove_ptags_on_media', 15);
 
@@ -182,13 +182,13 @@ add_filter('the_content', 'remove_ptags_on_media', 15);
  * showing up in my head either.
  */
 function remove_recent_comments_style() {
-	global $wp_widget_factory;
-	if ( isset( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'] ) ) {
-		remove_action( 'wp_head', array(
-			$wp_widget_factory->widgets['WP_Widget_Recent_Comments'],
-			'recent_comments_style'
-		) );
-	}
+    global $wp_widget_factory;
+    if ( isset( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'] ) ) {
+        remove_action( 'wp_head', array(
+            $wp_widget_factory->widgets['WP_Widget_Recent_Comments'],
+            'recent_comments_style'
+        ) );
+    }
 }
 add_action( 'widgets_init', 'remove_recent_comments_style' );
 
@@ -207,72 +207,72 @@ add_action( 'widgets_init', 'remove_recent_comments_style' );
  */
 function df19_paginate() {
 
-	// Outside the loop, so need some globals
-	global $wp_query;
-	global $numpages;
+    // Outside the loop, so need some globals
+    global $wp_query;
+    global $numpages;
 
-	// For Archive pages:
-	if ( $wp_query->max_num_pages > 0 ) {
-		echo '<nav class="pagination">';
+    // For Archive pages:
+    if ( $wp_query->max_num_pages > 0 ) {
+        echo '<nav class="pagination">';
 
-			// Varibles for checking for posts. Order is opposite what you might expect.
-			$prev_page = get_previous_posts_link('&larr; Newer');   // 'back' link
-			$next_page = get_next_posts_link('Older &rarr;');       // 'forward' link
+            // Varibles for checking for posts. Order is opposite what you might expect.
+            $prev_page = get_previous_posts_link('&larr; Newer');   // 'back' link
+            $next_page = get_next_posts_link('Older &rarr;');       // 'forward' link
 
-			if ( $prev_page || $next_page ); {
-					$firstpage = is_paged() ? '' : ' pagination-first';
-				echo '<ul class="pagination-text">';
-					if ( $prev_page )
-						echo '<li class="pagination-text-item pagination-previous">' . $prev_page . '</li>';
-					if ( $next_page )
-						echo '<li class="pagination-text-item pagination-next' . $firstpage . '">' . $next_page . '</li>';
-				echo '</ul>'; // /.pagination-text
-			}
+            if ( $prev_page || $next_page ); {
+                    $firstpage = is_paged() ? '' : ' pagination-first';
+                echo '<ul class="pagination-text">';
+                    if ( $prev_page )
+                        echo '<li class="pagination-text-item pagination-previous">' . $prev_page . '</li>';
+                    if ( $next_page )
+                        echo '<li class="pagination-text-item pagination-next' . $firstpage . '">' . $next_page . '</li>';
+                echo '</ul>'; // /.pagination-text
+            }
 
-			$bigint = 99999999;
-			echo paginate_links( array(
-				'format'        => '/page/%#%',
-				'type'          => 'list',
-				'prev_next'     => false, // don't show text links - handled above instead
-				// where a query returns more items than fit within the posts-per-page option:
-				'base'          => str_replace( $bigint, '%#%', get_pagenum_link( $bigint ) ),
-				'current'       => max( 1, get_query_var( 'paged' ) ),
-				'total'         => $wp_query->max_num_pages,
-			) );
+            $bigint = 99999999;
+            echo paginate_links( array(
+                'format'        => '/page/%#%',
+                'type'          => 'list',
+                'prev_next'     => false, // don't show text links - handled above instead
+                // where a query returns more items than fit within the posts-per-page option:
+                'base'          => str_replace( $bigint, '%#%', get_pagenum_link( $bigint ) ),
+                'current'       => max( 1, get_query_var( 'paged' ) ),
+                'total'         => $wp_query->max_num_pages,
+            ) );
 
-		echo '</nav>'; // /.pagination
-	}
+        echo '</nav>'; // /.pagination
+    }
 
-	// For paginated Pages
-	if ( is_singular() && $numpages > 1 ) {
-		echo '<nav class="pagination">';
+    // For paginated Pages
+    if ( is_singular() && $numpages > 1 ) {
+        echo '<nav class="pagination">';
 
-		wp_link_pages( array(
-			'before'           => '<ul class="pagination-text"><li class="pagination-text-item">',
-			'separator'        => '</li><li class="pagination-text-item">',
-			'after'            => '</li></ul>',
-			'link_before'      => '',					// Text inside anchor element
-			'link_after'       => '',					// Text inside anchor element
-			'next_or_number'   => 'next',				// Choose type of list to generate
-			'nextpagelink'     => 'Next Page &rarr;',	// Can't isolate first page, so add label for clarity
-			'previouspagelink' => '&larr;',
-			'echo'             => 1
-		) );
+        wp_link_pages( array(
+            'before'           => '<ul class="pagination-text"><li class="pagination-text-item">',
+            'separator'        => '</li><li class="pagination-text-item">',
+            'after'            => '</li></ul>',
+            'link_before'      => '',                   // Text inside anchor element
+            'link_after'       => '',                   // Text inside anchor element
+            'next_or_number'   => 'next',               // Choose type of list to generate
+            'nextpagelink'     => 'Next Page &rarr;',   // Can't isolate first page, so add label for clarity
+            'previouspagelink' => '&larr;',
+            'echo'             => 1
+        ) );
 
-		wp_link_pages( array(
-			// Unfortunately have to use two sets of .page-numbers to match built-in functionality
-			'before'           => '<ul class="page-numbers"><li class="page-numbers">',
-			'separator'        => '</li><li class="page-numbers">',
-			'after'            => '</li></ul>',
-			'link_before'      => '',               // Text inside anchor element
-			'link_after'       => '',               // Text inside anchor element
-			'next_or_number'   => 'number',         // Choose type of list to generate
-			'pagelink'         => '%',              // Only used with 'number'
-			'echo'             => 1
-		) );
+        wp_link_pages( array(
+            // Unfortunately have to use two sets of .page-numbers to match built-in functionality
+            'before'           => '<ul class="page-numbers"><li class="page-numbers">',
+            'separator'        => '</li><li class="page-numbers">',
+            'after'            => '</li></ul>',
+            'link_before'      => '',               // Text inside anchor element
+            'link_after'       => '',               // Text inside anchor element
+            'next_or_number'   => 'number',         // Choose type of list to generate
+            'pagelink'         => '%',              // Only used with 'number'
+            'echo'             => 1
+        ) );
 
-		echo '</nav>'; // /.pagination
-	}
+        echo '</nav>'; // /.pagination
+    }
 }
 // add_action( 'init', 'df19_paginate' ); // Add our HTML5 Pagination
 
@@ -283,10 +283,10 @@ function df19_paginate() {
  * Without this, comments appear as one long list.
  */
 function enable_threaded_comments() {
-	if ( ! is_admin() ) {
-		if ( is_singular() AND comments_open() AND ( get_option( 'thread_comments' ) == 1 ) )
-			wp_enqueue_script( 'comment-reply' );
-	}
+    if ( ! is_admin() ) {
+        if ( is_singular() AND comments_open() AND ( get_option( 'thread_comments' ) == 1 ) )
+            wp_enqueue_script( 'comment-reply' );
+    }
 }
 add_action( 'get_header', 'enable_threaded_comments' );
 
@@ -296,8 +296,8 @@ add_action( 'get_header', 'enable_threaded_comments' );
  *
  * W3 Validator returns a warning if this is included in html5 files
  *
- * @param  string $tag 	stylesheet tag
- * @return string 		stylesheet tag stripped of type=""
+ * @param  string $tag  stylesheet tag
+ * @return string       stylesheet tag stripped of type=""
  */
 function df19_remove_style_type( $tag ) {
     return preg_replace( "/type=['\"]text\/(javascript|css)['\"]/", "", $tag );
@@ -312,8 +312,8 @@ add_filter( 'script_loader_tag', 'df19_remove_style_type' );
  * https://kinsta.com/knowledgebase/disable-emojis-wordpress/
  */
 function df19_disable_emojis() {
-	add_filter( 'tiny_mce_plugins', 'df19_disable_emojis_tinymce' );
-	add_filter( 'wp_resource_hints', 'df19_disable_emojis_remove_dns_prefetch', 10, 2 );
+    add_filter( 'tiny_mce_plugins', 'df19_disable_emojis_tinymce' );
+    add_filter( 'wp_resource_hints', 'df19_disable_emojis_remove_dns_prefetch', 10, 2 );
 }
 add_action( 'init', 'df19_disable_emojis' );
 
@@ -336,11 +336,11 @@ remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
  * @return array Difference betwen the two arrays
  */
 function df19_disable_emojis_tinymce( $plugins ) {
-	if ( is_array( $plugins ) ) {
-		return array_diff( $plugins, array( 'wpemoji' ) );
- 	} else {
- 		return array();
- 	}
+    if ( is_array( $plugins ) ) {
+        return array_diff( $plugins, array( 'wpemoji' ) );
+    } else {
+        return array();
+    }
 };
 
 /**
@@ -353,12 +353,12 @@ function df19_disable_emojis_tinymce( $plugins ) {
  * @return array Difference betwen the two arrays.
  */
 function df19_disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
-	if ( 'dns-prefetch' == $relation_type ) {
- 		/** This filter is documented in wp-includes/formatting.php */
- 		$emoji_svg_url = apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/' );
-		$urls = array_diff( $urls, array( $emoji_svg_url ) );
- 	}
-	return $urls;
+    if ( 'dns-prefetch' == $relation_type ) {
+        /** This filter is documented in wp-includes/formatting.php */
+        $emoji_svg_url = apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/' );
+        $urls = array_diff( $urls, array( $emoji_svg_url ) );
+    }
+    return $urls;
 }
 
 
@@ -368,8 +368,8 @@ function df19_disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
  * Some WordPress embeds (eg. YouTube, Vimeo) are outputted as iFrames with
  * frameborder properties. These are deprecated and fail validation.
  *
- * @param  string $html 	The string to filter
- * @return string 			String filtered of "frameborder="0"
+ * @param  string $html     The string to filter
+ * @return string           String filtered of "frameborder="0"
  */
 function df19_remove_frameborder( $html ) {
     $html = str_replace( 'frameborder="0"', '', $html );

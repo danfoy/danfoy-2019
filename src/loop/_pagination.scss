@@ -2,61 +2,61 @@
 
 
 .pagination { // <nav>
-	font-family: $sans-serif;
-	margin: 0 auto gutter(1) auto;
-	padding: 0 gutter(1);
-	text-align: center;
-	list-style-type: none;
+    font-family: $sans-serif;
+    margin: 0 auto gutter(1) auto;
+    padding: 0 gutter(1);
+    text-align: center;
+    list-style-type: none;
 
-	a {
-		text-decoration: none;
-	}
+    a {
+        text-decoration: none;
+    }
 }
 
 .pagination-text { // <ul>
-	display: flex;
-	justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 
-	.pagination-previous { // <li>
-		text-align: left;
-	}
-	.pagination-next { // <li>
-		text-align: right;
+    .pagination-previous { // <li>
+        text-align: left;
+    }
+    .pagination-next { // <li>
+        text-align: right;
 
-		&.pagination-first {
-			width: 100%; // To allow right-alignment on first page
-		}
-	}
+        &.pagination-first {
+            width: 100%; // To allow right-alignment on first page
+        }
+    }
 
 }
 
 .pagination-text-item a {
-	padding: 1em; // Button-like, large click/touch area
+    padding: 1em; // Button-like, large click/touch area
 }
 
 .pagination-text, // <ul>
 .page-numbers { // <ul> and <li>. WordPress stupidly uses the selector twice.
-	margin: 0;		// User agent sheet automataically adds a linebreak
-	padding: 0;
+    margin: 0;      // User agent sheet automataically adds a linebreak
+    padding: 0;
 
-	li,
-	a {
-		display: inline-block;
-	}
+    li,
+    a {
+        display: inline-block;
+    }
 
-	.pagination-text-item a,
-	.page-numbers { // <li> - the li.page-numbers inside ul.page-numbers
-		display: inline-block;
-	}
+    .pagination-text-item a,
+    .page-numbers { // <li> - the li.page-numbers inside ul.page-numbers
+        display: inline-block;
+    }
 
-	.page-numbers { // <li> - the li.page-numbers inside ul.page-numbers
-		line-height: 2em;
-		width: 2em;
-		height: 2em;
-		border: 1px solid;
-		margin: gutter(0.1);	// Overwrite margin on identically-named parent
-	}
-	&.dots { // <li>, no link inside
-		border: none; 		// remove the border and just leave the dots
-	}
+    .page-numbers { // <li> - the li.page-numbers inside ul.page-numbers
+        line-height: 2em;
+        width: 2em;
+        height: 2em;
+        border: 1px solid;
+        margin: gutter(0.1);    // Overwrite margin on identically-named parent
+    }
+    &.dots { // <li>, no link inside
+        border: none;       // remove the border and just leave the dots
+    }
 }

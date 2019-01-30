@@ -19,12 +19,12 @@ get_header();
 
 <main class="main" aria-label="Content">
 
-	<?php
+    <?php
 
-	get_template_part( 'loop' );
-	get_template_part( 'pagination' );
+    get_template_part( 'loop' );
+    get_template_part( 'pagination' );
 
-	?>
+    ?>
 
 </main>
 

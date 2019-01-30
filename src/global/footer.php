@@ -11,7 +11,7 @@
 
 <footer class="site-footer">
 
-	<!-- Footer content will go hereee. -->
+    <!-- Footer content will go hereee. -->
 
 </footer>
 

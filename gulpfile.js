@@ -179,11 +179,11 @@ gulp.task('sync', () => {
 /**
  * Copy Chassis config files
  *
- * There are two configuration files required by Chassis that live inside the 
+ * There are two configuration files required by Chassis that live inside the
  * `chassis/` directory. These are destroyed if I need to re-clone the Chassis
  * repo, so better to store them with the rest of the config files and Gulp
  * them over.
- * 
+ *
  */
 gulp.task('config', () => {
     return gulp.src([

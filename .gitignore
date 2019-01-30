@@ -1,6 +1,6 @@
 # .gitignore for danfoy2019
 #
-# 
+#
 # Don't include output
 # (to avoid annoying diff messages)
 dist/

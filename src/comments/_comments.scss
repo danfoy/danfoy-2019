@@ -4,17 +4,17 @@
  * A lot of the comments markup is generated automatically by WordPress, making
  * it awkward to namespace. There is some heavy nesting here to migigate this.
  *
- * @package 	df19
- * @subpackage 	comments
- * @author		danfoy (danfoy.com)
- * @since 		1.0.0
+ * @package     df19
+ * @subpackage  comments
+ * @author      danfoy (danfoy.com)
+ * @since       1.0.0
  *
  */
 
 // Container
 .responses { // <aside>
-	margin-top: 1em;			// Breathing space from .post-meta
-	font-family: $sans-serif;
+    margin-top: 1em;            // Breathing space from .post-meta
+    font-family: $sans-serif;
 }
 
 // Titles
@@ -22,19 +22,19 @@
 .post-comments-title,
 .post-pings-title,
 .comment-form-title {
-	margin-top: 2.5em;
-	padding: 0 gutter(1); 		// Line up titles with site margins
+    margin-top: 2.5em;
+    padding: 0 gutter(1);       // Line up titles with site margins
 
-	// Hide .responses-title generally, it's just for accessibility
-	@at-root .responses-title {
-		@include hide-visually;
-	}
+    // Hide .responses-title generally, it's just for accessibility
+    @at-root .responses-title {
+        @include hide-visually;
+    }
 
-	// Hide comments section title when there are comments
-	// Comments themselves are visually obvious
-	@at-root .responses.has-comments .comment-form-title {
-		@include hide-visually;
-	}
+    // Hide comments section title when there are comments
+    // Comments themselves are visually obvious
+    @at-root .responses.has-comments .comment-form-title {
+        @include hide-visually;
+    }
 }
 
 
@@ -45,100 +45,100 @@
  *
  */
 .post-pings-list { // <ol>
-	text-transform: uppercase;		// Differentiate from link
-	font-size: 0.65em;				// Differentiate from link
-	margin-top: 2em;				// Whitespace
-	margin-bottom: 1em;				// Whitespace
+    text-transform: uppercase;      // Differentiate from link
+    font-size: 0.65em;              // Differentiate from link
+    margin-top: 2em;                // Whitespace
+    margin-bottom: 1em;             // Whitespace
 
-	.pingback { // <li>
-		position: relative;
-		margin-bottom: 1.65em;		// 1 space + label height
-	}
+    .pingback { // <li>
+        position: relative;
+        margin-bottom: 1.65em;      // 1 space + label height
+    }
 
-	a {
-		text-decoration: none;		// Remove underline
-		text-transform: initial;	// Override uppercase transform above
-	}
+    a {
+        text-decoration: none;      // Remove underline
+        text-transform: initial;    // Override uppercase transform above
+    }
 
-	.url { // <a>
-		font-size: $em_base;		// Override font size above
-		font-style: italic;			// Differentiate from other links
-		display: block;				// Newline separate from label
-		line-height: 1;				// Tighter spacing on wrapping links
-	}
+    .url { // <a>
+        font-size: $em_base;        // Override font size above
+        font-style: italic;         // Differentiate from other links
+        display: block;             // Newline separate from label
+        line-height: 1;             // Tighter spacing on wrapping links
+    }
 
-	.edit-link { // <span>
-		position: absolute;
-		bottom: 0;
-		right: 0;
-	}
+    .edit-link { // <span>
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
 }
 
 // Serif fonts for content
 .comment-content,
 .comment-input-textarea { // <div>
-	font-family: $serif;
-	line-height: 1.4;		// Match paragraph style
+    font-family: $serif;
+    line-height: 1.4;       // Match paragraph style
 }
 
 .post-comments-list,
 .post-pings-list { // <ol>
-	padding-left: 0;		// Override native list padding
-	margin-bottom: 0;
-	list-style-type: none;
+    padding-left: 0;        // Override native list padding
+    margin-bottom: 0;
+    list-style-type: none;
 
-	> .comment:last-of-type {
-		border-bottom: 1px solid;
-		margin-bottom: 1em;
-	}
+    > .comment:last-of-type {
+        border-bottom: 1px solid;
+        margin-bottom: 1em;
+    }
 }
 
 .comment { // <li>
-	padding-top: 1.5em;						// Breathing room for header
-	border-top: 1px solid;
-	list-style-type: none;
+    padding-top: 1.5em;                     // Breathing room for header
+    border-top: 1px solid;
+    list-style-type: none;
 
-	.comment-body {	// <article>
-		padding: 0 gutter(1) 1em gutter(1); // Line up with global padding
-	}
+    .comment-body { // <article>
+        padding: 0 gutter(1) 1em gutter(1); // Line up with global padding
+    }
 
-	// Indent threaded response
-	.respond {
-		padding-left: gutter(1);
-	}
+    // Indent threaded response
+    .respond {
+        padding-left: gutter(1);
+    }
 
-	// Nested comments
-	.children {
-		padding-left: 0;
+    // Nested comments
+    .children {
+        padding-left: 0;
 
-		.comment {
-			padding-top: 0.5em;				// -1em compared to parent
-			margin-left: gutter(1);		// 1em indent per level
-			border-top: none;
+        .comment {
+            padding-top: 0.5em;             // -1em compared to parent
+            margin-left: gutter(1);     // 1em indent per level
+            border-top: none;
 
-			// Smaller child avatars
-			.avatar {
-				width: 4.2rem !important;	// Set inline by WP
-				height: 4.2rem !important;	// Set inline by WP
-			}
-			// Match padding to new avatar
-			.comment-meta {
-				min-height: 4.2rem;
-				padding-left: 5.2rem;
-			}
-		}
-	}
+            // Smaller child avatars
+            .avatar {
+                width: 4.2rem !important;   // Set inline by WP
+                height: 4.2rem !important;  // Set inline by WP
+            }
+            // Match padding to new avatar
+            .comment-meta {
+                min-height: 4.2rem;
+                padding-left: 5.2rem;
+            }
+        }
+    }
 
-	// Trim top-level comments with children
-	&.depth-1.parent {
-		padding-bottom: 1em;
-	}
+    // Trim top-level comments with children
+    &.depth-1.parent {
+        padding-bottom: 1em;
+    }
 
-	// Remove padding on last paragraph of threadded comments
-	// Bumps up the reply link
-	&.parent p:last-of-type {
-		margin-bottom: 0;
-	}
+    // Remove padding on last paragraph of threadded comments
+    // Bumps up the reply link
+    &.parent p:last-of-type {
+        margin-bottom: 0;
+    }
 }
 
 /**
@@ -146,48 +146,48 @@
  * names. Nesting them all here to keep the .comment-meta section self-contained
  */
 .comment-meta {
-	position: relative;			// So .avatar can be positioned absolutely
-	min-height: 6.4rem;			// At least as high as avatar
-	padding-left: 7.4rem;		// Allow space +10px margin for avatar
-	display: flex;
-	flex-direction: column;		// Stack items vertically
-	justify-content: center;
+    position: relative;         // So .avatar can be positioned absolutely
+    min-height: 6.4rem;         // At least as high as avatar
+    padding-left: 7.4rem;       // Allow space +10px margin for avatar
+    display: flex;
+    flex-direction: column;     // Stack items vertically
+    justify-content: center;
 
-	.comment-author {
+    .comment-author {
 
-		.avatar { // <img>
-			position: absolute;	// Necessary due to how WP structures this
-			top: 0;
-			left: 0;
-			border-radius: 32px;// Circularize the gravatar
-		}
+        .avatar { // <img>
+            position: absolute; // Necessary due to how WP structures this
+            top: 0;
+            left: 0;
+            border-radius: 32px;// Circularize the gravatar
+        }
 
-		.fn { // <b> Comment author name. Seriously who named this.
-			display: block;
-		}
+        .fn { // <b> Comment author name. Seriously who named this.
+            display: block;
+        }
 
-		.says { // <span>
-			display: none;		// Remove 'says' text added by WordPress
-		}
-	}
+        .says { // <span>
+            display: none;      // Remove 'says' text added by WordPress
+        }
+    }
 
-	@at-root .comment-metadata {
-		font-size: 0.7em;	// Metadata should be smaller than content
+    @at-root .comment-metadata {
+        font-size: 0.7em;   // Metadata should be smaller than content
 
-		.edit-link {
-			padding-left: 0.5em; 	// Space out the edit link from the date
+        .edit-link {
+            padding-left: 0.5em;    // Space out the edit link from the date
 
-			&:before {
-				content: "/";			// Separator from meta
-				padding-right: 0.5em;	// Center
-			}
-		}
-	}
+            &:before {
+                content: "/";           // Separator from meta
+                padding-right: 0.5em;   // Center
+            }
+        }
+    }
 }
 
 .comment-meta a,
 .reply a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .comment-content {
@@ -195,110 +195,110 @@
 }
 
 .reply {
-	text-align: right;			// Reply link looks more balanced opposite gravatar
-	font-size: 0.8em;			// Smaller text
+    text-align: right;          // Reply link looks more balanced opposite gravatar
+    font-size: 0.8em;           // Smaller text
 
-	small:after {
-		content: "\2193";		// A down arrow
-		padding-left: 0.25em;	// Mimic a space
-	}
+    small:after {
+        content: "\2193";       // A down arrow
+        padding-left: 0.25em;   // Mimic a space
+    }
 }
 
 
 
 .respond {
 
-	// When the respond section is nested:
-	@at-root .comment .respond {
-		padding-top: 0;				// Line up with above comment
-		margin-bottom: 1em;			// Line up with below comment
+    // When the respond section is nested:
+    @at-root .comment .respond {
+        padding-top: 0;             // Line up with above comment
+        margin-bottom: 1em;         // Line up with below comment
 
-		.comment-meta {
-			margin-right: 0;		// So cancel link is full-right
-		}
+        .comment-meta {
+            margin-right: 0;        // So cancel link is full-right
+        }
 
-		// Center #cancel-comment-reply-link on logged-out replies
-		.comment-metadata {
-			text-align: center;
-		}
+        // Center #cancel-comment-reply-link on logged-out replies
+        .comment-metadata {
+            text-align: center;
+        }
 
-		// Overriden above when logged in
-		@at-root .logged-in .comment .respond .comment-metadata {
-			text-align: left;
-		}
+        // Overriden above when logged in
+        @at-root .logged-in .comment .respond .comment-metadata {
+            text-align: left;
+        }
 
-	}
+    }
 
-	.comment-meta {
-		margin: 0 gutter(1);			// Respect global gutters
-	}
+    .comment-meta {
+        margin: 0 gutter(1);            // Respect global gutters
+    }
 
-	#cancel-comment-reply-link {
-		margin-bottom: 1em;				// Add space between commenter meta area
-	}
+    #cancel-comment-reply-link {
+        margin-bottom: 1em;             // Add space between commenter meta area
+    }
 
-	// Some nice QOL improvements that only I will see
-	@at-root .logged-in #cancel-comment-reply-link {
-		display: inline;
-		float: right;					// Matches the reply links themselves
-		margin-right: gutter(1);
-		&:after {
-			content: "x";				// Little cross button to the right
-			padding-left: 0.5em;		// ..matches reply button's arrow
-		}
-	}
+    // Some nice QOL improvements that only I will see
+    @at-root .logged-in #cancel-comment-reply-link {
+        display: inline;
+        float: right;                   // Matches the reply links themselves
+        margin-right: gutter(1);
+        &:after {
+            content: "x";               // Little cross button to the right
+            padding-left: 0.5em;        // ..matches reply button's arrow
+        }
+    }
 
 
-	// Labels should appear on form items when placeholder text is not supported
-	.comment-form-label {
-		display: block;
-		margin: 1em gutter(1) 0 gutter(1);
-		font-size: 0.8em;
-		text-transform: uppercase;
+    // Labels should appear on form items when placeholder text is not supported
+    .comment-form-label {
+        display: block;
+        margin: 1em gutter(1) 0 gutter(1);
+        font-size: 0.8em;
+        text-transform: uppercase;
 
-		// Hide labels when placeholder text available
-		@at-root .placeholder .comment-form-label {
-			@include hide-visually;
-		}
-	}
+        // Hide labels when placeholder text available
+        @at-root .placeholder .comment-form-label {
+            @include hide-visually;
+        }
+    }
 
-	.comment-form-element {
-		// form elements have half the margin of all other elements, but the same
-		// again as padding. This makes their content line up with the site content.
-		//
-		// Funky interpolation syntax is so sass parses the rem func inside calc
-		width: calc(100% - #{gutter(1)} );
-		margin: gutter(0.5);
-		padding: gutter(0.5);
-		border: 1px solid black;
-		display: block;
-		box-sizing: border-box;
-	}
+    .comment-form-element {
+        // form elements have half the margin of all other elements, but the same
+        // again as padding. This makes their content line up with the site content.
+        //
+        // Funky interpolation syntax is so sass parses the rem func inside calc
+        width: calc(100% - #{gutter(1)} );
+        margin: gutter(0.5);
+        padding: gutter(0.5);
+        border: 1px solid black;
+        display: block;
+        box-sizing: border-box;
+    }
 
-	.comment-input-textarea {
-		height: 7.5em;
+    .comment-input-textarea {
+        height: 7.5em;
 
-		// Remove all borders except bottom on comment textarea.
-		// This makes it match the style of published posts.
-		// But only when placeholder text is available and posts exist.
-		@at-root .placeholder .has-comments .comment-input-textarea {
-			border-top: none;
-			border-left: none;
-			border-right: none;
-		}
-	}
+        // Remove all borders except bottom on comment textarea.
+        // This makes it match the style of published posts.
+        // But only when placeholder text is available and posts exist.
+        @at-root .placeholder .has-comments .comment-input-textarea {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+    }
 
-	input {
-		font-family: $sans-serif; // doesn't affect textarea
-	}
+    input {
+        font-family: $sans-serif; // doesn't affect textarea
+    }
 
-	input[type="submit"] {
-		cursor: pointer;
-	}
+    input[type="submit"] {
+        cursor: pointer;
+    }
 
 }
 
 .respond-closed {
-	text-align: center;
-	margin: 2em gutter(1);
+    text-align: center;
+    margin: 2em gutter(1);
 }

@@ -17,11 +17,11 @@ $em_base: 1.7rem;
  * Absolute pixel values don't scale well for accessibility, and can cause
  * issues with legacy HiDPI devices.
  *
- * @param  int $size:1 	Desired 'body em' multiplier
- * @return string		Adjusted rem unit
+ * @param  int $size:1  Desired 'body em' multiplier
+ * @return string       Adjusted rem unit
  */
 @function gutter( $size:1 ) {
-	@return ($size * $em_base);
+    @return ($size * $em_base);
 }
 /**
  * Global em reset
@@ -29,11 +29,11 @@ $em_base: 1.7rem;
  * Resets the 'rem' unit to 10px for convinence.
  */
 html {
-	font-size: 62.5%;
+    font-size: 62.5%;
 }
 // Set body em size to $em_base in _variables.scss
 body {
-	font-size: gutter(1);
+    font-size: gutter(1);
 }
 
 
@@ -44,11 +44,11 @@ body {
  * want to pollute my classes with .clearfix. So, use this mixin instead.
  */
 @mixin clearfix() {
-	&:after {
-	content: "";
-	display: table;
-	clear: both;
-	}
+    &:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
 }
 
 /**
@@ -59,15 +59,15 @@ body {
  * removed from the document flow, but are still accessible.
  *
  * https://webaim.org/techniques/css/invisiblecontent/#techniques
- * 
+ *
  */
 @mixin hide-visually() {
-	position:absolute;
-	left:-10000px;
-	top:auto;
-	width:1px;
-	height:1px;
-	overflow:hidden;
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
 }
 
 
@@ -75,16 +75,16 @@ body {
  * WordPress WYSIWYG Editor alignment styles
  */
 .alignleft {
-	float: left;
-	margin: 0 gutter(1) gutter(1) gutter(1);
+    float: left;
+    margin: 0 gutter(1) gutter(1) gutter(1);
 }
 .alignright {
-	float: right;
-	margin: 0 gutter(1) gutter(1) gutter(1);
+    float: right;
+    margin: 0 gutter(1) gutter(1) gutter(1);
 }
 .aligncenter {
-	display: block;
-	margin: 0 auto gutter(1) auto;
+    display: block;
+    margin: 0 auto gutter(1) auto;
 }
 
 
@@ -95,44 +95,44 @@ body {
 
 
 .post-header {
-	padding: 0 gutter(1); // Line up padding with paragraph tags
+    padding: 0 gutter(1); // Line up padding with paragraph tags
 }
 
 .post-content {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-	p,
-	ul,
-	ol,
-	figcaption,
-	aside,
-	pre {
-		padding: 0 gutter(1); // Keep text content from container edges
-	}
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    ul,
+    ol,
+    figcaption,
+    aside,
+    pre {
+        padding: 0 gutter(1); // Keep text content from container edges
+    }
 
-	hr {
-		margin: 0 gutter(1);
-	}
+    hr {
+        margin: 0 gutter(1);
+    }
 
-	// Margins and paddings for lists
-	ol,
-	ul {
-		margin-left: gutter(1); // Lists need a gutter for list-item to line up
-		margin-top: gutter(0.5);
+    // Margins and paddings for lists
+    ol,
+    ul {
+        margin-left: gutter(1); // Lists need a gutter for list-item to line up
+        margin-top: gutter(0.5);
 
-		// Breathing room between list-style type
-		li {
-			padding: 0 gutter(0.5);
+        // Breathing room between list-style type
+        li {
+            padding: 0 gutter(0.5);
 
-			ul,
-			ol,
-			li {
-				padding-right: 0; // Nested lists should still go to right edge
-			}
-		}
-	}
+            ul,
+            ol,
+            li {
+                padding-right: 0; // Nested lists should still go to right edge
+            }
+        }
+    }
 }

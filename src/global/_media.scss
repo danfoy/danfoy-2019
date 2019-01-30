@@ -10,22 +10,22 @@
  * Responsive Images
  */
 img {
-	width: auto !important; 	// Remove inline width
-	height: auto !important;	// Remove inlight height
-	max-width: 100%;			// No wider than the parent element
-	max-height: 100vh;			// No taller than the viewport
+    width: auto !important;     // Remove inline width
+    height: auto !important;    // Remove inlight height
+    max-width: 100%;            // No wider than the parent element
+    max-height: 100vh;          // No taller than the viewport
 }
 figure {
-	width: auto !important;		// Figures also have inline width attributes
+    width: auto !important;     // Figures also have inline width attributes
 }
 
 // If an image doesn't have an alignment, it is almost certainly intended to be
 // displayed as block. Grids of images should use WordPress' built-in gallery
 // functionality instead.
 img.alignnone {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 // Images that are left/right aligned should take up no more than half their
@@ -37,7 +37,7 @@ img.alignnone {
 // 'fullsize' if that's its native resolution.
 img.alignleft,
 img.alignright {
-	max-width: 50%;
+    max-width: 50%;
 }
 
 
@@ -45,16 +45,16 @@ img.alignright {
  * Responsive Embeds
  */
 .post-content {
-	iframe {
-		max-width: 100%;
-		max-height: 100%;
-		display: block;
-		margin: 0 auto;
-		border: 0;				// Remove UASS iFrame border
+    iframe {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        margin: 0 auto;
+        border: 0;              // Remove UASS iFrame border
 
-		// Iframes in posts marked as video
-		.format-video & {
-			height: calc( (100% / 16) * 9 ); // Size window to 16:9
-		}
-	}
+        // Iframes in posts marked as video
+        .format-video & {
+            height: calc( (100% / 16) * 9 ); // Size window to 16:9
+        }
+    }
 }
