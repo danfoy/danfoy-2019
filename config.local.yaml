@@ -58,6 +58,7 @@ synced_folders:
     logs/nginx: /var/log/nginx
     logs/php: /var/log/php
     ../dist: /vagrant/wp/wp-content/themes/danfoy2019
+    ../uploads: /vagrant/wp/wp-content/uploads
 
 # Plugins
 #
