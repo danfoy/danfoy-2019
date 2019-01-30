@@ -1,98 +1,64 @@
 # Chassis Configuration
-#
-# This file is the default configuration for all projects. The fallback order of
-# configuration files is:
-#
-# - project/content/config.local.yaml   (project-specific overrides)
-# - project/content/config.yaml         (project-specific defaults)
-# - project/config.local.yaml          (global overrides)
-# - project/config.yaml                 (global defaults)
 
 # Domain names to use for Vagrant
-#
-# The first name will be used as the machine's name, subsequent names will be
-# aliased in your hosts file and in nginx
-#
-# (When overriding, include vagrant.local if you need it)
+# Entries beyond first will be aliased to the local hosts file and in nginx
 hosts:
     - danfoy.local
 
-# Site Configuration
-# (When overriding, include all values)
-site:
-    name: danfoy local
+# VirtualBox options
+virtualbox:
+    # Memory (MB, e.g. 1024)
+    memory: null
+    # CPUs (int, e.g. 2)
+    cpus: null
 
-# Database configuration
-# (When overriding, include all values)
+# PHP version (5.6, 5.6.30, 7.0, 7.1, or 7.2
+php: 7.2
+
+# Chassis extensions
+extensions:
+    - Chassis/phpMyAdmin
+    - Chassis/db-backup
+    - Chassis/Imagick
+    - Chassis/MailHog
+
+# Database config
 database:
     name: wordpress
     user: wordpress
     password: vagrantpassword
     prefix: wp_
 
-# Admin configuration
-# (When overriding, include all values)
+# Custom WordPress folder paths
+paths:
+    # Base directory relative to Chassis
+    base: .
+    # WordPress Core relative to base
+    wp: wp
+    # wp-content replacement relative to base
+    content: content
+
+# Synced Folders local:vm
+synced_folders:
+    logs/nginx: /var/log/nginx
+    logs/php: /var/log/php
+    ../content: /vagrant/content
+
+
+# Site title (for a fresh WP install)
+site:
+    name: danfoy local
+
+# WP admin user (for a fresh WP install)
 admin:
     user: admin
     email: admin@example.com
     password: password
 
-# Paths
-#
-# If transplanting Chassis into an existing project, you can set these manually.
-# These can be set to absolute paths, or relative paths.
-paths:
-    # Base directory for reference. Relative to the Chassis directory.
-    base: .
-
-    # Where WordPress lives. Relative to the base directory.
-    wp: wp
-
-    # Content directory. Relative to the base directory.
-    content: content
-
-# Synced Folders
-#
-# You can sync as many folders as you like. We sync the nginx and php log folders by default.
-synced_folders:
-    logs/nginx: /var/log/nginx
-    logs/php: /var/log/php
-    ../dist: /vagrant/wp/wp-content/themes/danfoy2019
-    ../uploads: /vagrant/wp/wp-content/uploads
-
-# Plugins
-#
-# Install and activate a list of plugins from wp.org
+# Plugins (for a fresh WP install)
 plugins:
     - ajax-thumbnail-rebuild
     - gutenberg
     - jetpack
     - theme-check
-
-# Extensions
-#
-# Install a list of extensions automatically
-extensions:
-    - Chassis/phpMyAdmin
-    - Chassis/db-backup
-    - Chassis/Imagick
-    - Chassis/MailHog
-    - javorszky/chassis-openssl
-
-# PHP version
-# Values: 5.6, 7.0, 7.1, 7.2 (or 5.6.30)
-php: 7.2
-
-# VirtualBox-specific customisations.
-virtualbox:
-    # Memory, in megabytes.
-    #
-    # (e.g. 1024)
-    memory: null
-
-    # CPU count.
-    #
-    # (e.g. 2)
-    cpus: null
-
-
+    - better-search-replace
