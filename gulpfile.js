@@ -169,6 +169,25 @@ gulp.task('sync', () => {
     });
 });
 
+/**
+ * Copy Chassis config files
+ *
+ * There are two configuration files required by Chassis that live inside the 
+ * `chassis/` directory. These are destroyed if I need to re-clone the Chassis
+ * repo, so better to store them with the rest of the config files and Gulp
+ * them over.
+ * 
+ */
+gulp.task('config', () => {
+    return gulp.src([
+            'config.local.yaml',            // Chassis configuration
+            'local-config.php'              // wp-config.php overrides
+        ])
+    .pipe(plumber())                        // Fail gracefully
+    .pipe(newer('chassis/'))                // Only copy newer files
+    .pipe(gulp.dest('chassis/'))            // Copy files
+});
+
 
 /**
  * Purge files
@@ -216,6 +235,11 @@ gulp.task('watch', ['sync'], () => {     // BrowserSync as dependency
 
     // JavaScript main changes
     gulp.watch('src/js/*.js', ['js']);
+
+    gulp.watch([
+            'config.local.yaml',            // Chassis configuration
+            'local-config.php'              // wp-config.php overrides
+        ], ['config']);
 
 });
 
