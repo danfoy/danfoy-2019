@@ -8,9 +8,10 @@
  * as visitors arriving at pages for which there is no link from the site, but
  * which WordPress happily generates anyway based on the URL visited.
  *
- * @package df19
- * @since  1.0.0
- * @author Dan Foy
+ * @package     df19
+ * @subpackage  global
+ * @author      Dan Foy <danfoy.com>
+ * @since       1.0.0
  */
 
 get_header();

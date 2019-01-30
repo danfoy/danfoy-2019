@@ -4,9 +4,8 @@
  *
  * @package     df19
  * @subpackage  comments
- * @author      danfoy <danfoy.com>
+ * @author      Dan Foy <danfoy.com>
  * @since       1.0.0
- *
  */
 
 /**

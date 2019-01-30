@@ -5,9 +5,10 @@
  * This file contains theme setup and configuration information, and defines
  * functions which can be used by any other template within the theme.
  *
- * @package df19
- * @since 1.0.0
- * @author Dan Foy <danfoy.com>
+ * @package     df19
+ * @subpackage  global
+ * @author      Dan Foy <danfoy.com>
+ * @since       1.0.0
  */
 
 

@@ -7,9 +7,10 @@
  * on a page which isn't linked to but which WordPress will happily generate
  * regardless.
  *
- * @package df19
- * @since  1.0.0
- * @author Dan Foy
+ * @package     df19
+ * @subpackage  loop
+ * @author      Dan Foy <danfoy.com>
+ * @since       1.0.0
  */
 
 // Check for posts

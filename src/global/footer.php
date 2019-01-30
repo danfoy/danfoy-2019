@@ -2,10 +2,10 @@
 /**
  * Footer template for danfoy-2019 WordPress theme
  *
- * @package df19
- * @since  1.0.0
- * @author Dan Foy (danfoy.com)
- *
+ * @package     df19
+ * @subpackage  global
+ * @author      Dan Foy <danfoy.com>
+ * @since       1.0.0
  */
 ?>
 
