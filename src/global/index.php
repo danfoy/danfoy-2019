@@ -1,6 +1,6 @@
 <?php
 /**
- * Index template for danfoy-2019 WordPress theme
+ * Index template for danfoy_2019 WordPress theme
  *
  * This is the default template for the theme, so it will appear whenever
  * it isn't overridden by an alternative. It is therefore as bare-bones
@@ -8,7 +8,7 @@
  * as visitors arriving at pages for which there is no link from the site, but
  * which WordPress happily generates anyway based on the URL visited.
  *
- * @package     df19
+ * @package     danfoy_2019
  * @subpackage  global
  * @author      Dan Foy <danfoy.com>
  * @since       1.0.0

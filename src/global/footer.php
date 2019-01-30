@@ -1,8 +1,8 @@
 <?php
 /**
- * Footer template for danfoy-2019 WordPress theme
+ * Footer template for danfoy_2019 WordPress theme
  *
- * @package     df19
+ * @package     danfoy_2019
  * @subpackage  global
  * @author      Dan Foy <danfoy.com>
  * @since       1.0.0

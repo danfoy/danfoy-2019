@@ -40,7 +40,7 @@ const
 const dir = {
     src:        'src/',                         // Source directory
     notsrc:     '!src/',                        // Negated for globbing
-    dest:       'content/themes/danfoy-2019/',  // Output directory
+    dest:       'content/themes/danfoy_2019/',  // Output directory
     vagrant:    'chassis/'                      // Vagrant directory
 };
 

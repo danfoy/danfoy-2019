@@ -1,11 +1,11 @@
 <?php
 /**
- * Functions file for df19
+ * Functions file for danfoy_2019
  *
  * This file contains theme setup and configuration information, and defines
  * functions which can be used by any other template within the theme.
  *
- * @package     df19
+ * @package     danfoy_2019
  * @subpackage  global
  * @author      Dan Foy <danfoy.com>
  * @since       1.0.0
@@ -80,11 +80,11 @@ if ( function_exists( 'add_theme_support' ) ) {
  * number of the stylesheet causes the browser to request a fresh copy, removing
  * the need to reset your browser cache and lose all your logins.
  */
-function df19_styles() {
-    wp_register_style( 'df19_style', get_template_directory_uri() . '/style.css', array(), '1.0.0' );
-    wp_enqueue_style( 'df19_style' );
+function danfoy_2019_styles() {
+    wp_register_style( 'danfoy_2019_style', get_template_directory_uri() . '/style.css', array(), '1.0.0' );
+    wp_enqueue_style( 'danfoy_2019_style' );
 }
-add_action( 'wp_enqueue_scripts', 'df19_styles' );
+add_action( 'wp_enqueue_scripts', 'danfoy_2019_styles' );
 
 /**
  * Load global JavaScript
@@ -92,7 +92,7 @@ add_action( 'wp_enqueue_scripts', 'df19_styles' );
  * Load scripts which will be used on every page
  *
  */
-function df19_global_scripts() {
+function danfoy_2019_global_scripts() {
     wp_enqueue_script(
         'modernizr',                                            // Handle
         get_template_directory_uri() . '/js/modernizr.min.js',  // Location
@@ -101,7 +101,7 @@ function df19_global_scripts() {
         false                                                   // In footer
     );
 }
-add_action( 'wp_print_scripts', 'df19_global_scripts' );
+add_action( 'wp_print_scripts', 'danfoy_2019_global_scripts' );
 
 
 /**
@@ -109,12 +109,12 @@ add_action( 'wp_print_scripts', 'df19_global_scripts' );
  *
  * Menu locations registered here appear in the WordPress admin interface
  */
-function df19_menus() {
+function danfoy_2019_menus() {
     register_nav_menus( array(
         'header-menu' => 'header-menu',
     ) );
 }
-add_action( 'init', 'df19_menus' );
+add_action( 'init', 'danfoy_2019_menus' );
 
 
 /**
@@ -206,7 +206,7 @@ add_action( 'widgets_init', 'remove_recent_comments_style' );
  *
  * @link https://codex.wordpress.org/Function_Reference/paginate_links Codex entry
  */
-function df19_paginate() {
+function danfoy_2019_paginate() {
 
     // Outside the loop, so need some globals
     global $wp_query;
@@ -275,7 +275,7 @@ function df19_paginate() {
         echo '</nav>'; // /.pagination
     }
 }
-// add_action( 'init', 'df19_paginate' ); // Add our HTML5 Pagination
+// add_action( 'init', 'danfoy_2019_paginate' ); // Add our HTML5 Pagination
 
 
 /**
@@ -300,11 +300,11 @@ add_action( 'get_header', 'enable_threaded_comments' );
  * @param  string $tag  stylesheet tag
  * @return string       stylesheet tag stripped of type=""
  */
-function df19_remove_style_type( $tag ) {
+function danfoy_2019_remove_style_type( $tag ) {
     return preg_replace( "/type=['\"]text\/(javascript|css)['\"]/", "", $tag );
 }
-add_filter( 'style_loader_tag', 'df19_remove_style_type' );
-add_filter( 'script_loader_tag', 'df19_remove_style_type' );
+add_filter( 'style_loader_tag', 'danfoy_2019_remove_style_type' );
+add_filter( 'script_loader_tag', 'danfoy_2019_remove_style_type' );
 
 
 /**
@@ -312,11 +312,11 @@ add_filter( 'script_loader_tag', 'df19_remove_style_type' );
  *
  * https://kinsta.com/knowledgebase/disable-emojis-wordpress/
  */
-function df19_disable_emojis() {
-    add_filter( 'tiny_mce_plugins', 'df19_disable_emojis_tinymce' );
-    add_filter( 'wp_resource_hints', 'df19_disable_emojis_remove_dns_prefetch', 10, 2 );
+function danfoy_2019_disable_emojis() {
+    add_filter( 'tiny_mce_plugins', 'danfoy_2019_disable_emojis_tinymce' );
+    add_filter( 'wp_resource_hints', 'danfoy_2019_disable_emojis_remove_dns_prefetch', 10, 2 );
 }
-add_action( 'init', 'df19_disable_emojis' );
+add_action( 'init', 'danfoy_2019_disable_emojis' );
 
 
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -336,7 +336,7 @@ remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
  * @param array $plugins
  * @return array Difference betwen the two arrays
  */
-function df19_disable_emojis_tinymce( $plugins ) {
+function danfoy_2019_disable_emojis_tinymce( $plugins ) {
     if ( is_array( $plugins ) ) {
         return array_diff( $plugins, array( 'wpemoji' ) );
     } else {
@@ -353,7 +353,7 @@ function df19_disable_emojis_tinymce( $plugins ) {
  * @param string $relation_type The relation type the URLs are printed for.
  * @return array Difference betwen the two arrays.
  */
-function df19_disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
+function danfoy_2019_disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
     if ( 'dns-prefetch' == $relation_type ) {
         /** This filter is documented in wp-includes/formatting.php */
         $emoji_svg_url = apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/' );
@@ -372,11 +372,11 @@ function df19_disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
  * @param  string $html     The string to filter
  * @return string           String filtered of "frameborder="0"
  */
-function df19_remove_frameborder( $html ) {
+function danfoy_2019_remove_frameborder( $html ) {
     $html = str_replace( 'frameborder="0"', '', $html );
     return $html;
 }
-add_filter( 'embed_oembed_html', 'df19_remove_frameborder', 10, 2 );
+add_filter( 'embed_oembed_html', 'danfoy_2019_remove_frameborder', 10, 2 );
 
 
 /**
@@ -388,14 +388,14 @@ add_filter( 'embed_oembed_html', 'df19_remove_frameborder', 10, 2 );
  *
  * e.g. gallery scripts, syntax highlighting scripts
  */
-// function df19_conditional_scripts() {
+// function danfoy_2019_conditional_scripts() {
 //     if ( is_page( 'pagenamehere' ) ) {
 //         // Conditional script(s)
 //         wp_register_script( 'scriptname', get_template_directory_uri() . '/js/scriptname.js', array( 'jquery' ), '1.0.0' );
 //         wp_enqueue_script( 'scriptname' );
 //     }
 // }
-// add_action( 'wp_print_scripts', 'df19_conditional_scripts' ); // Add Conditional Page Scripts
+// add_action( 'wp_print_scripts', 'danfoy_2019_conditional_scripts' ); // Add Conditional Page Scripts
 
 
 /**

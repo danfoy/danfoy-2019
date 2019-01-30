@@ -1,13 +1,13 @@
 <?php
 /**
- * General loop template for danfoy-2019 WordPress theme
+ * General loop template for danfoy_2019 WordPress theme
  *
  * This is the loop which gets used by default. It is kept vague to be a
  * general-purpose loop which functions in edge-case scenarios, such as landing
  * on a page which isn't linked to but which WordPress will happily generate
  * regardless.
  *
- * @package     df19
+ * @package     danfoy_2019
  * @subpackage  loop
  * @author      Dan Foy <danfoy.com>
  * @since       1.0.0
@@ -134,7 +134,7 @@ if ( have_posts() ) :
     ?>
 
     <?php
-    df19_paginate();
+    danfoy_2019_paginate();
     ?>
 
 <?php

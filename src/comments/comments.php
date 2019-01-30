@@ -2,7 +2,7 @@
 /**
  * Comments template
  *
- * @package     df19
+ * @package     danfoy_2019
  * @subpackage  comments
  * @author      Dan Foy <danfoy.com>
  * @since       1.0.0
