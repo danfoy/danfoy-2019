@@ -37,6 +37,13 @@ const
         cssnano         = require('cssnano')
 ;
 
+const dir = {
+    src:        'src/',                         // Source directory
+    notsrc:     '!src/',                        // Negated for globbing
+    dest:       'content/themes/danfoy-2019/',  // Output directory
+    vagrant:    'chassis/'                      // Vagrant directory
+};
+
 
 /**
  * Process Stylesheets
@@ -49,7 +56,7 @@ const
  *
  */
 gulp.task('css', () => {
-    return gulp.src('src/master.scss')   // list of `@include`s
+    return gulp.src(dir.src + 'master.scss')   // list of `@include`s
     .pipe(plumber())                            // Fail gracefully
     .pipe(sourcemaps.init())                    // Start sourcemapping
         .pipe(sass({                            // Process SCSS
@@ -68,7 +75,7 @@ gulp.task('css', () => {
         ]))
         .pipe(concat('style.css'))              // Rename to `style.css`
     .pipe(sourcemaps.write('.'))                // Generate external sourcemap
-    .pipe(gulp.dest('dist'))                   // Write to root of `./dist/`
+    .pipe(gulp.dest(dir.dest))                   // Write to root of `./dist/`
     .pipe(browsersync.reload({stream:true}));
 });
 
@@ -86,12 +93,12 @@ gulp.task('css', () => {
  *
  */
 gulp.task('php', () => {
-    return gulp.src('src/**/*.php')             // Get all PHP files
+    return gulp.src(dir.src + '**/*.php')             // Get all PHP files
     .pipe(plumber())                            // Fail gracefully
-    .pipe(newer('dist'))                        // Target changed files only
+    .pipe(newer(dir.dest))                        // Target changed files only
     .pipe(trim())                               // Remove L/R whitespace
     .pipe(rename({dirname: ''}))                // Flatten filetree
-    .pipe(gulp.dest('dist'));                   // Write files
+    .pipe(gulp.dest(dir.dest));                   // Write files
 });
 
 
@@ -104,11 +111,11 @@ gulp.task('php', () => {
  *
  */
 gulp.task('js', () => {
-    return gulp.src('src/**/*.js')              // Get all JavaScript files
+    return gulp.src(dir.src + '**/*.js')              // Get all JavaScript files
     .pipe(plumber())                            // Fail gracefully
-    .pipe(newer('dist/js'))                     // Target changed files only
+    .pipe(newer(dir.dest + 'js/'))                     // Target changed files only
     .pipe(rename({dirname: ''}))                // Flatten filestructure
-    .pipe(gulp.dest('dist/js/'));               // Write files
+    .pipe(gulp.dest(dir.dest + 'js/'));               // Write files
 });
 
 
@@ -123,13 +130,13 @@ gulp.task('js', () => {
  */
 gulp.task('img', () => {
     return gulp.src([
-        'src/img/**/*',                         // Get contents of `./src/img/`
-        '!src/img/{assets,assets/**}',          // Ignore reference/src assets
-        '!src/img/screenshot.png'               // Ignore screenshot
+        dir.src + 'img/**/*',
+        dir.notsrc + 'img/{assets,assets/**}',      // Ignore reference/src assets
+        dir.notsrc + 'img/screenshot.png'           // Ignore screenshot
         ])
     .pipe(plumber())                            // Fail gracefully
-    .pipe(newer('dist/img/'))                   // Target changed files only
-    .pipe(gulp.dest('dist/img/'));              // Write files
+    .pipe(newer(dir.dest + 'img/'))                   // Target changed files only
+    .pipe(gulp.dest(dir.dest + 'img/'));              // Write files
 });
 
 
@@ -141,10 +148,10 @@ gulp.task('img', () => {
  *
  */
 gulp.task('screenshot', () => {
-    return gulp.src('src/img/screenshot.png')   // Get screenshot
+    return gulp.src(gulp.src + 'img/screenshot.png')   // Get screenshot
     .pipe(plumber())                            // Fail gracefully
-    .pipe(newer('dist/'))                       // Check if changed
-    .pipe(gulp.dest('dist/'));                  // Write file
+    .pipe(newer(dir.dest))                       // Check if changed
+    .pipe(gulp.dest(dir.dest));                  // Write file
 });
 
 
@@ -158,7 +165,7 @@ gulp.task('screenshot', () => {
 gulp.task('sync', () => {
     browsersync.init({                      // Initialize with settings:
         proxy: 'danfoy.local',                  // Address to proxy
-        files: 'dist/**/*',                     // Files to monitor
+        files: dir.dest + '**/*',                     // Files to monitor
         open: false,                            // Start browser
         notify: false,                          // Flash element on change
         reloadOnRestart: true,                  // Restart after crash
@@ -184,8 +191,8 @@ gulp.task('config', () => {
             'local-config.php'              // wp-config.php overrides
         ])
     .pipe(plumber())                        // Fail gracefully
-    .pipe(newer('chassis/'))                // Only copy newer files
-    .pipe(gulp.dest('chassis/'))            // Copy files
+    .pipe(newer(dir.vagrant))                // Only copy newer files
+    .pipe(gulp.dest(dir.vagrant))            // Copy files
 });
 
 
@@ -197,7 +204,7 @@ gulp.task('config', () => {
  *
  */
 gulp.task('purge', () => {
-    return gulp.src(['dist/'], {read: false})   // Don't bother reading files
+    return gulp.src([dir.dest], {read: false})   // Don't bother reading files
     .pipe(plumber())                            // Fail gracefully
     .pipe(clean());                             // Wipe everything
 });
@@ -226,15 +233,15 @@ gulp.task('default', [
  *
  */
 gulp.task('watch', ['sync'], () => {     // BrowserSync as dependency
-    gulp.watch('src/**/*.php', ['php']);
+    gulp.watch(dir.src + '**/*.php', ['php']);
     // page changes
-    gulp.watch('src/**/*.php', ['php'], browsersync.reload);
+    gulp.watch(dir.src + '**/*.php', ['php'], browsersync.reload);
 
     // CSS changes
-    gulp.watch('src/**/*.scss', ['css']);
+    gulp.watch(dir.src + '**/*.scss', ['css']);
 
     // JavaScript main changes
-    gulp.watch('src/js/*.js', ['js']);
+    gulp.watch(dir.src + 'js/*.js', ['js']);
 
     gulp.watch([
             'config.local.yaml',            // Chassis configuration
@@ -246,7 +253,8 @@ gulp.task('watch', ['sync'], () => {     // BrowserSync as dependency
 function watch2(cb) {
     bsync();
     gulp.watch('src/**/*.php', ['php']);
-    gulp.watch('dist/*.php').on('change', browsersync.reload);
+    gulp.watch(dir.dest + '*.php')
+        .on('change', browsersync.reload);
     gulp.watch('src/**/*.scss', ['css']);
     gulp.watch('src/js/*.js', ['js']);
 
@@ -255,7 +263,7 @@ function watch2(cb) {
 function bsync(cb){                 // Create BrowserSync instance
     browsersync.init({                      // Initialize with settings:
         proxy: 'danfoy.local',                  // Address to proxy
-        files: 'dist/**/*',                     // Files to monitor
+        files: dir.dest + '**/*',                     // Files to monitor
         open: false,                            // Start browser
         notify: false,                          // Flash element on change
         reloadOnRestart: true,                  // Restart after crash
