@@ -1,10 +1,13 @@
 # .gitignore for danfoy2019
 #
 # 
-#
 # Don't include output
 # (to avoid annoying diff messages)
 dist/
+#
+# Don't include site content (custom wp-content dir)
+# (large files, possible sensitive information)
+content/
 #
 # Submodules
 chassis/
