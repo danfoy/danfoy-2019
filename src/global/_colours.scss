@@ -2,7 +2,7 @@
  * Global colours Stylesheet
  *
  * Colour variables for the default stylesheet. At some point I would like to
- * provide multiple colour schemes for the site, which will probably invove
+ * provide multiple colour schemes for the site, which will probably involve
  * refactoring to bring all colours over the site into a separate sheet. But
  * having the default colours set here using variables will save a lot of time.
  *
@@ -11,3 +11,16 @@
  * @author      Dan Foy <danfoy.com>
  * @since       1.0.0
  */
+
+/**
+ * Greys
+ */
+$grey100: hsl(0, 0%, 05%);
+$grey200: hsl(0, 0%, 10%);
+$grey300: hsl(0, 0%, 20%);
+$grey400: hsl(0, 0%, 30%);
+$grey500: hsl(0, 0%, 50%);
+$grey600: hsl(0, 0%, 60%);
+$grey700: hsl(0, 0%, 75%);
+$grey800: hsl(0, 0%, 85%);
+$grey900: hsl(0, 0%, 95%);
