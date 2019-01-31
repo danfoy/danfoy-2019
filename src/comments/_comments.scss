@@ -26,13 +26,8 @@
  * Sectioning
  */
 .responses { // <aside>
-    margin-top: 1em;            // Breathing space from .post-meta
+    margin-top: 3em;            // Breathing space from .post-meta
     font-family: $sans-serif;
-
-    &-pings,       // <div>
-    &-comments {   // <div>
-        margin-top: 4em;
-    }
 }
 
 // Titles
@@ -40,8 +35,10 @@
 .responses-comments-title,
 .responses-pings-title,
 .respond-form-title {
-    margin-top: 1em;
-    margin-bottom: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
     text-transform: uppercase;
     font-weight: 700;
     text-align: center;
@@ -68,12 +65,13 @@
 .responses-pings-list { // <ol>
     text-transform: uppercase;      // Differentiate from link
     font-size: 0.65em;              // Differentiate from link
-    margin-top: 2em;                // Whitespace
+    margin-top: 1em;                // Whitespace
     margin-bottom: 1em;             // Whitespace
 
     .pingback { // <li>
         position: relative;
-        margin-bottom: 1.65em;      // 1 space + label height
+        padding-top: 1em;
+        padding-bottom: 1em;
     }
 
     a {
@@ -105,22 +103,22 @@
 .responses-comments-list,
 .responses-pings-list { // <ol>
     padding-left: 0;        // Override native list padding
-    margin-bottom: 0;
-    list-style-type: none;
+    margin-top: 0;          // Override native list margin
+    margin-bottom: 0;       // Override native list margin
+    list-style-type: none;  // Override native list style
 
     > .comment:last-of-type {
         border-bottom: 1px solid;
-        margin-bottom: 1em;
     }
 }
 
 .comment { // <li>
-    padding-top: 1.5em;                     // Breathing room for header
+    padding-top: 1em;                     // Breathing room for header
     border-top: 1px solid;
     list-style-type: none;
 
     .comment-body { // <article>
-        padding-bottom: 1em; // Line up with global padding
+        padding-bottom: 0.5em; // Line up with global padding
     }
 
     // Indent threaded response
@@ -133,7 +131,6 @@
         padding-left: 0;
 
         .comment {
-            padding-top: 0.5em;             // -1em compared to parent
             margin-left: gutter(1);     // 1em indent per level
             border-top: none;
 
@@ -211,10 +208,6 @@
     text-decoration: none;
 }
 
-.comment-content {
-
-}
-
 .reply {
     text-align: right;          // Reply link looks more balanced opposite gravatar
     font-size: 0.8em;           // Smaller text
@@ -228,6 +221,8 @@
 
 
 .respond {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 
     // When the respond section is nested:
     @at-root .comment .respond {
@@ -294,6 +289,10 @@
         border: 1px solid black;
         display: block;
         box-sizing: border-box;
+
+        &:first-of-type {
+            margin-top: 0;          // Handled by container
+        }
     }
 
     .respond-form-input-comment {
@@ -315,6 +314,7 @@
 
     input[type="submit"] {
         cursor: pointer;
+        margin-bottom: 0;
     }
 
 }
