@@ -8,9 +8,9 @@
  *
  * Some additional files are compiled to `./dev` to aid local development.
  *
- * @package df19
- * @author Dan Foy (danfoy.com)
- *
+ * @package danfoy-2019
+ * @author  Dan Foy (danfoy.com)
+ * @since   1.0.0
  */
 
 
@@ -18,7 +18,6 @@
  * Load Gulp and required plugins
  *
  * Plugins must also be installed to `./node_modules`.
- *
  */
 const
     gulp                = require('gulp'),
@@ -37,6 +36,13 @@ const
         cssnano         = require('cssnano')
 ;
 
+
+/**
+ * Directories
+ *
+ * Occasionally I'll need to move a directory. Referencing the directories via
+ * this object means I only have to change one line of code for each movement.
+ */
 const dir = {
     src:        'src/',                         // Source directory
     notsrc:     '!src/',                        // Negated for globbing
@@ -53,30 +59,29 @@ const dir = {
  *
  * Note there is no file globbing here. If a partial doesn't have an `@include`
  * statement in `src/global/master.scss`, it doesn't appear in `dist/style.css`.
- *
  */
 gulp.task('css', () => {
-    return gulp.src(dir.src + 'master.scss')   // list of `@include`s
-    .pipe(plumber())                            // Fail gracefully
-    .pipe(sourcemaps.init())                    // Start sourcemapping
-        .pipe(sass({                            // Process SCSS
-            outputStyle: 'nested',                  // SCSS-like (for debugging)
-            precision: 3,                           // Decimal places
-            errLogToConsole: true                   // Show errors in console
+    return gulp.src(dir.src + 'master.scss')    // Master stylesheet index
+    .pipe(plumber())                            // Handle errors
+    .pipe(sourcemaps.init())                    // Start sourcemapping:
+        .pipe(sass({                            // - Process SCSS:
+            outputStyle: 'nested',              //   - SCSS-like (for debugging)
+            precision: 3,                       //   - Decimal places
+            errLogToConsole: true               //   - Show errors in console
         }))
-        .pipe(postcss([                         // Further processing:
-            autoprefixer({                          // Add vendor prefixes
-                browsers: [                             // For browserlist:
-                    'last 2 versions',                      // Major releases
-                    '> 2%'                                  // Still in usage
+        .pipe(postcss([                         // - Further processing:
+            autoprefixer({                      //   - Add vendor prefixes
+                browsers: [                     //   - For browserlist:
+                    'last 2 versions',          //     - Major releases
+                    '> 2%'                      //     - Still in the wild
                 ]
             }),
-            cssnano()                               // Minify output
+            cssnano()                           // - Minify output
         ]))
-        .pipe(concat('style.css'))              // Rename to `style.css`
+        .pipe(concat('style.css'))              // - Rename to `style.css`
     .pipe(sourcemaps.write('.'))                // Generate external sourcemap
-    .pipe(gulp.dest(dir.dest))                   // Write to root of `./dist/`
-    .pipe(browsersync.reload({stream:true}));
+    .pipe(gulp.dest(dir.dest))                  // Write file
+    .pipe(browsersync.reload({stream:true}));   // Reload BrowserSync
 });
 
 
@@ -90,15 +95,14 @@ gulp.task('css', () => {
  * WordPress also makes a terrible mess of indentation, so there is a hard trim.
  * I could pretend this is for minification purposes but honestly I just find
  * the flattened output less painful to look at.
- *
  */
 gulp.task('php', () => {
-    return gulp.src(dir.src + '**/*.php')             // Get all PHP files
-    .pipe(plumber())                            // Fail gracefully
-    .pipe(newer(dir.dest))                        // Target changed files only
+    return gulp.src(dir.src + '**/*.php')       // Get all PHP files
+    .pipe(plumber())                            // Handle errors
+    .pipe(newer(dir.dest))                      // Target changed files only
     .pipe(trim())                               // Remove L/R whitespace
     .pipe(rename({dirname: ''}))                // Flatten filetree
-    .pipe(gulp.dest(dir.dest));                   // Write files
+    .pipe(gulp.dest(dir.dest));                 // Write files
 });
 
 
@@ -108,14 +112,13 @@ gulp.task('php', () => {
  * For now this just copies all JS files into `./dist/js/`.
  *
  * TODO: Add minification and sourcemapping
- *
  */
 gulp.task('js', () => {
-    return gulp.src(dir.src + '**/*.js')              // Get all JavaScript files
-    .pipe(plumber())                            // Fail gracefully
-    .pipe(newer(dir.dest + 'js/'))                     // Target changed files only
+    return gulp.src(dir.src + '**/*.js')        // Get all JavaScript files
+    .pipe(plumber())                            // Handle errors
+    .pipe(newer(dir.dest + 'js/'))              // Target changed files only
     .pipe(rename({dirname: ''}))                // Flatten filestructure
-    .pipe(gulp.dest(dir.dest + 'js/'));               // Write files
+    .pipe(gulp.dest(dir.dest + 'js/'));         // Write files
 });
 
 
@@ -126,17 +129,16 @@ gulp.task('js', () => {
  * Copy all images into `./dist/img/`
  *
  * TODO: Add minification, maybe SVG -> GIF fallbacks or similar
- *
  */
 gulp.task('img', () => {
     return gulp.src([
-        dir.src + 'img/**/*',
-        dir.notsrc + 'img/{assets,assets/**}',      // Ignore reference/src assets
-        dir.notsrc + 'img/screenshot.png'           // Ignore screenshot
+        dir.src + 'img/**/*',                   // Get everything in img/
+        dir.notsrc + 'img/{assets,assets/**}',  // Ignore reference/src assets
+        dir.notsrc + 'img/screenshot.png'       // Ignore screenshot
         ])
-    .pipe(plumber())                            // Fail gracefully
-    .pipe(newer(dir.dest + 'img/'))                   // Target changed files only
-    .pipe(gulp.dest(dir.dest + 'img/'));              // Write files
+    .pipe(plumber())                            // Handle errors
+    .pipe(newer(dir.dest + 'img/'))             // Target changed files only
+    .pipe(gulp.dest(dir.dest + 'img/'));        // Write files
 });
 
 
@@ -145,13 +147,12 @@ gulp.task('img', () => {
  *
  * WordPress expects the screenshot for the Theme Picker to be in the theme's
  * root directory, so copy this over separately
- *
  */
 gulp.task('screenshot', () => {
-    return gulp.src(gulp.src + 'img/screenshot.png')   // Get screenshot
-    .pipe(plumber())                            // Fail gracefully
-    .pipe(newer(dir.dest))                       // Check if changed
-    .pipe(gulp.dest(dir.dest));                  // Write file
+    return gulp.src(gulp.src + 'img/screenshot.png')
+    .pipe(plumber())                            // Handle errors
+    .pipe(newer(dir.dest))                      // Check if changed
+    .pipe(gulp.dest(dir.dest));                 // Write file
 });
 
 
@@ -160,18 +161,17 @@ gulp.task('screenshot', () => {
  *
  * Magical system for automatically updating CSS and JS changes, and reloading
  * on PHP changes.
- *
  */
 gulp.task('sync', () => {
-    browsersync.init({                      // Initialize with settings:
-        proxy: 'danfoy.local',                  // Address to proxy
-        files: dir.dest + '**/*',                     // Files to monitor
-        open: false,                            // Start browser
-        notify: false,                          // Flash element on change
-        reloadOnRestart: true,                  // Restart after crash
-        ghostMode: false,                       // Browser mirroring
-        ui: {                                   // Interface
-            port: 8001                              // ^ port
+    browsersync.init({                          // Initialize with settings:
+        proxy: 'danfoy.local',                  // - Address to proxy
+        files: dir.dest + '**/*',               // - Files to monitor
+        open: false,                            // - Start browser
+        notify: false,                          // - Flash element on change
+        reloadOnRestart: true,                  // - Restart after crash
+        ghostMode: false,                       // - Browser mirroring
+        ui: {                                   // - Interface:
+            port: 8001                          //   - Port
         }
     });
 });
@@ -183,16 +183,15 @@ gulp.task('sync', () => {
  * `chassis/` directory. These are destroyed if I need to re-clone the Chassis
  * repo, so better to store them with the rest of the config files and Gulp
  * them over.
- *
  */
 gulp.task('config', () => {
-    return gulp.src([
-            'config.local.yaml',            // Chassis configuration
-            'local-config.php'              // wp-config.php overrides
-        ])
-    .pipe(plumber())                        // Fail gracefully
-    .pipe(newer(dir.vagrant))                // Only copy newer files
-    .pipe(gulp.dest(dir.vagrant))            // Copy files
+    return gulp.src([                           // Get these files specifically:
+        'config.local.yaml',                    // - Chassis configuration
+        'local-config.php'                      // - wp-config.php overrides
+    ])
+    .pipe(plumber())                            // Handle errors
+    .pipe(newer(dir.vagrant))                   // Target only changed files
+    .pipe(gulp.dest(dir.vagrant))               // Write files
 });
 
 
@@ -201,12 +200,12 @@ gulp.task('config', () => {
  *
  * Wipe `./dist/`. Good hygine, removes duplicate and crufty files after file
  * location changes etc. Also useful for debugging.
- *
  */
 gulp.task('purge', () => {
-    return gulp.src([dir.dest], {read: false})   // Don't bother reading files
-    .pipe(plumber())                            // Fail gracefully
-    .pipe(clean());                             // Wipe everything
+    return gulp.src([dir.dest],                 // Get all output files:
+        {read: false})                          // - Don't bother reading them
+    .pipe(plumber())                            // Handle errors
+    .pipe(clean());                             // Wipe files
 });
 
 
@@ -214,7 +213,6 @@ gulp.task('purge', () => {
  * Default task
  *
  * What happens when `gulp` is run by itself at command line.
- *
  */
 gulp.task('default', [
     'php',
@@ -230,48 +228,14 @@ gulp.task('default', [
  * Watch task
  *
  * Start BrowserSync and watch files for changes. Standard development mode.
- *
  */
-gulp.task('watch', ['sync'], () => {     // BrowserSync as dependency
-    gulp.watch(dir.src + '**/*.php', ['php']);
-    // page changes
-    gulp.watch(dir.src + '**/*.php', ['php'], browsersync.reload);
-
-    // CSS changes
-    gulp.watch(dir.src + '**/*.scss', ['css']);
-
-    // JavaScript main changes
-    gulp.watch(dir.src + 'js/*.js', ['js']);
-
-    gulp.watch([
-            'config.local.yaml',            // Chassis configuration
-            'local-config.php'              // wp-config.php overrides
+gulp.task('watch', ['sync'], () => {            // BrowserSync as dependency
+    gulp.watch(dir.src + '**/*.php', ['php'],   // Watch PHP files:
+        browsersync.reload);                    // - reload on changes
+    gulp.watch(dir.src + '**/*.scss', ['css']); // Watch stylesheets
+    gulp.watch(dir.src + 'js/*.js', ['js']);    // Watch scripts
+    gulp.watch([                                // Watch config files:
+            'config.local.yaml',                // - Chassis configuration
+            'local-config.php'                  // - wp-config.php overrides
         ], ['config']);
-
 });
-
-function watch2(cb) {
-    bsync();
-    gulp.watch('src/**/*.php', ['php']);
-    gulp.watch(dir.dest + '*.php')
-        .on('change', browsersync.reload);
-    gulp.watch('src/**/*.scss', ['css']);
-    gulp.watch('src/js/*.js', ['js']);
-
-};
-
-function bsync(cb){                 // Create BrowserSync instance
-    browsersync.init({                      // Initialize with settings:
-        proxy: 'danfoy.local',                  // Address to proxy
-        files: dir.dest + '**/*',                     // Files to monitor
-        open: false,                            // Start browser
-        notify: false,                          // Flash element on change
-        reloadOnRestart: true,                  // Restart after crash
-        ghostMode: false,                       // Browser mirroring
-        ui: {                                   // Interface
-            port: 8001                              // ^ port
-        }
-    });
-}
-
-exports.watch2 = watch2;
