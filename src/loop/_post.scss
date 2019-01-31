@@ -30,8 +30,11 @@
  *
  */
 .post-title {
-    font-weight: 300;           // Override header weights (could be h1/h2)
-    margin: 1em 0 0.5em 0;      // Override header margins (could be h1/h2)
+    font-weight: 700;           // Override header weights (could be h1/h2)
+    margin: 1em 0;              // Override header margins (could be h1/h2)
+    text-transform: uppercase;
+    font-size: 1.4em;
+
 
     a {
         text-decoration: none;  // No underline for header links

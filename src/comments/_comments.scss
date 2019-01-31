@@ -21,8 +21,11 @@
 .post-comments-title,
 .post-pings-title,
 .comment-form-title {
-    margin-top: 2.5em;
-    padding: 0 gutter(1);       // Line up titles with site margins
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
 
     // Hide .responses-title generally, it's just for accessibility
     @at-root .responses-title {
