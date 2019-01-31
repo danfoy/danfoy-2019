@@ -10,10 +10,28 @@
  * @since       1.0.0
  */
 
-// Container
+/**
+ * Gutters
+ */
+.responses-title,
+.post-comments-title,
+.post-pings-title,
+.comment-body {
+    margin-left: gutter(1);
+    margin-right: gutter(1);
+}
+
+/**
+ * Sectioning
+ */
 .responses { // <aside>
     margin-top: 1em;            // Breathing space from .post-meta
     font-family: $sans-serif;
+
+    &-pings,       // <div>
+    &-comments {   // <div>
+        margin-top: 4em;
+    }
 }
 
 // Titles
@@ -101,7 +119,7 @@
     list-style-type: none;
 
     .comment-body { // <article>
-        padding: 0 gutter(1) 1em gutter(1); // Line up with global padding
+        padding-bottom: 1em; // Line up with global padding
     }
 
     // Indent threaded response
@@ -231,10 +249,6 @@
 
     }
 
-    .comment-meta {
-        margin: 0 gutter(1);            // Respect global gutters
-    }
-
     #cancel-comment-reply-link {
         margin-bottom: 1em;             // Add space between commenter meta area
     }
@@ -254,7 +268,7 @@
     // Labels should appear on form items when placeholder text is not supported
     .comment-form-label {
         display: block;
-        margin: 1em gutter(1) 0 gutter(1);
+        margin-top: 1em;
         font-size: 0.8em;
         text-transform: uppercase;
 

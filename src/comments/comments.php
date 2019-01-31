@@ -59,45 +59,46 @@ if ( have_comments() || comments_open() ) {
          * Display pingbacks
          */
         if ( $ping_count ) {
-
-            echo '<h3 class="post-pings-title">Incoming links</h3>' . "\n";
-
-            echo '<ol class="post-pings-list">' . "\n";
-                wp_list_comments( array(
-                    'style'             => 'ol',
-                    'type'              => 'pings',
-                    'format'            => 'html5',
-                    'short_ping'        => true,
-                    )
-                );
-            echo '</ol>' . "\n";
+            echo '<div class="responses-pings">' . "\n";
+                echo '<h3 class="post-pings-title">Incoming links</h3>' . "\n";
+                echo '<ol class="post-pings-list">' . "\n";
+                    wp_list_comments( array(
+                        'style'             => 'ol',
+                        'type'              => 'pings',
+                        'format'            => 'html5',
+                        'short_ping'        => true,
+                        )
+                    );
+                echo '</ol>' . "\n";
+            echo '</div>' . "\n";
         };
 
         /**
          * Display comments
          */
         if ( $comment_count ) {
-
-            echo '<h3 class="post-comments-title">Comments</h3>' . "\n";
-            echo '<ol class="post-comments-list">' . "\n";
-                wp_list_comments( array(
-                    // 'walker'         => null,
-                    'max_depth'         => '',
-                    'style'             => 'ol',
-                    // 'callback'           => null,
-                    // 'end-callback'       => null,
-                    'type'              => 'comment',
-                    'reply_text'        => '<small>Reply</small>',
-                    // 'page'               => '',
-                    // 'per_page'           => '',
-                    'avatar_size'       => 64,
-                    // 'reverse_top_level'  => null,
-                    // 'reverse_children'   => '',
-                    'format'            => 'html5',
-                    'echo'              => true,
-                    )
-                );
-            echo '</ol>' . "\n";
+            echo '<div class="responses-comments">' . "\n";
+                echo '<h3 class="post-comments-title">Comments</h3>' . "\n";
+                echo '<ol class="post-comments-list">' . "\n";
+                    wp_list_comments( array(
+                        // 'walker'         => null,
+                        'max_depth'         => '',
+                        'style'             => 'ol',
+                        // 'callback'           => null,
+                        // 'end-callback'       => null,
+                        'type'              => 'comment',
+                        'reply_text'        => '<small>Reply</small>',
+                        // 'page'               => '',
+                        // 'per_page'           => '',
+                        'avatar_size'       => 64,
+                        // 'reverse_top_level'  => null,
+                        // 'reverse_children'   => '',
+                        'format'            => 'html5',
+                        'echo'              => true,
+                        )
+                    );
+                echo '</ol>' . "\n";
+            echo '</div>' . "\n";
         };
 
 
