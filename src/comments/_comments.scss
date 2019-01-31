@@ -14,9 +14,10 @@
  * Gutters
  */
 .responses-title,
-.post-comments-title,
-.post-pings-title,
-.comment-body {
+.responses-comments-title,
+.responses-pings-title,
+.comment-body,
+.respond .comment-meta {
     margin-left: gutter(1);
     margin-right: gutter(1);
 }
@@ -36,9 +37,9 @@
 
 // Titles
 .responses-title,
-.post-comments-title,
-.post-pings-title,
-.comment-form-title {
+.responses-comments-title,
+.responses-pings-title,
+.respond-form-title {
     margin-top: 1em;
     margin-bottom: 1em;
     text-transform: uppercase;
@@ -52,7 +53,7 @@
 
     // Hide comments section title when there are comments
     // Comments themselves are visually obvious
-    @at-root .responses.has-comments .comment-form-title {
+    @at-root .responses.has-comments .respond-form-title {
         @include hide-visually;
     }
 }
@@ -64,7 +65,7 @@
  * Pingbacks are separated from comments.
  *
  */
-.post-pings-list { // <ol>
+.responses-pings-list { // <ol>
     text-transform: uppercase;      // Differentiate from link
     font-size: 0.65em;              // Differentiate from link
     margin-top: 2em;                // Whitespace
@@ -96,13 +97,13 @@
 
 // Serif fonts for content
 .comment-content,
-.comment-input-textarea { // <div>
+.respond-form-input-comment { // <div>
     font-family: $serif;
     line-height: 1.4;       // Match paragraph style
 }
 
-.post-comments-list,
-.post-pings-list { // <ol>
+.responses-comments-list,
+.responses-pings-list { // <ol>
     padding-left: 0;        // Override native list padding
     margin-bottom: 0;
     list-style-type: none;
@@ -163,7 +164,7 @@
 
 /**
  * Comment meta section generated mostly by WordPress, sometimes with awkward
- * names. Nesting them all here to keep the .comment-meta section self-contained
+ * names. Nesting them all here to keep the .respond-meta section self-contained
  */
 .comment-meta {
     position: relative;         // So .avatar can be positioned absolutely
@@ -238,12 +239,12 @@
         }
 
         // Center #cancel-comment-reply-link on logged-out replies
-        .comment-metadata {
+        .respond-meta-links {
             text-align: center;
         }
 
         // Overriden above when logged in
-        @at-root .logged-in .comment .respond .comment-metadata {
+        @at-root .logged-in .comment .respond .respond-meta-links {
             text-align: left;
         }
 
@@ -251,6 +252,10 @@
 
     #cancel-comment-reply-link {
         margin-bottom: 1em;             // Add space between commenter meta area
+    }
+
+    .respond-meta-links {
+        font-size: 0.7em;
     }
 
     // Some nice QOL improvements that only I will see
@@ -266,19 +271,19 @@
 
 
     // Labels should appear on form items when placeholder text is not supported
-    .comment-form-label {
+    .respond-form-label {
         display: block;
         margin-top: 1em;
         font-size: 0.8em;
         text-transform: uppercase;
 
         // Hide labels when placeholder text available
-        @at-root .placeholder .comment-form-label {
+        @at-root .placeholder .respond-form-label {
             @include hide-visually;
         }
     }
 
-    .comment-form-element {
+    .respond-form-element {
         // form elements have half the margin of all other elements, but the same
         // again as padding. This makes their content line up with the site content.
         //
@@ -291,13 +296,13 @@
         box-sizing: border-box;
     }
 
-    .comment-input-textarea {
+    .respond-form-input-comment {
         height: 7.5em;
 
         // Remove all borders except bottom on comment textarea.
         // This makes it match the style of published posts.
         // But only when placeholder text is available and posts exist.
-        @at-root .placeholder .has-comments .comment-input-textarea {
+        @at-root .placeholder .has-comments .respond-form-input-comment {
             border-top: none;
             border-left: none;
             border-right: none;

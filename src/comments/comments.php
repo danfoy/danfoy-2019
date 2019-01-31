@@ -60,8 +60,8 @@ if ( have_comments() || comments_open() ) {
          */
         if ( $ping_count ) {
             echo '<div class="responses-pings">' . "\n";
-                echo '<h3 class="post-pings-title">Incoming links</h3>' . "\n";
-                echo '<ol class="post-pings-list">' . "\n";
+                echo '<h3 class="responses-pings-title">Incoming links</h3>' . "\n";
+                echo '<ol class="responses-pings-list">' . "\n";
                     wp_list_comments( array(
                         'style'             => 'ol',
                         'type'              => 'pings',
@@ -78,8 +78,8 @@ if ( have_comments() || comments_open() ) {
          */
         if ( $comment_count ) {
             echo '<div class="responses-comments">' . "\n";
-                echo '<h3 class="post-comments-title">Comments</h3>' . "\n";
-                echo '<ol class="post-comments-list">' . "\n";
+                echo '<h3 class="responses-comments-title">Comments</h3>' . "\n";
+                echo '<ol class="responses-comments-list">' . "\n";
                     wp_list_comments( array(
                         // 'walker'         => null,
                         'max_depth'         => '',
@@ -104,7 +104,7 @@ if ( have_comments() || comments_open() ) {
 
         // comment_form( array(
         //  'id_form'               => 'commentform',
-        //  'class_form'            => 'comment-form',
+        //  'class_form'            => 'respond-form',
         //  'id_submit'             => 'submit',
         //  'class_submit'          => 'submit',
         //  'name_submit'           => 'submit',
@@ -113,11 +113,11 @@ if ( have_comments() || comments_open() ) {
         //  'cancel_reply_link'     => 'Cancel Reply',
         //  'label_submit'          => 'Post Comment',
         //  'format'                => 'html5',
-        //  'comment_field'         => '<p class="comment-form-"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" aria-required="true">' . '</textarea></p>',
-        //  'must_log_in'           => '<p class="comment-form-login-link">' . sprintf(__( 'You must be <a href="%s">logged in</a> to post a comment.' ), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) )) . '</p>',
-        //  'logged_in_as'          => '<p class="comment-form-user">' . sprintf(__( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>' ),admin_url( 'profile.php' ), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) ) ) . '</p>',
-        //  'comment_notes_before'  => '<p class="comment-form-above-textarea">' . __( 'Your email address will not be published.' ) . ( $req ? '(required)' : '' ) . '</p>',
-        //  'comment_notes_after'   => '<p class="comment-form-below-textarea">Markdown and some HTML allowed</p>',
+        //  'comment_field'         => '<p class="respond-form-"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" aria-required="true">' . '</textarea></p>',
+        //  'must_log_in'           => '<p class="respond-form-login-link">' . sprintf(__( 'You must be <a href="%s">logged in</a> to post a comment.' ), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) )) . '</p>',
+        //  'logged_in_as'          => '<p class="respond-form-user">' . sprintf(__( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>' ),admin_url( 'profile.php' ), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) ) ) . '</p>',
+        //  'comment_notes_before'  => '<p class="respond-form-above-textarea">' . __( 'Your email address will not be published.' ) . ( $req ? '(required)' : '' ) . '</p>',
+        //  'comment_notes_after'   => '<p class="respond-form-below-textarea">Markdown and some HTML allowed</p>',
         //  // 'fields'             => apply_filters( 'comment_form_default_fields', $fields ),
         //  )
         // );
@@ -148,8 +148,8 @@ if ( have_comments() || comments_open() ) {
                 } else {
 
                 ?>
-                    <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" class="comment-form">
-                        <h3 class="comment-form-title">
+                    <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" class="respond-form">
+                        <h3 class="respond-form-title">
                             Leave a Comment
                         </h3>
                         <?php
@@ -196,8 +196,8 @@ if ( have_comments() || comments_open() ) {
                         }; // ? logged-in
 
                         ?>
-                        <label for="comment" class="comment-form-label">Comment</label>
-                        <textarea class="comment-form-element comment-input-textarea" name="comment" id="comment" placeholder="Type here to leave a comment"></textarea>
+                        <label for="comment" class="respond-form-label">Comment</label>
+                        <textarea class="respond-form-element respond-form-input-comment" name="comment" id="comment" placeholder="Type here to leave a comment"></textarea>
                         <?php
 
                         // Comment author meta section
@@ -205,20 +205,20 @@ if ( have_comments() || comments_open() ) {
                         if ( ! $user_ID ) {
 
                         ?>
-                            <div class="comment-metadata">
+                            <div class="respond-meta-links">
                             <?php cancel_comment_reply_link( 'Cancel reply' ); ?>
                             </div>
 
-                            <div class="comment-input-author-details">
+                            <div class="respond-form-meta">
 
-                                <label for="author" class="comment-form-label">Name<?php if($req) echo '<span class="required">*</a>'; ?></label>
-                                <input class="comment-form-element comment-input-author" type="text" name="author" id="author" placeholder="Name<?php if($req) echo "*"; ?>" value="<?php echo $comment_author; ?>" />
+                                <label for="author" class="respond-form-label">Name<?php if($req) echo '<span class="required">*</a>'; ?></label>
+                                <input class="respond-form-element respond-form-input-author" type="text" name="author" id="author" placeholder="Name<?php if($req) echo "*"; ?>" value="<?php echo $comment_author; ?>" />
 
-                                <label for="email" class="comment-form-label">Email<?php if($req) echo '<span class="required">*</a>'; ?></label>
-                                <input class="comment-form-element comment-input-email" type="text" name="email" id="email" placeholder="Email<?php if($req) echo '*'; ?>" value="<?php echo $comment_author_email; ?>">
+                                <label for="email" class="respond-form-label">Email<?php if($req) echo '<span class="required">*</a>'; ?></label>
+                                <input class="respond-form-element respond-form-input-email" type="text" name="email" id="email" placeholder="Email<?php if($req) echo '*'; ?>" value="<?php echo $comment_author_email; ?>">
 
-                                <label for="url" class="comment-form-label">Website</label>
-                                <input class="comment-form-element comment-input-website" type="text" name="url" id="url" placeholder="Website" value="<?php echo $comment_author_url; ?>">
+                                <label for="url" class="respond-form-label">Website</label>
+                                <input class="respond-form-element respond-form-input-website" type="text" name="url" id="url" placeholder="Website" value="<?php echo $comment_author_url; ?>">
 
                             </div>
                         <?php
@@ -227,7 +227,7 @@ if ( have_comments() || comments_open() ) {
                         ?>
 
 
-                        <input class="comment-form-element comment-input-submit" name="submit" type="submit" id="submit" value="Submit Comment">
+                        <input class="respond-form-element respond-form-input-submit" name="submit" type="submit" id="submit" value="Submit Comment">
                         <input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>">
 
                         <?php
