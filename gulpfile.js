@@ -3,13 +3,13 @@
  *
  * Builds the danfoy-2019 WordPress theme using gulpjs.
  *
- * All files for the theme go into `./dist`. Upload the contents of this
- * directory via FTP, or copy-rename to `danfoy-2019`.
+ * All files for the theme go into dir.dest. Upload the contents of this
+ * directory via FTP, or copy-rename to `danfoy_2019`.
  *
  * Some additional files are compiled to `./dev` to aid local development.
  *
  * @package danfoy-2019
- * @author  Dan Foy (danfoy.com)
+ * @author  Dan Foy <danfoy.com>
  * @since   1.0.0
  */
 
