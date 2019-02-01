@@ -327,7 +327,7 @@ function danfoy_2019_custom_comment_form ( $fields ) {
             '</label>' .
             '<input
                 class="respond-form-element respond-form-input-email"
-                type="text"
+                type="email"
                 name="email"
                 id="email"
                 placeholder="Email' . $required_label . '"
@@ -342,7 +342,7 @@ function danfoy_2019_custom_comment_form ( $fields ) {
             </label>
             <input
                 class="respond-form-element respond-form-input-website"
-                type="text"
+                type="url"
                 name="url"
                 id="url"
                 placeholder="Website"
