@@ -123,7 +123,7 @@ if ( have_comments() || comments_open() ) {
             'id_submit'             => 'submit',
 
             'name_submit'           => 'submit',
-            'class_submit'          => 'submit',
+            'class_submit'          => 'submit respond-form-element',
             'label_submit'          => 'Post Comment',
 
             'title_reply_before'    => '<div class="respond-cancel-reply">',
