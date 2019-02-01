@@ -32,6 +32,8 @@
 
     .pingback { // <li>
         position: relative;
+        padding-left: gutter(1);
+        padding-bottom: gutter(1);
         padding-top: 1em;
         padding-bottom: 1em;
     }
