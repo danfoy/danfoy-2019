@@ -1,0 +1,93 @@
+/**
+ * Comments Meta Stylesheet
+ *
+ * Styles for the headings and author meta sections of the comments module.
+ *
+ * The author meta sections include the comments list above the comment content,
+ * and in the respond form above the comment textarea.
+ *
+ * A lot of the comments markup is generated automatically by WordPress, making
+ * it awkward to namespace. There is some heavy nesting here to migigate this.
+ *
+ * @package     danfoy_2019
+ * @subpackage  comments
+ * @author      Dan Foy <danfoy.com>
+ * @since       1.0.0
+ */
+
+
+/**
+ * Titles
+ */
+.responses-title,
+.responses-comments-title,
+.responses-pings-title,
+.respond-form-title {
+    margin-left: gutter(1);
+    margin-right: gutter(1);
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+
+    // Hide .responses-title generally, it's just for accessibility
+    @at-root .responses-title {
+        @include hide-visually;
+    }
+}
+
+
+/**
+ * Comment meta
+ */
+.comment-meta {
+    position: relative;         // So .avatar can be positioned absolutely
+    min-height: 6.4rem;         // At least as high as avatar
+    padding-left: 7.4rem;       // Allow space +10px margin for avatar
+    display: flex;
+    flex-direction: column;     // Stack items vertically
+    justify-content: center;
+
+    // Add back margins usually provided by .comment
+    @at-root #respond .comment-meta {
+        margin: 0.5em gutter(1) 0.5em gutter(1);
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .comment-author {
+
+        .avatar { // <img>
+            position: absolute; // Necessary due to how WP structures this
+            top: 0;
+            left: 0;
+            border-radius: 32px;// Circularize the gravatar
+        }
+
+        .fn { // <b> Comment author name. Seriously who named this.
+            display: block;
+        }
+
+        .says { // <span>
+            display: none;      // Remove 'says' text added by WordPress
+        }
+    }
+
+    @at-root .comment-metadata {
+        font-size: 0.7em;   // Metadata should be smaller than content
+
+        .edit-link {
+            padding-left: 0.5em;    // Space out the edit link from the date
+
+            &:before {
+                content: "/";           // Separator from meta
+                padding-right: 0.5em;   // Center
+            }
+        }
+    }
+}
