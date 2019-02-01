@@ -293,6 +293,68 @@ add_action( 'get_header', 'enable_threaded_comments' );
 
 
 /**
+ * Custom output from built-in comment_form() function
+ *
+ * @param  array $fields    Commnent fields to filter
+ * @return array $fields    Filtered comment fields
+ */
+function danfoy_2019_custom_comment_form ( $fields ) {
+
+    // Get commenter and required variables
+    $commenter      = wp_get_current_commenter();
+    $required       = get_option( 'require_name_email' );
+    $required_label = $required ? '*' : '';
+    $required_aria  = $required ? ' aria-required="true"' : '';
+
+    // Create the comment author name input
+    $fields['author'] =
+        '<label for="author" class="respond-form-label">' .
+           'Name' . $required_label .
+        '</label>' .
+        '<input
+            class="respond-form-element respond-form-input-author"
+            type="text" name="author"
+            id="author"
+            placeholder="Name' . $required_label . '"
+            value="'. $commenter['comment_author'] . '"' .
+            $required_aria . '
+        />';
+
+        // Create the comment author email input
+        $fields['email'] =
+            '<label for="email" class="respond-form-label">' .
+                'Email'. $required_label .
+            '</label>' .
+            '<input
+                class="respond-form-element respond-form-input-email"
+                type="text"
+                name="email"
+                id="email"
+                placeholder="Email' . $required_label . '"
+                value="' . $commenter['comment_author_email'] . '"' .
+            $required_aria . '
+            />';
+
+        // Create the author website input
+        $fields['url'] =
+            '<label for="url" class="respond-form-label">
+                Website
+            </label>
+            <input
+                class="respond-form-element respond-form-input-website"
+                type="text"
+                name="url"
+                id="url"
+                placeholder="Website"
+                value="' . $commenter['comment_author_url'] . '"
+            />';
+
+        return $fields;
+};
+add_filter('comment_form_default_fields', 'danfoy_2019_custom_comment_form' );
+
+
+/**
  * Remove type attribute from stylesheet tag
  *
  * W3 Validator returns a warning if this is included in html5 files
