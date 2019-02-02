@@ -128,10 +128,10 @@ add_action( 'init', 'danfoy_2019_menus' );
  * @param   string $thelist  The subject to be searched
  * @return  string           New string stripped of 'category' tag
  */
-function remove_category_rel_from_category_list( $thelist ) {
+function danfoy_2019_correct_cat_tags( $thelist ) {
     return str_replace( 'rel="category tag"', 'rel="tag"', $thelist );
 }
-add_filter( 'the_category', 'remove_category_rel_from_category_list' );
+add_filter( 'the_category', 'danfoy_2019_correct_cat_tags' );
 
 
 /**
@@ -145,14 +145,14 @@ add_filter( 'the_category', 'remove_category_rel_from_category_list' );
  * @param   string $html    Placeholder for regular expression
  * @return  string          Empty string
  */
-function remove_image_dimensions_attributes( $html ) {
+function danfoy_2019_remove_image_dimension_attributes( $html ) {
     $html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
     return $html;
 }
 // Remove images from thumbnails
-add_filter( 'post_thumbnail_html', 'remove_image_dimensions_attributes', 10 );
+add_filter( 'post_thumbnail_html', 'danfoy_2019_remove_image_dimension_attributes', 10 );
 // Remove images from post content
-add_filter( 'image_send_to_editor', 'remove_image_dimensions_attributes', 10 );
+add_filter( 'image_send_to_editor', 'danfoy_2019_remove_image_dimension_attributes', 10 );
 
 
 
@@ -166,23 +166,23 @@ add_filter( 'image_send_to_editor', 'remove_image_dimensions_attributes', 10 );
  * @param  string $content The post content
  * @return string          The post content, where images are stripped of <p>s
  */
-function remove_ptags_on_media( $content ){
+function danfoy_2019_remove_ptags_on_media( $content ){
     // filter from image tags
     $content = preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
     // filter from iframe tags, used for embeds
     return preg_replace('/<p>\s*(<iframe .*>*.<\/iframe>)\s*<\/p>/iU', '\1', $content);
 }
-add_filter('the_content', 'remove_ptags_on_media', 15);
+add_filter('the_content', 'danfoy_2019_remove_ptags_on_media', 15);
 
 
 /**
  * Remove recent comment widget style tag in wp_head
  *
- * The recent comments widget adds its own styles within a style tag hooked to
- * wp_head. It's a mess. I don't use this widget, but I don't want these styles
- * showing up in my head either.
+ * The recent comments widget adds its own styles in an inline style tag hooked
+ * to wp_head. It's a mess. I don't use this widget, but I don't want these
+ * styles showing up in my head either.
  */
-function remove_recent_comments_style() {
+function danfoy_2019_remove_recent_comments_style() {
     global $wp_widget_factory;
     if ( isset( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'] ) ) {
         remove_action( 'wp_head', array(
@@ -191,7 +191,7 @@ function remove_recent_comments_style() {
         ) );
     }
 }
-add_action( 'widgets_init', 'remove_recent_comments_style' );
+add_action( 'widgets_init', 'danfoy_2019_remove_recent_comments_style' );
 
 
 /**
@@ -283,13 +283,13 @@ function danfoy_2019_paginate() {
  *
  * Without this, comments appear as one long list.
  */
-function enable_threaded_comments() {
+function danfoy_2019_enable_threaded_comments() {
     if ( ! is_admin() ) {
         if ( is_singular() AND comments_open() AND ( get_option( 'thread_comments' ) == 1 ) )
             wp_enqueue_script( 'comment-reply' );
     }
 }
-add_action( 'get_header', 'enable_threaded_comments' );
+add_action( 'get_header', 'danfoy_2019_enable_threaded_comments' );
 
 
 /**
