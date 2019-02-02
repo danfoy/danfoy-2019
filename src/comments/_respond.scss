@@ -69,20 +69,31 @@
         &:first-of-type {
             margin-top: 0;          // Handled by container
         }
-    }
 
-    .respond-form-input-comment {
-        height: 7.5em;
-        line-height: 1.4;
-        font-family: $serif;
+        // Note the centered text is affected by autofill buttons in Safari due
+        // to the html5 text types - it's shifted to the left when the field
+        // is active. I actually don't mind this because it highlights that
+        // autofill information has become available.
+        &::placeholder {
+            text-transform: uppercase;
+            font-size: 0.75em;
+            text-align: center;
+            font-weight: 700;
+        }
 
-        // Remove all borders except bottom on comment textarea.
-        // This makes it match the style of published posts.
-        // But only when placeholder text is available and posts exist.
-        @at-root .placeholder .has-comments .respond-form-input-comment {
-            border-top: none;
-            border-left: none;
-            border-right: none;
+        // Separate styles for the comment textarea
+        &.respond-form-input-comment {
+            height: 7.5em;
+            line-height: 1.4;
+            font-family: $serif;
+
+            // Override the custom rules set above
+            &::placeholder {
+                text-transform: none;
+                padding-top: 2em;
+                font-size: 1em;
+                font-weight: 400;
+            }
         }
     }
 
