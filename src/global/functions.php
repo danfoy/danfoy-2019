@@ -370,24 +370,25 @@ add_filter( 'script_loader_tag', 'danfoy_2019_remove_style_type' );
 
 
 /**
- * Disabl
+ * Disable WordPress emoticons
+ *
+ * WordPress uses custom emoticon images rather than Unicode emojis, and adds
+ * a pretetch meta tag to head. I don't want either of these, if I want to use
+ * emojis I'll just use the now-widely-available Unicode ones.
  *
  * https://kinsta.com/knowledgebase/disable-emojis-wordpress/
  */
 function danfoy_2019_disable_emojis() {
-    add_filter( 'tiny_mce_plugins', 'danfoy_2019_disable_emojis_tinymce' );
-    add_filter( 'wp_resource_hints', 'danfoy_2019_disable_emojis_remove_dns_prefetch', 10, 2 );
+
+    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+    remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+    remove_action( 'wp_print_styles', 'print_emoji_styles' );
+    remove_action( 'admin_print_styles', 'print_emoji_styles' );
+    remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+    remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+    remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
 }
 add_action( 'init', 'danfoy_2019_disable_emojis' );
-
-
-remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-remove_action( 'wp_print_styles', 'print_emoji_styles' );
-remove_action( 'admin_print_styles', 'print_emoji_styles' );
-remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
 
 
 /**
@@ -405,6 +406,8 @@ function danfoy_2019_disable_emojis_tinymce( $plugins ) {
         return array();
     }
 };
+add_filter( 'tiny_mce_plugins', 'danfoy_2019_disable_emojis_tinymce' );
+
 
 /**
  * Remove emoji CDN hostname from DNS prefetching hints.
@@ -423,6 +426,7 @@ function danfoy_2019_disable_emojis_remove_dns_prefetch( $urls, $relation_type )
     }
     return $urls;
 }
+add_filter( 'wp_resource_hints', 'danfoy_2019_disable_emojis_remove_dns_prefetch', 10, 2 );
 
 
 /**
