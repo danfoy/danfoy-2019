@@ -86,11 +86,11 @@ function danfoy_2019_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'danfoy_2019_styles' );
 
+
 /**
  * Load global JavaScript
  *
  * Load scripts which will be used on every page
- *
  */
 function danfoy_2019_global_scripts() {
     wp_enqueue_script(
@@ -153,7 +153,6 @@ function danfoy_2019_remove_image_dimension_attributes( $html ) {
 add_filter( 'post_thumbnail_html', 'danfoy_2019_remove_image_dimension_attributes', 10 );
 // Remove images from post content
 add_filter( 'image_send_to_editor', 'danfoy_2019_remove_image_dimension_attributes', 10 );
-
 
 
 /**
