@@ -149,7 +149,7 @@ if ( have_comments() || comments_open() ) {
                                         </div>',
 
             'comment_field'         => '<label for="comment" class="respond-form-label">Comment</label>' . "\n" .
-                                    '<textarea id="comment"class="respond-form-element respond-form-input-comment" name="comment" placeholder="Thoughts?" aria-required="true">' . "\n" .
+                                    '<textarea id="comment"class="respond-form-element respond-form-input-comment" name="comment" placeholder="Add your thoughts here" aria-required="true">' . "\n" .
                                     '</textarea>' . "\n",
 
             'comment_notes_before'  => '',
