@@ -62,24 +62,13 @@
     /**
      * Icons for post meta
      *
-     * Icons are added to post meta items in CSS to keep HTML clean and semantic.
-     *
+     * Icons are provided by mixins which take a HTML-encoded color argument and
+     * render an inline SVG to order. These are provided in
+     * `/src/global/_icons.scss`
      */
-    // This first section adds the relevant spacing to the pseudo elements.
-    &-date::before,
-    &-comments::before,
-    &-categories li::before,
-    &-tags li::before {
-        padding-right: 0.1em;
-        width: 1em;
-        text-align: center;
-        display: inline-block;
-    }
-    // Logos are added as Unicode characters.
-    // Handy list of HTML entities, hex codes, and unicode values:
-    // https://www.toptal.com/designers/htmlarrows/
-    &-date::before          { content: "\00040"; }  // @ An AT symbol
-    &-comments::before      { content: "\00021"; }  // ! An exclamation mark
-    &-tags li::before       { content: "\0023"; }   // # A hash symbol
-    &-categories li::before { content: "/"; }       // / A forward slash
+
+    &-date { @include icon_calendar('#{$grey300}'); }
+    &-comments a { @include icon_comment('#{$grey300}'); }
+    &-categories a { @include icon_folder('#{$grey300}'); }
+    &-tags a { @include icon_tag('#{$grey300}'); }
 }

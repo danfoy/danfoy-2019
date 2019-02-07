@@ -1,0 +1,93 @@
+/**
+ * Inline SVG Icons
+ *
+ * Inline SVG icons with customisable colours, provided by mixins. Having the
+ * icons inline here allows the colours to be changed via mixin variables.
+ *
+ * Unfortunately this means the colours can't be modified via CSS after they're
+ * rendered on the page, and adds to the stylesheet size. On the flipside, it
+ * stops the HTML becoming flooded with inline SVG code, or sending many
+ * HTTP requests. As they're part of the stylesheet, they should still benefit
+ * from stylesheet caching.
+ *
+ * Icons are from the Ionicons set.
+ * @see [Ionicons](https://ionicons.com)
+ *
+ * @package     danfoy_2019
+ * @subpackage  global
+ * @author      Dan Foy <danfoy.com>
+ * @since       1.0.0
+ */
+
+/**
+ * Inline Format Styles Mixin
+ *
+ * Adds styles to make icons appear to float inline to the left of the target
+ * element.
+ */
+@mixin format_icon_inline {
+    background: {
+        size: 1.3em;
+        position: left;
+        repeat: no-repeat;
+    }
+    padding: 0.5em 0.5em 0.5em 1.8em;
+    display: inline-block;
+}
+
+
+/**
+ * TEMPLATE
+ *
+ * @param  color    $color   The colour in any HTML-encoded format
+ * @param  bool     $inline  Whether to add inline styles (default: true)
+ */
+// @mixin icon_TEMPLATE($color, $inline: true) {
+//     @if $inline { @include format_icon_inline; }
+//     background-image: url('data:image/svg+xml;utf8,');
+// }
+
+
+/**
+ * Tag Icon
+ *
+ * @param  color    $color   The colour in any HTML-encoded format
+ * @param  bool     $inline  Whether to add inline styles (default: true)
+ */
+@mixin icon_tag($color, $inline: true) {
+    @if $inline { @include format_icon_inline; }
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#{$color}" d="M435.2 48H312.3c-3.8 0-7.5 1.5-10.2 4.2L56.4 297.9c-11.2 11.2-11.2 29.5 0 40.7l117 117c11.2 11.2 29.5 11.2 40.7 0L459.7 210c2.7-2.7 4.2-6.4 4.2-10.2v-123C464 60.9 451.1 48 435.2 48zm-47.7 111.8c-20.4 2.2-37.4-14.9-35.3-35.3 1.6-14.8 13.5-26.8 28.3-28.3 20.4-2.2 37.4 14.9 35.3 35.3-1.6 14.8-13.5 26.7-28.3 28.3z"/></svg>');
+}
+
+/**
+ * Calendar Icon
+ *
+ * @param  color    $color   The colour in any HTML-encoded format
+ * @param  bool     $inline  Whether to add inline styles (default: true)
+ */
+@mixin icon_calendar($color, $inline: true) {
+    @if $inline { @include format_icon_inline; }
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#{$color}" d="M424 96h-40v24c0 4.4-3.6 8-8 8h-16c-4.4 0-8-3.6-8-8V96H160v24c0 4.4-3.6 8-8 8h-16c-4.4 0-8-3.6-8-8V96H88c-22 0-40 18-40 40v272c0 22 18 40 40 40h336c22 0 40-18 40-40V136c0-22-18-40-40-40zm8 300c0 11-9 20-20 20H100c-11 0-20-9-20-20V216c0-4.4 3.6-8 8-8h336c4.4 0 8 3.6 8 8v180zM160 72c0-4.4-3.6-8-8-8h-16c-4.4 0-8 3.6-8 8v24h32V72zM384 72c0-4.4-3.6-8-8-8h-16c-4.4 0-8 3.6-8 8v24h32V72z"/></svg>');
+}
+
+/**
+ * Comment Icon
+ *
+ * @param  color    $color   The colour in any HTML-encoded format
+ * @param  bool     $inline  Whether to add inline styles (default: true)
+ */
+@mixin icon_comment($color, $inline: true) {
+    @if $inline { @include format_icon_inline; }
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#{$color}" d="M425.9 170.4H204.3c-21 0-38.1 17.1-38.1 38.1v154.3c0 21 17.1 38 38.1 38h126.8c2.8 0 5.6 1.2 7.6 3.2l63 58.1c3.5 3.4 9.3 2 9.3-2.9v-50.6c0-6 3.8-7.9 9.8-7.9h1c21 0 42.1-16.9 42.1-38V208.5c.1-21.1-17-38.1-38-38.1z"/><path fill="#{$color}" d="M174.4 145.9h177.4V80.6c0-18-14.6-32.6-32.6-32.6H80.6C62.6 48 48 62.6 48 80.6v165.2c0 18 14.6 32.6 32.6 32.6h61.1v-99.9c.1-18 14.7-32.6 32.7-32.6z"/></svg>');
+}
+
+/**
+ * Folder Icon
+ *
+ * @param  color    $color   The colour in any HTML-encoded format
+ * @param  bool     $inline  Whether to add inline styles (default: true)
+ */
+@mixin icon_folder($color, $inline: true) {
+    @if $inline { @include format_icon_inline; }
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#{$color}" d="M480 119c0-13.3-9.4-23-22.8-23H198.9c-2.8 0-4.3-.6-6.1-2.4l-22.5-22.5-.2-.2c-4.9-4.6-8.9-6.9-17.3-6.9H56.7C42.9 64 32 74.3 32 87v73.7c0 1.6 1.7 1.5 3 .7s5-1.4 7-1.4h428c2 0 5.7.6 7 1.4 1.3.8 3 .9 3-.7V119zM32 416.4c0 17.5 14.2 31.6 31.6 31.6H448c17.6 0 32-14.4 32-32V204c0-8.8-7.2-16-16-16H48c-8.8 0-16 7.2-16 16v212.4z"/></svg>');
+}

@@ -6,6 +6,10 @@
  * refactoring to bring all colours over the site into a separate sheet. But
  * having the default colours set here using variables will save a lot of time.
  *
+ * The colours are interpolated Sass strings. Unfortunately this means that I
+ * can't perform built-in actions on them. However, this allows them to render
+ * inside inline SVGs without Sass's annoying conversion to hex.
+ *
  * @package     danfoy_2019
  * @subpackage  global
  * @author      Dan Foy <danfoy.com>
@@ -15,12 +19,12 @@
 /**
  * Greys
  */
-$grey100: hsl(0, 0%, 05%);
-$grey200: hsl(0, 0%, 10%);
-$grey300: hsl(0, 0%, 20%);
-$grey400: hsl(0, 0%, 30%);
-$grey500: hsl(0, 0%, 50%);
-$grey600: hsl(0, 0%, 60%);
-$grey700: hsl(0, 0%, 75%);
-$grey800: hsl(0, 0%, 85%);
-$grey900: hsl(0, 0%, 95%);
+$grey100: #{'hsl(0, 0%, 05%)'};
+$grey200: #{'hsl(0, 0%, 10%)'};
+$grey300: #{'hsl(0, 0%, 20%)'};
+$grey400: #{'hsl(0, 0%, 30%)'};
+$grey500: #{'hsl(0, 0%, 50%)'};
+$grey600: #{'hsl(0, 0%, 60%)'};
+$grey700: #{'hsl(0, 0%, 75%)'};
+$grey800: #{'hsl(0, 0%, 85%)'};
+$grey900: #{'hsl(0, 0%, 95%)'};
