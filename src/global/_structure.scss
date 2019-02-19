@@ -7,35 +7,32 @@
  * @since       1.0.0
  */
 
-
-$em_base: 1.7rem;
 /**
- * Custom rem unit
+ * Force 16px root size
  *
- * Provides a pseudo-rem element equal to 1em on the body element. This is
- * allows usage of '1rem' to indicate 10px, and 'gutter()' for 1 * $em_base.
- *
- * Absolute pixel values don't scale well for accessibility, and can cause
- * issues with legacy HiDPI devices.
- *
- * @param  int $size:1  Desired 'body em' multiplier
- * @return string       Adjusted rem unit
- */
-@function gutter( $size:1 ) {
-    @return ($size * $em_base);
-}
-/**
- * Global em reset
- *
- * Resets the 'rem' unit to 10px for convinence.
+ * Modern browsers set the default text size to 16px. Setting it here manually
+ * to deal with older browsers and edge cases.
  */
 html {
-    font-size: 62.5%;
+    font-size: 16px;
 }
-// Set body em size to $em_base in _variables.scss
-body {
-    font-size: gutter(1);
-}
+
+/**
+ * Size variables
+ *
+ * Some sizes based on my sizing scale which are useful for images, breakpoints
+ * etc.
+ */
+$small-s:    128px;
+$small:      256px;
+$small-l:    384px;
+$medium-s:   512px;
+$medium:     768px;
+$medium-l:  1024px;
+$large-s:   1280px;
+$large:     1536px;
+$hd:        1920px;
+$uhd:       2560px;
 
 
 /**
@@ -63,31 +60,37 @@ body {
  *
  */
 @mixin hide-visually() {
-    position:absolute;
-    left:-10000px;
-    top:auto;
-    width:1px;
-    height:1px;
-    overflow:hidden;
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
 
 /**
  * WordPress WYSIWYG Editor alignment styles
+ *
+ * On small screens everything is full-bleed. Alignment is added as the
+ * viewport width increases.
  */
-.alignleft {
-    float: left;
-    margin: 0 gutter(1) gutter(1) gutter(1);
+@media (min-width: $medium-s) {
+    .alignleft {
+        float: left;
+        margin: 0 12px 12px 12px;
+        max-width: 50%;
+    }
+    .alignright {
+        float: right;
+        margin: 0 24px 24px 24px;
+        max-width: 50%;
+    }
+    .aligncenter {
+        display: block;
+        margin: 0 auto 24px auto;
+    }
 }
-.alignright {
-    float: right;
-    margin: 0 gutter(1) gutter(1) gutter(1);
-}
-.aligncenter {
-    display: block;
-    margin: 0 auto gutter(1) auto;
-}
-
 
 /**
  * Post styles
@@ -96,7 +99,7 @@ body {
 
 
 .post-header {
-    padding: 0 gutter(1); // Line up padding with paragraph tags
+    margin: 0 24px; // Line up padding with paragraph tags
 }
 
 .post-content {
@@ -112,27 +115,71 @@ body {
     figcaption,
     aside,
     pre {
-        padding: 0 gutter(1); // Keep text content from container edges
+        margin: {           // Keep text content from container edges
+            left: 24px;
+            right: 24px;
+        }
     }
 
     hr {
-        margin: 0 gutter(1);
+        margin: 0 24px;
     }
 
-    // Margins and paddings for lists
+    /**
+     * Lists in post content
+     *
+     * Lists have a lot of User Agent Stylesheet baggage and require some extra
+     * styles to keep them looking consistent
+     */
     ol,
     ul {
-        margin-left: gutter(1); // Lists need a gutter for list-item to line up
-        margin-top: gutter(0.5);
+        margin-top: 24px;
 
         // Breathing room between list-style type
         li {
-            padding: 0 gutter(0.5);
+            margin-bottom: 12px;
 
             ul,
             ol,
             li {
-                padding-right: 0; // Nested lists should still go to right edge
+                margin-right: 0; // Nested lists should still go to right edge
+            }
+        }
+    }
+
+    /**
+     * Tables in post content
+     *
+     * Tables get their own special rules due to the mobile-first design
+     * approach. In many cases they will cause scrolling on the x axis.
+     */
+    table {
+        padding: 0 24px;                // Line up with other block elements,
+                                        // padding not margin for nice scrolling
+        max-width: calc(100vw - 48px);  // Full bleed minus gutters
+        overflow-x: scroll;             // Add scrollbars
+        display: block;                 // Required for scrollbars (tables have
+                                        // their own special display types)
+        tbody {
+            vertical-align: top;        // Body content should align to the top
+        }
+
+        ul,
+        ol {
+            padding: {                  // Override UAS
+                left: 12px;
+                right: 12px;
+            }
+            margin: {                   // Override styles set outside table
+                left: 0;
+                right: 0;
+            }
+
+            li {
+                margin: {               // Override styles set outside table
+                    left: 12px;
+                    right: 0;
+                }
             }
         }
     }

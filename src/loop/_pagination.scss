@@ -2,7 +2,7 @@
  * Pagination stylesheet
  *
  * Handles WordPress's pagination output (splitting archives over several pages)
- * 
+ *
  * @package     danfoy_2019
  * @subpackage  loop
  * @author      Dan Foy <danfoy.com>
@@ -12,8 +12,8 @@
 
 .pagination { // <nav>
     font-family: $sans-serif;
-    margin: 0 auto gutter(1) auto;
-    padding: 0 gutter(1);
+    margin: 0 auto 24px auto;
+    padding: 0 24px;
     text-align: center;
     list-style-type: none;
 
@@ -63,7 +63,7 @@
         width: 2em;
         height: 2em;
         border: 1px solid;
-        margin: gutter(0.1);    // Overwrite margin on identically-named parent
+        margin: 1px;    // Overwrite margin on identically-named parent
     }
     &.dots { // <li>, no link inside
         border: none;       // remove the border and just leave the dots

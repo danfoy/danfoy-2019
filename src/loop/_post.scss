@@ -18,7 +18,7 @@
 .category {
 
     .post {
-        margin-bottom: gutter(3); // Add space between articles
+        margin-bottom: 48px; // Add space between articles
     }
 }
 
@@ -31,10 +31,10 @@
  */
 .post-title {
     font-weight: 700;           // Override header weights (could be h1/h2/a)
-    margin: 1em 0;              // Override header margins (could be h1/h2/a)
+    margin: 24px 0;             // Override header margins (could be h1/h2/a)
     padding: 0;                 // Override header padding (could be h1/h2/a)
     text-transform: uppercase;
-    font-size: 1.4em;
+    font-size: 24px;
 
 
     a {
@@ -57,14 +57,19 @@
     p,
     ul,
     ol {
-        line-height: 1.4;       // Standard line-height on paragraphs and lists
+        line-height: 24px;      // Standard line-height on paragraphs and lists
     }
     li {
-        margin-bottom: 0.5em;   // Breathing room between list items
+        margin-bottom: 8px;   // Breathing room between list items
     }
 }
 
 .wp-caption-text {
     font-family: $sans-serif;   // Captions are always sans-serif
-    font-size: 0.7em;           // Captions are always smaller than body text
+    font-size: 12px;            // Captions are always smaller than body text
+    line-height: 12px;          // No line spacing for captions
+    margin: {                   // line-height + margins = standard 24px lines
+        top: 6px;
+        bottom: 6px;
+    }
 }

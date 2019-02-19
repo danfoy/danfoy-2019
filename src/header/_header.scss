@@ -8,7 +8,10 @@
  */
 
 .site-header {
-    padding: gutter(0.5);
+    margin: {           // Half size margins - header links add extra 12px.
+        left: 12px;
+        right: 12px;
+    }
 
     a {
         text-decoration: none;
@@ -23,20 +26,20 @@
     &-title a,
     &-menu a {
         display: inline-block;
-        padding: gutter(0.5);
+        margin: 12px;
     }
 
     &-title {
         &-heading {
-            font-size: 2rem;
+            font-size: 24px;
             font-weight: 700;
             margin: 0;      // Override <h1> style
         }
     }
 
     &-nav {
-        font-size: 1.5rem;
-        padding: 0.5rem 0;
+        font-size: 16px;
+        margin: 12px 0;
     }
 
     &-menu {

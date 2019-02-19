@@ -18,15 +18,19 @@ img {
 }
 figure {
     width: auto !important;     // Figures also have inline width attributes
+    margin: 0 0 24px 0;         // Override UAS plus 1 line below
+    text-align: center;         // Avoid issues where children don't stretch
 }
 
 // If an image doesn't have an alignment, it is almost certainly intended to be
 // displayed as block. Grids of images should use WordPress' built-in gallery
 // functionality instead.
-img.alignnone {
+img.alignnone,
+figure.alignnone {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 // Images that are left/right aligned should take up no more than half their

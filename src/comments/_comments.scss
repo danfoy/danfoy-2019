@@ -13,7 +13,7 @@
 
 // Wrapper
 .responses { // <aside>
-    margin-top: 3em;            // Breathing space from .post-meta
+    margin-top: 48px;            // Breathing space from .post-meta
     font-family: $sans-serif;
 }
 
@@ -26,16 +26,16 @@
  */
 .responses-pings-list { // <ol>
     text-transform: uppercase;      // Differentiate from link
-    font-size: 0.65em;              // Differentiate from link
-    margin-top: 1em;                // Whitespace
-    margin-bottom: 1em;             // Whitespace
+    font-size: 12px;                // Differentiate from link
+    margin-top: 24px;               // Whitespace
+    margin-bottom: 24px;            // Whitespace
 
     .pingback { // <li>
         position: relative;
-        padding-left: gutter(1);
-        padding-bottom: gutter(1);
-        padding-top: 1em;
-        padding-bottom: 1em;
+        padding-left: 24px;
+        padding-bottom: 24px;
+        padding-top: 24px;
+        padding-bottom: 24px;
     }
 
     a {
@@ -44,10 +44,10 @@
     }
 
     .url { // <a>
-        font-size: $em_base;        // Override font size above
+        font-size: 16px;            // Override font size above
         font-style: italic;         // Differentiate from other links
         display: block;             // Newline separate from label
-        line-height: 1;             // Tighter spacing on wrapping links
+        line-height: 16px;          // Tighter spacing on wrapping links
     }
 
     .edit-link { // <span>
@@ -60,15 +60,13 @@
 // Serif fonts for content
 .comment-content { // <div>
     font-family: $serif;
-    line-height: 1.4;       // Match paragraph style
+    line-height: 24px;              // Match paragraph style
 }
 
-.responses-comments-list,   // <ol>
-.responses-pings-list {     // <ol>
-    padding-left: 0;        // Override native list padding
-    margin-top: 0;          // Override native list margin
-    margin-bottom: 0;       // Override native list margin
-    list-style-type: none;  // Override native list style
+.responses-comments-list,           // <ol>
+.responses-pings-list {             // <ol>
+    margin: 0;                      // Override native list margin
+    list-style-type: none;          // Override native list style
 
     > .comment:last-of-type {
         border-bottom: 1px solid;
@@ -76,19 +74,18 @@
 }
 
 .comment { // <li>
-    padding-top: 1em;           // Breathing room for header
+    padding-top: 24px;           // Breathing room for header
     border-top: 1px solid;      // To separate comments
     list-style-type: none;      // Override useragent styles
     overflow: hidden;           // Prevent commenters breaking the scaffolding
 
     p:last-of-type {
-        margin-bottom: 0.5em;   // Tighten up to reply link
+        margin-bottom: 12px;   // Tighten up to reply link
     }
 
     .comment-body { // <article>
-        margin-left: gutter(1);
-        margin-right: gutter(1);
-        padding-bottom: 0.5em; // Line up with global padding
+        margin: 0 24px;
+        padding-bottom: 12px;
     }
 
     // Nested comments
@@ -96,38 +93,32 @@
         padding-left: 0;
 
         .comment {
-            padding-top: 0.5em;
-            margin-left: gutter(1);     // 1 indent per level
+            padding-top: 12px;
+            margin-left: 12px;     // 1 indent per level
             border-top: none;
             border-left: 1px solid;
 
             // Smaller child avatars
             .avatar {
-                width: 4.2rem !important;   // Set inline by WP
-                height: 4.2rem !important;  // Set inline by WP
+                width: 48px !important;   // !Set inline by WP
+                height: 48px !important;  // !Set inline by WP
             }
             // Match padding to new shrunken avatar
             .comment-meta {
-                min-height: 4.2rem;
-                padding-left: 5.2rem;
-
-                // Smaller author title when nested
-                .fn { // <b> author name
-                    font-size: 0.8em;
-                }
+                min-height: 48px;
+                padding-left: calc(48px + 12px);
             }
 
             // Give replies breathing room when nested
             .reply {
-                padding-top: 1em;
-                padding-bottom: gutter(1);
+                padding: 12px 0;
             }
         }
     }
 
     // Trim top-level comments with children
     &.depth-1.parent {
-        padding-bottom: 1em;
+        padding-bottom: 12px;
     }
 
     // Remove padding on last paragraph of threadded comments
@@ -140,7 +131,7 @@
 
 .reply {
     text-align: right;          // Reply link looks more balanced opposite gravatar
-    font-size: 0.8em;           // Smaller text
+    font-size: 12px;           // Smaller text
 
     a {
         text-decoration: none;
@@ -148,7 +139,7 @@
 
     small:after {
         content: "\2193";       // A down arrow
-        padding-left: 0.5em;   // Mimic a space
+        padding-left: 12px;   // Mimic a space
         font-weight: 700;
     }
 }

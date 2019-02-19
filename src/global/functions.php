@@ -135,6 +135,18 @@ add_filter( 'the_category', 'danfoy_2019_correct_cat_tags' );
 
 
 /**
+ * Configure image sizes
+ *
+ */
+update_option( 'thumbnail_size_w', 256 );
+update_option( 'thumbnail_size_h', 384 );
+update_option( 'thumbnail_crop', 0 );
+update_option( 'medium_size_w', 512 );
+update_option( 'medium_size_h', 768 );
+update_option( 'medium_crop', 0 );
+
+
+/**
  * Remove width and height tags from images
  *
  * Images with width and height attributes in the img tag are a pain to style

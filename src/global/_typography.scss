@@ -30,25 +30,37 @@ body {
  *
  */
 h1 {
-    font-size: 2em;
+    font-size: 32px;
     font-weight: 400;
 }
 
 h2 {
-    font-size: 2em;
+    font-size: 24px;
     font-weight: 300;
     padding: 1em 0 0.5em 0;
 }
 
 h3 {
-    font-size: 1.4em;
+    font-size: 24px;
     font-weight: 400;
     padding: 1em 0 0.5em 0;
 }
 
 h4 {
-    font-size: 1em;
+    font-size: 16px;
     font-weight: 700;
+}
+
+/**
+ * Lists
+ *
+ * User agent stylesheet padding for lists needs to be overriden practically
+ * everywhere except for post-content, so zero it off here and add it back
+ * only where needed.
+ */
+ol,
+ul {
+    padding-left: 0;
 }
 
 /**
@@ -60,7 +72,7 @@ h4 {
  */
 blockquote {
     font-style: italic;         // differentiate from surrounding text
-    margin: 0 1em;              // indent from surrounding text
+    margin: 0 24px;              // indent from surrounding text
 
     em {
         font-style: normal;     // deitalicize when surrounding text is italic
