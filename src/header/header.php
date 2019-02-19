@@ -21,16 +21,22 @@
 
         ?></title>
 
-        <link href="//www.google-analytics.com" rel="dns-prefetch" />
-        <link href="<?php echo esc_url( get_template_directory_uri() ); ?>/img/icons/favicon.ico" rel="shortcut icon" />
-        <link href="<?php echo esc_url( get_template_directory_uri() ); ?>/img/icons/touch.png" rel="apple-touch-icon-precomposed" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_stylesheet_directory_uri(); ?>/img/favicons/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_stylesheet_directory_uri(); ?>/img/favicons/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_stylesheet_directory_uri(); ?>img/favicons/favicon-16x16.png" />
+        <link rel="mask-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/img/favicons/safari-pinned-tab.svg" color="#000000" />
 
         <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,700,700i" rel="stylesheet" />
 
+        <meta name="theme-color" content="#ffffff" />
+        <meta name="msapplication-TileColor" content="#ffc40d" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="<?php bloginfo( 'description' ); ?>" />
+
+        <link href="//www.google-analytics.com" rel="dns-prefetch" />
 
         <?php wp_head();?>
 
