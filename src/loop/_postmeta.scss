@@ -60,9 +60,8 @@
      * render an inline SVG to order. These are provided in
      * `/src/global/_icons.scss`
      */
-
-    &-date { @include icon_calendar('#{$grey300}'); }
-    &-comments a { @include icon_comment('#{$grey300}'); }
-    &-categories a { @include icon_folder('#{$grey300}'); }
-    &-tags a { @include icon_tag('#{$grey300}'); }
+    &-date          { @include icon_calendar('#{$grey300}'); }
+    &-comments a    { @include icon_comment('#{$grey300}'); }
+    &-categories a  { @include icon_folder('#{$grey300}'); }
+    &-tags a        { @include icon_tag('#{$grey300}'); }
 }
