@@ -12,8 +12,8 @@
 
 .pagination { // <nav>
     font-family: $sans-serif;
-    margin: 0 auto 24px auto;
-    padding: 0 24px;
+    margin: 0 auto $line auto;
+    padding: 0 $line;
     text-align: center;
     list-style-type: none;
 

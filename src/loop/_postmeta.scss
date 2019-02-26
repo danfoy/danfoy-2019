@@ -12,8 +12,8 @@
 
 .post-meta { // <ul>
     font-family: $sans-serif;
-    font-size: 12px;
-    margin: 24px 24px;
+    font-size: $text-s;
+    margin: $line $line;
 
     /**
      * Remove padding and list styles from lists
@@ -30,7 +30,7 @@
     }
 
     &-tax {
-        margin-top: 12px;
+        margin-top: $text-s;
     }
 
 
@@ -50,7 +50,7 @@
     &-comments,
     &-categories li,
     &-tags li {
-        padding-right: 12px;
+        padding-right: $text-s;
     }
 
     /**

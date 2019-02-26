@@ -18,7 +18,7 @@ img {
 }
 figure {
     width: auto !important;     // Figures also have inline width attributes
-    margin: 0 0 24px 0;         // Override UAS plus 1 line below
+    margin: 0 0 $line 0;         // Override UAS plus 1 line below
     text-align: center;         // Avoid issues where children don't stretch
 }
 
@@ -59,7 +59,8 @@ img.alignright {
 
         // Iframes in posts marked as video
         .format-video & {
-            height: calc( (100% / 16) * 9 ); // Size window to 16:9
+            // Size window to 16:9               minus standard gutters
+            height: calc( ((100vw / 16) * 9 ) - (2 * #{$line}) );
         }
     }
 }

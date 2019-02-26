@@ -18,7 +18,7 @@
 .category {
 
     .post {
-        margin-bottom: 48px; // Add space between articles
+        margin-bottom: $line * 2    // Add space between articles
     }
 }
 
@@ -31,10 +31,10 @@
  */
 .post-title {
     font-weight: 700;           // Override header weights (could be h1/h2/a)
-    margin: 24px 0;             // Override header margins (could be h1/h2/a)
+    margin: $line 0;            // Override header margins (could be h1/h2/a)
     padding: 0;                 // Override header padding (could be h1/h2/a)
     text-transform: uppercase;
-    font-size: 24px;
+    font-size: $line;
 
 
     a {
@@ -54,21 +54,101 @@
 .post-content {
     font-family: $serif;        // Post content is serif for generic posts
 
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    ul,
+    ol,
+    figcaption,
+    aside,
+    pre {
+        margin: {           // Keep text content from container edges
+            left: $line;
+            right: $line;
+        }
+    }
+
     p,
     ul,
     ol {
-        line-height: 24px;      // Standard line-height on paragraphs and lists
+        line-height: $line;     // Standard line-height on paragraphs and lists
     }
-    li {
-        margin-bottom: 8px;   // Breathing room between list items
+
+    /**
+     * Lists
+     *
+     * Lists have a lot of User Agent Stylesheet baggage and require some extra
+     * styles to keep them looking consistent
+     */
+    ol,
+    ul {
+        margin: $line;
+
+        // Breathing room between list-style type
+        li {
+            margin-bottom: $line / 2;
+            margin-left: $line / 2;
+            padding-left: $line / 2;
+
+            ul,
+            ol,
+            li {
+                margin-right: 0; // Nested lists should still go to right edge
+            }
+        }
+    }
+
+    hr {
+        margin: 0 $line;
+    }
+
+    /**
+     * Tables
+     *
+     * Tables get their own special rules due to the mobile-first design
+     * approach. In many cases they will cause scrolling on the x axis.
+     */
+    table {
+        padding: 0 $line;                // Line up with other block elements,
+                                        // padding not margin for nice scrolling
+        max-width: calc(100vw - ( #{$line} * 2 ));  // Full bleed minus gutters
+        overflow-x: scroll;             // Add scrollbars
+        display: block;                 // Required for scrollbars (tables have
+                                        // their own special display types)
+        tbody {
+            vertical-align: top;        // Body content should align to the top
+        }
+
+        ul,
+        ol {
+            padding: {                  // Override UAS
+                left: $text-s;
+                right: $text-s;
+            }
+            margin: {                   // Override styles set outside table
+                left: 0;
+                right: 0;
+            }
+
+            li {
+                margin: {               // Override styles set outside table
+                    left: $text-s;
+                    right: 0;
+                }
+            }
+        }
     }
 }
 
 .wp-caption-text {
     font-family: $sans-serif;   // Captions are always sans-serif
-    font-size: 12px;            // Captions are always smaller than body text
-    line-height: 12px;          // No line spacing for captions
-    margin: {                   // line-height + margins = standard 24px lines
+    font-size: $text-s;         // Captions are always smaller than body text
+    line-height: $text-s;       // No line spacing for captions
+    margin: {                   // line-height + margins = standard $line lines
         top: 6px;
         bottom: 6px;
     }

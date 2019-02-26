@@ -8,9 +8,9 @@
  */
 
 .site-header {
-    margin: {           // Half size margins - header links add extra 12px.
-        left: 12px;
-        right: 12px;
+    margin: {               // Half size margins - header links add extra $text-s.
+        left: $text-s;
+        right: $text-s;
     }
 
     a {
@@ -26,28 +26,28 @@
     &-title a,
     &-menu a {
         display: inline-block;
-        margin: 12px;
+        margin: $text-s;
     }
 
     &-title {
         &-heading {
-            font-size: 24px;
+            font-size: $line;
             font-weight: 700;
             margin: 0;      // Override <h1> style
         }
     }
 
     &-nav {
-        font-size: 16px;
-        margin: 12px 0;
+        font-size: $text;
+        margin: $text-s 0;
     }
 
     &-menu {
         ul,
         li {
             list-style-type: none;
-            padding: 0;         // Remove list item padding
-            margin: 0;  // Remove huge gap between header and content h2
+            padding: 0;     // Remove list item padding
+            margin: 0;      // Remove huge gap between header and content h2
             display: inline-block;
         }
     }

@@ -23,10 +23,10 @@
 .responses-comments-title,
 .responses-pings-title,
 .respond-form-title {
-    margin: 0 24px;
+    margin: 0 $line;
     padding: {
-        top: 24px;
-        bottom: 24px;
+        top: $line;
+        bottom: $line;
     }
     text-transform: uppercase;
     font-weight: 700;
@@ -44,15 +44,15 @@
  */
 .comment-meta {
     position: relative;         // So .avatar can be positioned absolutely
-    min-height: 64px;           // At least as high as avatar
-    padding-left: 76px;         // Allow space +12px margin for avatar
+    min-height: $text * 4;      // At least as high as avatar
+    padding-left: ($text * 4) + ($line / 2);
     display: flex;
     flex-direction: column;     // Stack items vertically
     justify-content: center;
 
     // Add back margins usually provided by .comment
     @at-root #respond .comment-meta {
-        margin: 12px;
+        margin: $text-s;
     }
 
     a {
@@ -62,10 +62,10 @@
     .comment-author {
 
         .avatar { // <img>
-            position: absolute;     // Necessary due to how WP structures this
+            position: absolute;         // Necessary due to how WP structures this
             top: 0;
             left: 0;
-            border-radius: 32px;    // Circularize the gravatar
+            border-radius: $text * 2;   // Circularize the gravatar
         }
 
         .fn { // <b> Comment author name. Seriously who named this.
@@ -78,14 +78,14 @@
     }
 
     @at-root .comment-metadata {
-        font-size: 12px;            // Metadata should be smaller than content
+        font-size: $text-s;            // Metadata should be smaller than content
 
         .edit-link {
-            padding-left: 12px;    // Space out the edit link from the date
+            padding-left: $text-s;     // Space out the edit link from the date
 
             &:before {
                 content: "/";           // Separator from meta
-                padding-right: 12px;   // Center
+                padding-right: $text-s; // Center
             }
         }
     }

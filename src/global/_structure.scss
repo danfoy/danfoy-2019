@@ -8,16 +8,6 @@
  */
 
 /**
- * Force 16px root size
- *
- * Modern browsers set the default text size to 16px. Setting it here manually
- * to deal with older browsers and edge cases.
- */
-html {
-    font-size: 16px;
-}
-
-/**
  * Size variables
  *
  * Some sizes based on my sizing scale which are useful for images, breakpoints
@@ -33,6 +23,20 @@ $large-s:   1280px;
 $large:     1536px;
 $hd:        1920px;
 $uhd:       2560px;
+
+$text-s:      12px;
+$text:        16px;
+$line:        24px;
+
+/**
+ * Force $text root size
+ *
+ * Modern browsers set the default text size to 16px. Setting it here manually
+ * to deal with older browsers and edge cases.
+ */
+html {
+    font-size: $text;
+}
 
 
 /**
@@ -78,109 +82,27 @@ $uhd:       2560px;
 @media (min-width: $medium-s) {
     .alignleft {
         float: left;
-        margin: 0 12px 12px 12px;
+        margin: 0 #{$text-s} #{$text-s} #{$text-s};
         max-width: 50%;
     }
     .alignright {
         float: right;
-        margin: 0 24px 24px 24px;
+        margin: 0 $line $line $line;
         max-width: 50%;
     }
     .aligncenter {
         display: block;
-        margin: 0 auto 24px auto;
+        margin: 0 auto $line auto;
     }
 }
 
 /**
  * Post styles
  */
-
-
-
 .post-header {
-    margin: 0 24px; // Line up padding with paragraph tags
+    margin: 0 $line; // Line up padding with paragraph tags
 }
 
 .post-content {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
-    ul,
-    ol,
-    figcaption,
-    aside,
-    pre {
-        margin: {           // Keep text content from container edges
-            left: 24px;
-            right: 24px;
-        }
-    }
 
-    hr {
-        margin: 0 24px;
-    }
-
-    /**
-     * Lists in post content
-     *
-     * Lists have a lot of User Agent Stylesheet baggage and require some extra
-     * styles to keep them looking consistent
-     */
-    ol,
-    ul {
-        margin-top: 24px;
-
-        // Breathing room between list-style type
-        li {
-            margin-bottom: 12px;
-
-            ul,
-            ol,
-            li {
-                margin-right: 0; // Nested lists should still go to right edge
-            }
-        }
-    }
-
-    /**
-     * Tables in post content
-     *
-     * Tables get their own special rules due to the mobile-first design
-     * approach. In many cases they will cause scrolling on the x axis.
-     */
-    table {
-        padding: 0 24px;                // Line up with other block elements,
-                                        // padding not margin for nice scrolling
-        max-width: calc(100vw - 48px);  // Full bleed minus gutters
-        overflow-x: scroll;             // Add scrollbars
-        display: block;                 // Required for scrollbars (tables have
-                                        // their own special display types)
-        tbody {
-            vertical-align: top;        // Body content should align to the top
-        }
-
-        ul,
-        ol {
-            padding: {                  // Override UAS
-                left: 12px;
-                right: 12px;
-            }
-            margin: {                   // Override styles set outside table
-                left: 0;
-                right: 0;
-            }
-
-            li {
-                margin: {               // Override styles set outside table
-                    left: 12px;
-                    right: 0;
-                }
-            }
-        }
-    }
 }
