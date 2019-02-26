@@ -32,10 +32,7 @@
 
     .pingback { // <li>
         position: relative;
-        padding-left: $line;
-        padding-bottom: $line;
-        padding-top: $line;
-        padding-bottom: $line;
+        margin: $line;
     }
 
     a {

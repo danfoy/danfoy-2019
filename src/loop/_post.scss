@@ -30,11 +30,12 @@
  *
  */
 .post-title {
-    font-weight: 700;           // Override header weights (could be h1/h2/a)
     margin: $line 0;            // Override header margins (could be h1/h2/a)
     padding: 0;                 // Override header padding (could be h1/h2/a)
-    text-transform: uppercase;
+    font-weight: 300;           // Override header weights (could be h1/h2/a)
     font-size: $line;
+    text-transform: uppercase;
+    text-align: center;
 
 
     a {

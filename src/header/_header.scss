@@ -8,10 +8,7 @@
  */
 
 .site-header {
-    margin: {               // Half size margins - header links add extra $text-s.
-        left: $text-s;
-        right: $text-s;
-    }
+    margin: 0 ($line / 2);
 
     a {
         text-decoration: none;
@@ -20,20 +17,21 @@
     &-title,
     &-nav,
     &-menu {
-        display: inline-block; // Make links inline-block for buttonyness
+        display: inline-block;  // Make links inline-block for buttonyness
     }
 
     &-title a,
     &-menu a {
         display: inline-block;
-        margin: $text-s;
+        margin: $line / 2;
     }
 
     &-title {
         &-heading {
             font-size: $line;
             font-weight: 700;
-            margin: 0;      // Override <h1> style
+            margin: 0;          // Override default heading styles
+            padding: 0;         // Override default heading styles
         }
     }
 

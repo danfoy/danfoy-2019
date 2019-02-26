@@ -18,24 +18,23 @@
 
 /**
  * Titles
+ *
+ * The titles for this section are generally for accessibility. However, I might
+ * at some point stick them back in based on some media condition, so I've
+ * set styles for them anyway.
  */
 .responses-title,
 .responses-comments-title,
 .responses-pings-title,
 .respond-form-title {
-    margin: 0 $line;
-    padding: {
-        top: $line;
-        bottom: $line;
-    }
-    text-transform: uppercase;
-    font-weight: 700;
-    text-align: center;
 
-    // Hide .responses-title generally, it's just for accessibility
-    @at-root .responses-title {
-        @include hide-visually;
-    }
+    @include hide-visually;
+
+    margin: 0 $line;
+    padding: $line 0;
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
 }
 
 

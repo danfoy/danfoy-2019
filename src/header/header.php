@@ -49,13 +49,27 @@
             <header class="site-header">
 
                     <div class="site-header-title">
-                        <h1 class="site-header-title-heading">
+                        <?php
+                        // level-1 heading on homepage, level-2 everywhere else
+                        if ( is_front_page() ) {
+                            echo '<h1 class="site-header-title-heading">' . "\n";
+                        } else {
+                            echo '<h2 class="site-header-title-heading">' . "\n";
+                        };
+                        ?>
                             <a class="site-header-title-link" href="<?php echo esc_url( home_url() ); ?>">
                                 <?php
                                 bloginfo( 'name' );
                                 ?>
                             </a>
-                        </h1>
+                        <?php
+                        // Make sure we're closing the right type of heading from above
+                        if ( is_front_page() ) {
+                            echo '</h1>' . "\n";
+                        } else {
+                            echo '</h2>' . "\n";
+                        };
+                        ?>
                     </div>
 
                     <nav class="site-header-nav">
