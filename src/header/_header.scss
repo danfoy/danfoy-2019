@@ -23,12 +23,12 @@
     &-title a,
     &-menu a {
         display: inline-block;
-        margin: $line / 2;
+        margin: $text-s / 2;
     }
 
     &-title {
         &-heading {
-            font-size: $line;
+            font-size: $text;
             font-weight: 700;
             margin: 0;          // Override default heading styles
             padding: 0;         // Override default heading styles
@@ -36,7 +36,7 @@
     }
 
     &-nav {
-        font-size: $text;
+        font-size: $text-s;
         margin: $text-s 0;
     }
 
@@ -47,6 +47,7 @@
             padding: 0;     // Remove list item padding
             margin: 0;      // Remove huge gap between header and content h2
             display: inline-block;
+            text-transform: lowercase;
         }
     }
 }
