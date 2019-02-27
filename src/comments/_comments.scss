@@ -91,19 +91,6 @@
         &:last-of-type {
             margin-bottom: 0;               // Sit flush with parent box
         }
-
-        // Smaller child avatars
-        .avatar {
-            width: ($line * 2) !important;     // !Set inline by WP
-            height: ($line * 2) !important;    // !Set inline by WP
-        }
-        // Match padding to new shrunken avatar
-        .comment-meta {
-            min-height: ($line * 2);
-            padding-left: calc(48px + #{$text-s});
-        }
-
-
     }
 }
 

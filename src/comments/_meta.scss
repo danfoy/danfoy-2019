@@ -42,16 +42,33 @@
  * Comment meta
  */
 .comment-meta {
-    position: relative;         // So .avatar can be positioned absolutely
-    min-height: $text * 4;      // At least as high as avatar
-    padding-left: ($text * 4) + ($line / 2);
+    position: relative;             // Clear absolutely positioned .avatar
+    min-height: ($text * 3);        // "
+    padding-left: ($text * 3) + ($line / 2);
     display: flex;
-    flex-direction: column;     // Stack items vertically
+    flex-direction: column;         // Stack items vertically
     justify-content: center;
+
+    // Nested comment avatars are smaller
+    @at-root .children .comment-meta {
+        min-height: ($text * 2);
+        padding-left: ($text * 2) + ($line / 2);
+    }
+
+    // Clear enlarged .avatar when space allows
+    @media (min-width: $small-l) {
+        min-height: ($text * 4);
+        padding-left: ($text * 4) + ($line / 2);
+
+        @at-root .children .comment-meta {
+            min-height: ($text * 3);
+            padding-left: ($text * 3) + ($line / 2);
+        }
+    }
 
     // Add back margins usually provided by .comment
     @at-root #respond .comment-meta {
-        margin: $text-s;
+        margin: ($line / 2);
     }
 
     a:hover {
@@ -59,20 +76,37 @@
 
         &::after {
             content: "\2192";
-            padding-left: $text-s / 2;
+            padding-left: ($text-s / 2);
         }
     }
 
     .comment-author {
 
         .avatar { // <img>
-            width: ($text * 4) !important;     // !Set inline by WP
-            height: ($text * 4) !important;    // !Set inline by WP
-            position: absolute;         // Necessary due to how WP structures this
+            width: ($text * 3) !important;      // !Set inline by WP
+            height: ($text * 3) !important;     // !Set inline by WP
+            position: absolute;                 // Due to WP-generated code
             top: 0;
             left: 0;
-            border: 1px solid $grey400;
-            border-radius: $text * 2;   // Circularize the gravatar
+            border: 1px solid $grey400;         // Stop backgrounds leaking
+            border-radius: $text * 2;           // Circularize the gravatar
+
+            // Snmaller avatars for child comments
+            @at-root .children .comment-author .avatar {
+                width: ($text * 2) !important;
+                height: ($text * 2) !important;
+            }
+
+            // Enlarge avatars when space allows
+            @media (min-width: $small-l) {
+                width: ($text * 4) !important;  // Larger on big mobiles
+                height: ($text * 4) !important; // Larger on big mobiles
+
+                @at-root .children .comment-author .avatar {
+                width: ($text * 3) !important;
+                height: ($text * 3) !important;
+                }
+            }
         }
 
         .fn { // <b> Comment author name. Seriously who named this.
