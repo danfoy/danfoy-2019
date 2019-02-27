@@ -14,7 +14,97 @@
 // Wrapper
 .responses { // <aside>
     margin-top: $line * 2;          // Breathing space from .post-meta
+    border-bottom: 1px solid $grey100;  // Prevent collapsing margin
     font-family: $sans-serif;
+    background-color: $grey100;
+    color: $grey700;
+}
+
+
+// Serif fonts for content
+.comment-content { // <div>
+    font-family: $serif;            // Match post style
+    line-height: $line;             // Match paragraph style
+}
+
+.responses-comments-list,           // <ol>
+.responses-pings-list {             // <ol>
+    margin: 0;                      // Override native list margin
+    list-style-type: none;          // Override native list style
+}
+
+.responses-comments-list {
+    padding-top: 0.1px;             // Prevent margin collapse
+}
+
+.comment { // <li>
+    margin: ($line/2);              // Half line between items
+    padding: ($line/2) 0;           // Half line inside item top/bottom
+    list-style-type: none;          // Override useragent styles
+    overflow: hidden;               // Prevent commenters breaking the scaffolding
+    background-color: $grey200;
+    border: 1px solid $grey400;
+
+    &.parent {
+        padding-bottom: 0;          // So child item borders sit flush on bottom
+
+        .reply {
+            padding: 0 0 ($line/2) 0;
+        }
+    }
+
+
+    .reply {
+        padding-top: $line/2;
+        text-align: right;      // Reply link looks more balanced opposite gravatar
+        font-size: $text-s;     // Smaller text
+
+        a {
+            text-decoration: none;
+        }
+
+        small:after {
+            content: "\2193";       // A down arrow
+            padding-left: $text-s;  // Mimic a space
+            font-weight: 700;
+        }
+    }
+
+    a {
+        color: $grey900;
+    }
+
+    .comment-body {
+        margin: 0 ($line/2);        // Gutters for content
+
+        p:last-of-type {
+            margin-bottom: $line/4; // Tighten up between last para and reply
+        }
+    }
+
+    .comment {
+        margin: 0 0 ($line/2) ($line/4);    // Nesting indentation
+        padding: ($line/4) 0 0 0;           // Nesting indentation
+        border: none;                       // Reset borders from parent
+        border-left: 4px solid $grey400;    // Indentation border
+
+        &:last-of-type {
+            margin-bottom: 0;               // Sit flush with parent box
+        }
+
+        // Smaller child avatars
+        .avatar {
+            width: ($line * 2) !important;     // !Set inline by WP
+            height: ($line * 2) !important;    // !Set inline by WP
+        }
+        // Match padding to new shrunken avatar
+        .comment-meta {
+            min-height: ($line * 2);
+            padding-left: calc(48px + #{$text-s});
+        }
+
+
+    }
 }
 
 
@@ -51,92 +141,5 @@
         position: absolute;
         bottom: 0;
         right: 0;
-    }
-}
-
-// Serif fonts for content
-.comment-content { // <div>
-    font-family: $serif;
-    line-height: $line;             // Match paragraph style
-}
-
-.responses-comments-list,           // <ol>
-.responses-pings-list {             // <ol>
-    margin: 0;                      // Override native list margin
-    list-style-type: none;          // Override native list style
-
-    > .comment:last-of-type {
-        border-bottom: 1px solid;
-    }
-}
-
-.comment { // <li>
-    padding-top: $line;         // Breathing room for header
-    border-top: 1px solid;      // To separate comments
-    list-style-type: none;      // Override useragent styles
-    overflow: hidden;           // Prevent commenters breaking the scaffolding
-
-    p:last-of-type {
-        margin-bottom: $text-s; // Tighten up to reply link
-    }
-
-    .comment-body { // <article>
-        margin: 0 $line;
-        padding-bottom: $text-s;
-    }
-
-    // Nested comments
-    .children {
-        padding-left: 0;
-
-        .comment {
-            padding-top: $text-s;
-            margin-left: $text-s;  // 1 indent per level
-            border-top: none;
-            border-left: 1px solid;
-
-            // Smaller child avatars
-            .avatar {
-                width: ($line * 2) !important;     // !Set inline by WP
-                height: ($line * 2) !important;    // !Set inline by WP
-            }
-            // Match padding to new shrunken avatar
-            .comment-meta {
-                min-height: ($line * 2);
-                padding-left: calc(48px + #{$text-s});
-            }
-
-            // Give replies breathing room when nested
-            .reply {
-                padding: $text-s 0;
-            }
-        }
-    }
-
-    // Trim top-level comments with children
-    &.depth-1.parent {
-        padding-bottom: $text-s;
-    }
-
-    // Remove padding on last paragraph of threadded comments
-    // Bumps up the reply link
-    &.parent p:last-of-type {
-        margin-bottom: 0;
-    }
-}
-
-
-.reply {
-    text-align: right;      // Reply link looks more balanced opposite gravatar
-    font-size: $text-s;     // Smaller text
-
-    a {
-        text-decoration: none;
-    }
-
-    small:after {
-        content: "\2193";       // A down arrow
-        padding-left: $text-s;  // Mimic a space
-        font-weight: 700;
     }
 }

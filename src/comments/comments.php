@@ -90,7 +90,7 @@ if ( have_comments() || comments_open() ) {
                         'reply_text'        => '<small>Reply</small>',
                         // 'page'               => '',
                         // 'per_page'           => '',
-                        'avatar_size'       => 64,
+                        'avatar_size'       => 128,
                         // 'reverse_top_level'  => null,
                         // 'reverse_children'   => '',
                         'format'            => 'html5',
@@ -149,7 +149,10 @@ if ( have_comments() || comments_open() ) {
                                         </div>',
 
             'comment_field'         => '<label for="comment" class="respond-form-label">Comment</label>' . "\n" .
-                                    '<textarea id="comment" class="respond-form-element respond-form-input-comment" name="comment" placeholder="Add your thoughts here" aria-required="true">' . "\n" .
+                                    '<textarea id="comment" class="respond-form-element respond-form-input-comment" name="comment" placeholder="Start typing your comment here...
+
+
+                                    MarkDown and some HTML is allowed" aria-required="true">' . "\n" .
                                     '</textarea>' . "\n",
 
             'comment_notes_before'  => '',

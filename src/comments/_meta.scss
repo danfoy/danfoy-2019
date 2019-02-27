@@ -54,16 +54,24 @@
         margin: $text-s;
     }
 
-    a {
+    a:hover {
         text-decoration: none;
+
+        &::after {
+            content: "\2192";
+            padding-left: $text-s / 2;
+        }
     }
 
     .comment-author {
 
         .avatar { // <img>
+            width: ($text * 4) !important;     // !Set inline by WP
+            height: ($text * 4) !important;    // !Set inline by WP
             position: absolute;         // Necessary due to how WP structures this
             top: 0;
             left: 0;
+            border: 1px solid $grey400;
             border-radius: $text * 2;   // Circularize the gravatar
         }
 
@@ -76,8 +84,17 @@
         }
     }
 
-    @at-root .comment-metadata {
+    .comment-metadata {
         font-size: $text-s;            // Metadata should be smaller than content
+
+        a {
+            color: $grey500;
+            text-decoration: none;
+
+            &:hover::after {
+                content: "\0023";
+            }
+        }
 
         .edit-link {
             padding-left: $text-s;     // Space out the edit link from the date
