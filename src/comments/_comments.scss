@@ -18,6 +18,7 @@
     font-family: $sans-serif;
     background-color: $grey100;
     color: $grey700;
+    padding-top: 0.1px;             // Prevent margin collapse
 }
 
 
@@ -31,10 +32,13 @@
 .responses-pings-list {             // <ol>
     margin: 0;                      // Override native list margin
     list-style-type: none;          // Override native list style
-}
 
-.responses-comments-list {
-    padding-top: 0.1px;             // Prevent margin collapse
+    // Line up text with .post-content at $medium-s breakpoint
+    @media (min-width: ($medium-s + ($line * 2))) {
+        max-width: ($medium-s + $line);
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .comment { // <li>
@@ -44,6 +48,11 @@
     overflow: hidden;               // Prevent commenters breaking the scaffolding
     background-color: $grey200;
     border: 1px solid $grey400;
+
+    // Line up text with .post-content at $medium-s breakpoint
+    @media (min-width: ($medium-s + ($line * 2))) {
+        margin: $line auto;
+    }
 
     &.parent {
         padding-bottom: 0;          // So child item borders sit flush on bottom
@@ -91,6 +100,11 @@
         &:last-of-type {
             margin-bottom: 0;               // Sit flush with parent box
         }
+
+        // Bulk out space between columns after $medium-s breakpoint
+        @media (min-width: $medium-s) {
+            margin: 0 0 $line ($line / 2);
+        }
     }
 }
 
@@ -113,8 +127,12 @@
     }
 
     a {
-        text-decoration: none;      // Remove underline
+        color: $grey900;
         text-transform: initial;    // Override uppercase transform above
+
+        &:hover {
+            text-decoration: none;
+        }
     }
 
     .url { // <a>

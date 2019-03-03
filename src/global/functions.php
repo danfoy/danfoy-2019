@@ -204,6 +204,28 @@ function danfoy_2019_remove_recent_comments_style() {
 }
 add_action( 'widgets_init', 'danfoy_2019_remove_recent_comments_style' );
 
+/**
+ * Remove Gutenberg's default wp-block-styles stylesheet
+ *
+ * Gutenberg comes with a set of defaults for styling Gutenberg blocks. This
+ * does make sense, as there are a lot of new functionality in Gutenberg which
+ * wouldn't be covered by existing (WP<5) themes.
+ *
+ * However, it is really annoyingly specific about the styles it adds, which
+ * requires a disgusting mess of overwrites to correct. Easier to remove the lot
+ * and style each block manually, as laborious as that is.
+ *
+ * Probably worth commenting out the `add_action` line after the following
+ * function when designing my own styles for blocks to get an idea of how
+ * WordPresss/Gutenberg expects the blocks to be formatted.
+ *
+ * @link https://stackoverflow.com/questions/52277629/remove-gutenberg-css
+ */
+function danfoy_remove_wp_block_library_css() {
+    wp_dequeue_style( 'wp-block-library' );
+};
+add_action( 'wp_print_styles', 'danfoy_remove_wp_block_library_css', 100 );
+
 
 /**
  * Custom pagination

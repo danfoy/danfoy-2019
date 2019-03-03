@@ -48,6 +48,8 @@
 
             <header class="site-header">
 
+                <div class="site-header-contents">
+
                     <div class="site-header-title">
                         <?php
                         // level-1 heading on homepage, level-2 everywhere else
@@ -98,5 +100,7 @@
 
                         ?>
                     </nav>
+
+                </div>
 
             </header>

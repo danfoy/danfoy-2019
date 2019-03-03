@@ -67,10 +67,8 @@
     figcaption,
     aside,
     pre {
-        margin: {           // Keep text content from container edges
-            left: $line;
-            right: $line;
-        }
+        margin-left: $line;
+        margin-right: $line;
     }
 
     p,
@@ -114,43 +112,59 @@
      * approach. In many cases they will cause scrolling on the x axis.
      */
     table {
-        padding: 0 $line;                // Line up with other block elements,
-                                        // padding not margin for nice scrolling
-        max-width: calc(100vw - ( #{$line} * 2 ));  // Full bleed minus gutters
+        padding: 0 $line;                // Line up with other block elements
+        max-width: 100vw;
         overflow-x: scroll;             // Add scrollbars
-        display: block;                 // Required for scrollbars (tables have
-                                        // their own special display types)
+        display: block;                 // Required for scrollbars
+        clear: both;
+
+        thead {
+            font-weight: 700;
+        }
+
         tbody {
             vertical-align: top;        // Body content should align to the top
         }
 
         ul,
         ol {
-            padding: {                  // Override UAS
-                left: $text-s;
-                right: $text-s;
-            }
-            margin: {                   // Override styles set outside table
-                left: 0;
-                right: 0;
-            }
+            padding: 0 ($line / 2);
+            margin: 0;                  // Override styles set outside table
 
             li {
-                margin: {               // Override styles set outside table
-                    left: $text-s;
-                    right: 0;
+                padding-left: 0;
+                margin-left: ($line / 2);
+                margin-right: 0;
                 }
             }
         }
-    }
-}
 
-.wp-caption-text {
-    font-family: $sans-serif;   // Captions are always sans-serif
-    font-size: $text-s;         // Captions are always smaller than body text
-    line-height: $text-s;       // No line spacing for captions
-    margin: {                   // line-height + margins = standard $line lines
-        top: 6px;
-        bottom: 6px;
+    @media (min-width: ($medium-s + ($line * 2))) {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        ul,
+        ol,
+        pre,
+        table,
+        hr {
+            max-width: $medium-s;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .wp-caption-text {
+        font-family: $sans-serif;   // Captions are always sans-serif
+        font-size: $text-s;         // Captions are always smaller than body text
+        line-height: $text-s;       // No line spacing for captions
+        margin: {                   // line-height + margins = standard $line lines
+            top: 6px;
+            bottom: 6px;
+        }
     }
 }

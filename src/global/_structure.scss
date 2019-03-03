@@ -79,21 +79,21 @@ html {
  * On small screens everything is full-bleed. Alignment is added as the
  * viewport width increases.
  */
-@media (min-width: $medium-s) {
-    .alignleft {
-        float: left;
-        margin: 0 #{$text-s} #{$text-s} #{$text-s};
-        max-width: 50%;
-    }
-    .alignright {
-        float: right;
-        margin: 0 $line $line $line;
-        max-width: 50%;
-    }
-    .aligncenter {
-        display: block;
-        margin: 0 auto $line auto;
-    }
+.alignleft,
+.alignright {
+    margin: 0 $line $line $line;
+    max-width: 50%;
+}
+.alignleft {
+    float: left;
+}
+.alignright {
+    float: right;
+}
+
+.aligncenter {
+    display: block;
+    margin: 0 auto $line auto;
 }
 
 /**
@@ -101,8 +101,4 @@ html {
  */
 .post-header {
     margin: 0 $line; // Line up padding with paragraph tags
-}
-
-.post-content {
-
 }

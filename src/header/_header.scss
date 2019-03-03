@@ -14,6 +14,13 @@
         text-decoration: none;
     }
 
+    &-contents {
+        @media (min-width: ($medium-s - $line)) {
+            max-width: $medium-s;
+            margin: 0 auto;
+        }
+    }
+
     &-title,
     &-nav,
     &-menu {
