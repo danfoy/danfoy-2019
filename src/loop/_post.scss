@@ -30,10 +30,9 @@
  *
  */
 .post-title {
-    margin: $line 0;            // Override header margins (could be h1/h2/a)
-    padding: 0;                 // Override header padding (could be h1/h2/a)
+    font-size: ($text * 2);
+    line-height: ($line * 1.5);
     font-weight: 300;           // Override header weights (could be h1/h2/a)
-    font-size: $line;
     text-transform: uppercase;
     text-align: center;
 
@@ -73,7 +72,11 @@
 
     p,
     ul,
-    ol {
+    ol,
+    aside,
+    dl {
+        margin-top: $line;
+        margin-bottom: $line;
         line-height: $line;     // Standard line-height on paragraphs and lists
     }
 
@@ -85,7 +88,6 @@
      */
     ol,
     ul {
-        margin: $line;
 
         // Breathing room between list-style type
         li {
@@ -150,6 +152,8 @@
         ul,
         ol,
         pre,
+        blockquote,
+        aside,
         table,
         hr {
             max-width: $medium-s;

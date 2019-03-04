@@ -30,25 +30,35 @@ body {
  *
  */
 h1 {
-    font-size: $text * 2;
+    font-size: ($text * 2);
+    line-height: ($text * 2);
     font-weight: 400;
+    margin-top: ($line * 2);
+    margin-bottom: ($line * 2);
 }
 
 h2 {
-    font-size: $text * 1.5;
+    font-size: ($text * 1.5);
+    line-height: ($text * 1.5);
     font-weight: 300;
-    margin: $line 0 ($line * 0.5) 0;
+    margin-top: $line;
+    margin-bottom: ($line * 0.5);
 }
 
 h3 {
-    font-size: $text * 1.5;
+    font-size: ($text * 1.5);
+    line-height: ($text * 1.5);
     font-weight: 400;
-    margin: $line 0 ($line * 0.5) 0;
+    margin-top: $line;
+    margin-bottom: ($line * 0.5);
 }
 
 h4 {
     font-size: $text;
+    line-height: $text;
     font-weight: 700;
+    margin-top: $line;
+    margin-bottom: $line;
 }
 
 /**
@@ -72,7 +82,8 @@ ul {
  */
 blockquote {
     font-style: italic;         // differentiate from surrounding text
-    margin: 0 $line;            // indent from surrounding text
+    padding-left: $line;        // indent contents from surrounding text
+    box-sizing: border-box;     // Retain width with auto margins
 
     em {
         font-style: normal;     // deitalicize when surrounding text is italic
