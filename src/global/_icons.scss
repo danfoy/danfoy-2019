@@ -27,11 +27,11 @@
  */
 @mixin format_icon_inline {
     background: {
-        size: 1.3em;
-        position: left;
+        size: $text;
+        position: ($text / 2);
         repeat: no-repeat;
     }
-    padding: 0.5em 0.5em 0.5em 1.8em;
+    padding-left: ($text * 2);
     display: inline-block;
 }
 

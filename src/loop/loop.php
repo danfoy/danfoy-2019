@@ -86,38 +86,74 @@ if ( have_posts() ) :
             if ( ! is_page() ) { // No footer for pages
                 ?>
                 <footer class="post-footer">
-                    <ul class="post-meta">
+                    <h2 class="post-footer-title">Post Metadata</h2>
 
+                    <ul class="post-meta">
                         <li class="post-meta-date">
-                            <time datetime="<?php the_time( 'Y-m-d' ); echo 'T'; the_time( 'H:i' ); ?>">
-                                <?php the_time( get_option( 'date_format' ) ); ?>
-                            </time>
+                            <span class="post-meta-date-title">Posted on</span>
+                            <?php
+                            echo '<time datetime="' . get_the_time( 'Y-m-d' ) . 'T' . get_the_time( 'H:i' ) . '">';
+                                the_time( get_option( 'date_format' ) );
+                            echo '</time>' . "\n";
+                            ?>
                         </li>
 
                         <?php
-                        if (  ! is_singular() && get_comments_number() ) { ?>
+                        if ( get_comments_number() ) { ?>
                             <li class="post-meta-comments">
                                 <a class="post-meta-comments-link" href="<?php comments_link() ?>"><?php
                                     comments_number(
-                                        '0 reponses',
+                                        '0 responses',
                                         '1 response',
-                                        '% responses' );
-                                ?></a>
+                                        '% responses' ); ?>
+                                </a>
+                            </li>
+
+                        <?php
+                        };
+
+                        // Check whether the post actually has an taxonomy meta
+                        if ( get_the_category() || get_the_tags() ) { ?>
+                            <li><h3 class="post-meta-taxonomies-title">Taxonomies</h3>
+                                <div class="post-meta-taxonomies-wrapper">
+                                    <ul class="post-meta-taxonomies">
+                                        <?php
+
+                                        // Check for categories
+                                        if ( get_the_category() ) {
+                                            echo '<li class="post-meta-categories">' . "\n";
+                                            echo '<h4 class="post-meta-categories-title">Categories</h4>' . "\n";
+                                                echo '<ul class="post-meta-categories-list">'. "\n";
+                                                    echo '<li>';
+                                                        the_category('</li>' . "\n" . '<li>', 'multiple');
+                                                    echo '</li>' . "\n";
+                                                echo '</ul>' . "\n";
+                                            echo '</li>' . "\n";
+                                        };
+
+                                        // Check for tags
+                                        if ( get_the_tags() ) {
+                                            echo '<li class="post-meta-tags">' . "\n";
+                                                echo '<h4 class="post-meta-tags-title">Tags</h4>';
+                                                the_tags(
+                                                    '<ul class="post-meta-tags-list">' . "\n" . '<li>',
+                                                    "</li>\n<li>",
+                                                    "</li>\n</ul>\n"
+                                                );
+                                            echo '</li>' . "\n";
+                                        };
+
+                                        ?>
+                                    </ul>
+                                </div>
                             </li>
                         <?php
                         }
-                        echo "<li>\n";
-                            echo "<div class=\"post-meta-tax\">\n";
-                                echo "<ul class=\"post-meta-categories\">\n<li>";
-                                    the_category("</li>\n<li>");
-                                echo "</li>\n</ul>\n";
-                                the_tags( "<ul class=\"post-meta-tags\">\n<li>", "</li>\n<li>", "</li>\n</ul>\n" );
-                            echo '</div>';
-                        echo "<li> \n";
+
                         ?>
                     </ul>
 
-                 </footer>
+                </footer>
 
                 <?php
 

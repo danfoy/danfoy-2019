@@ -10,63 +10,142 @@
  * @since       1.0.0
  */
 
-.post-meta { // <ul>
+.post-footer {
     font-family: $sans-serif;
     font-size: $text-s;
-    margin: $line;
+    padding-top: 0.1px;
+    padding-bottom: 0.1px;
+    background-color: $grey900;
 
-    @media (min-width: ($medium-s + ($line * 2))) {
-        max-width: $medium-s;
-        margin: $line auto;
-
-    }
-
-    /**
-     * Remove padding and list styles from lists
-     */
+    // Remove padding and list styles from lists
     li,
     * li {
         list-style-type: none;
     }
 
+    &-title {
+        @include hide-visually();
+    }
+}
+
+/**
+ * Post Metadata list
+ *
+ * The post metadata list contains the post date, the number of and a link to
+ * the responses if there are any (otherwise nothing), the post categories
+ * (including parent items), and the post tags.
+ */
+.post-meta { // <ul>
+    margin: $line;                      // Standard gutters
+    line-height: $line;                 // Standard line height
+
+    a {
+        display: inline-block;          // Links displayed like buttons
+        padding-right: ($text / 2);     // Space to balance with icon
+        margin-bottom: ($line / 4);     // Vertical space between wrapped items
+        border-radius: ($line / 8);     // Round corners of buttons slightly
+        text-decoration: none;          // Remove UAS underlines
+    }
+
     &-date,
-    &-comments {
-        display: block;
-    }
-
-    &-tax {
-        margin-top: $text-s;
-    }
-
-
-    // Remove padding and block positioning from nested lists
-    &-categories, // <ul>
-    &-tags {      // <ul>
-        padding: 0;
-        display: inline; //  Float tags and categories onto one line
-
-        li {
-            display: inline-block;
+    &-taxonomies,
+    &-categories,
+    &-tags {
+        &-title {
+            @include hide-visually();   // Screen-reader titles
         }
     }
 
-    // Meta is inline - needs spaces between items.
     &-date,
-    &-comments,
-    &-categories li,
-    &-tags li {
-        padding-right: $text-s;
+    &-comments {
+        display: inline-block;          // Inline these two together
     }
 
-    /**
-     * Icons for post meta
-     *
-     * Icons are provided by mixins which take a HTML-encoded color argument and
-     * render an inline SVG to order. These are provided in
-     * `/src/global/_icons.scss`
-     */
-    &-date          { @include icon_calendar('#{$grey300}'); }
-    &-comments a    { @include icon_comment('#{$grey300}'); }
-    &-categories a  { @include icon_folder('#{$grey300}'); }
-    &-tags a        { @include icon_tag('#{$grey300}'); }
+    // Date is the only non-link item, sp needs the inline-block adding.
+    // As every other item is a link, it feels weird that the date has a text
+    // cursor. Removing it makes it feel more natural to mouse over comments.
+    &-date { // <li>
+        margin-right: $line;
+        cursor: default;                // Remove text cursor
+        @include icon_calendar('#{$grey300}');
+    }
+
+    &-comments { // <li>
+
+        a {
+            color: black;               // Override default link color
+            border: 1px solid $grey900; // Border matches background
+            @include icon_comment('#{$grey300}');
+
+            &:hover {
+                border: 1px solid $grey500;
+                background-color: white;
+            }
+        }
+    }
+
+    // Wrapper around categories and tags. Allows a line break between the
+    // 'meta' and 'taxonomy' sections.
+    &-taxonomies { // <div>
+        margin-top: ($line / 2);            // Half line breathing space
+
+        a {                                 // Button-like styling
+            border: 1px solid $grey700;
+            color: $grey100;
+            background-color: white;
+
+            &:hover {
+                color: $grey900;
+                background-color: $grey300;
+                border-color: black;
+            }
+        }
+    }
+
+    &-categories, // <li>
+    &-tags { // <li>
+        display: inline; //  Float taxonomy wrapper <li>s onto one line
+
+        li {
+            display: inline-block;          // So items can wrap
+        }
+
+        // Float taxonomies onto a single line
+        &-list {    // <ul>
+            display: inline; //  Float tag and category lists onto one line
+
+            li {
+                margin-right: ($line / 4);  // Space between items
+            }
+        }
+    }
+
+    &-categories {
+
+        a {
+            @include icon_folder('#{$grey300}');
+
+            &:hover {
+                @include icon_folder('#{$grey900}');
+            }
+        }
+    }
+
+    &-tags {
+
+        a {
+            @include icon_tag('#{$grey300}');
+
+            &:hover {
+                @include icon_tag('#{$grey900}');
+            }
+        }
+    }
+
+    // Matches width and margins from default template
+    @media (min-width: ($medium-s + ($line * 2))) {
+        max-width: $medium-s;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

@@ -40,7 +40,7 @@ h1 {
 h2 {
     font-size: ($text * 1.5);
     line-height: ($text * 1.5);
-    font-weight: 300;
+    font-weight: 700;
     margin-top: $line;
     margin-bottom: ($line * 0.5);
 }
@@ -57,8 +57,8 @@ h4 {
     font-size: $text;
     line-height: $text;
     font-weight: 700;
-    margin-top: $line;
-    margin-bottom: $line;
+    margin-top: ($line * 1.5);
+    margin-bottom: ($line * 0.5);
 }
 
 /**
@@ -81,8 +81,9 @@ ul {
  *
  */
 blockquote {
-    font-style: italic;         // differentiate from surrounding text
+    margin: $line;
     padding-left: $line;        // indent contents from surrounding text
+    font-style: italic;         // differentiate from surrounding text
     box-sizing: border-box;     // Retain width with auto margins
 
     em {

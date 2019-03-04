@@ -53,6 +53,7 @@
  */
 .post-content {
     font-family: $serif;        // Post content is serif for generic posts
+    margin-bottom: $line;
 
     h1,
     h2,
@@ -100,6 +101,13 @@
             li {
                 margin-right: 0; // Nested lists should still go to right edge
             }
+        }
+    }
+
+    blockquote {
+
+        p {
+            margin: $line 0;        // Prevent double gutters
         }
     }
 
