@@ -27,9 +27,9 @@
     line-height: $line;             // Match paragraph style
 }
 
-.responses-comments-list,           // <ol>
-.responses-pings-list {             // <ol>
+.responses-comments-list {             // <ol>
     margin: 0;                      // Override native list margin
+    margin-bottom: $line;           // Always full line before response section
     list-style-type: none;          // Override native list style
 
     // Line up text with .post-content at $medium-s breakpoint
@@ -37,6 +37,7 @@
         max-width: ($medium-s + $line);
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: ($line * 2);
     }
 }
 
@@ -44,7 +45,7 @@
     margin: ($line/2);              // Half line between items
     padding: ($line/2) 0;           // Half line inside item top/bottom
     list-style-type: none;          // Override useragent styles
-    overflow: hidden;               // Prevent commenters breaking the scaffolding
+    overflow: hidden;               // Prevent posts breaking the scaffolding
     background-color: $grey200;
     border: 1px solid $grey400;
 
@@ -64,8 +65,8 @@
 
     .reply {
         padding-top: $line/2;
-        text-align: right;      // Reply link looks more balanced opposite gravatar
-        font-size: $text-s;     // Smaller text
+        text-align: right;          // Reply link opposite gravatar
+        font-size: $text-s;         // Smaller text
 
         a {
             text-decoration: none;
@@ -91,8 +92,8 @@
     }
 
     .comment {
-        margin: 0 0 ($line/2) ($line/4);    // Nesting indentation
-        padding: ($line/4) 0 0 0;           // Nesting indentation
+        margin: ($line / 2) 0 ($line) ($line/4);    // Nesting indentation
+        padding: ($line / 2) 0 0 0;           // Nesting indentation
         border: none;                       // Reset borders from parent
         border-left: 4px solid $grey400;    // Indentation border
 
@@ -115,10 +116,13 @@
  *
  */
 .responses-pings-list { // <ol>
+
+    @extend .responses-comments-list;
+
     text-transform: uppercase;      // Differentiate from link
     font-size: $text-s;             // Differentiate from link
-    margin-top: $line;              // Whitespace
-    margin-bottom: $line;           // Whitespace
+    margin-top: ($line * 2);              // Whitespace
+    margin-bottom: ($line * 2);           // Whitespace
 
     .pingback { // <li>
         position: relative;

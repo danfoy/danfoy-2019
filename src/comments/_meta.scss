@@ -77,6 +77,10 @@
         &::after {
             content: "\2192";
             padding-left: ($text-s / 2);
+
+            @at-root #respond .comment-meta a:hover::after {
+                content: none;                  // Stop arrow causing newline
+            }
         }
     }
 
