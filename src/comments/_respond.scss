@@ -122,10 +122,11 @@
 
     // Helper text re. comment formatting and email usage
     .respond-form-notice {
+        display: block;
         font-size: $text-s;
-        line-height: $text-s;
         margin: ($line / 2);
         margin-bottom: $line;
+        line-height: $text-s;
         cursor: default;
         color: $grey500;
     }

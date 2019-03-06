@@ -151,7 +151,7 @@ if ( have_comments() || comments_open() ) {
             'comment_field'         => '<label for="comment" class="respond-form-label">Comment</label>' . "\n" .
                                     '<textarea id="comment" class="respond-form-element respond-form-input-comment" name="comment" placeholder="Start typing your comment here..." aria-required="true">' . "\n" .
                                     '</textarea>' . "\n" .
-                                    '<p class="respond-form-notice">Markdown and some HTML allowed. Your email address is used only for finding your <a href="https://en.gravatar.com" target="_blank" title="Globally Recognised Avatars">Gravatar</a> and to combat spam, and will not be published.</p>',
+                                    '<small class="respond-form-notice">Markdown and some HTML allowed. Your email address is used only for finding your <a href="https://en.gravatar.com" target="_blank" title="Globally Recognised Avatars">Gravatar</a> and to combat spam, and will not be published.</small>',
 
             'comment_notes_before'  => '',
             'comment_notes_after'   => '',
