@@ -18,6 +18,7 @@
     position: relative;             // Anchor #cancel-comment-reply-link
     margin: ($line / 2);                // Half gutters so text can align with body
     border: 1px solid $grey400;
+    border-radius: ($line / 8);
     background-color: $grey200;
 
     // Resize to line up with content text at $medium-s
@@ -81,6 +82,7 @@
         color: $grey700;
         background-color: $grey100;
         border: 1px solid $grey400;
+        border-radius: ($line / 8); // Override UAS for iOS
 
         &:first-of-type {
             margin-top: 0;          // Handled by container
@@ -100,15 +102,16 @@
 
         // Separate styles for the comment textarea
         &.respond-form-input-comment {
-            margin: 0 0 ($line/2) 0;
-            border: none;
-            border-bottom: 1px solid $grey400;
             width: 100%;
             height: $line * 5;
             line-height: $line;
+            margin: 0 0 ($line/2) 0;
             font-family: $serif;
+            border: none;
+            border-bottom: 1px solid $grey400;
+            border-radius: 0;       // Override .respond-form-element
 
-            // Override the custom rules set above
+            // Override the custom rules from .respond-form-element::placeholder
             &::placeholder {
                 text-transform: none;
                 font-size: $text;
@@ -149,14 +152,15 @@
     }
 
 
-    .form-submit {                  // <p>, annoyingly added by comment_form();
-        margin: 0;                  // Reset, added by browser
+    .form-submit { // <p>, annoyingly added by comment_form();
+        margin: 0;                      // Reset, added by UAS
 
-        .submit {                   // <input type="submit">
+        .submit { // <input type="submit">
             text-transform: uppercase;
             font-weight: bold;
+            border-radius: ($line / 4);
             color: $grey700;
-            cursor: pointer;        // Act like a button
+            cursor: pointer;            // Act like a button
         }
     }
 

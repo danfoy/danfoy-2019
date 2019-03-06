@@ -48,6 +48,7 @@
     overflow: hidden;               // Prevent posts breaking the scaffolding
     background-color: $grey200;
     border: 1px solid $grey400;
+    border-radius: ($line / 8);
 
     // Line up text with .post-content at $medium-s breakpoint
     @media (min-width: ($medium-s + ($line * 2))) {
@@ -93,9 +94,10 @@
 
     .comment {
         margin: ($line / 2) 0 ($line) ($line/4);    // Nesting indentation
-        padding: ($line / 2) 0 0 0;           // Nesting indentation
+        padding: ($line / 2) 0 0 0;         // Nesting indentation
         border: none;                       // Reset borders from parent
         border-left: 4px solid $grey400;    // Indentation border
+        border-radius: 0;                   // Reset rounding for children
 
         &:last-of-type {
             margin-bottom: 0;               // Sit flush with parent box
