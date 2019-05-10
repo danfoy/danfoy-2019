@@ -233,7 +233,7 @@ gulp.task('watch', ['sync'], () => {            // BrowserSync as dependency
     gulp.watch(dir.src + '**/*.php', ['php'],   // Watch PHP files:
         browsersync.reload);                    // - reload on changes
     gulp.watch(dir.src + '**/*.scss', ['css']); // Watch stylesheets
-    gulp.watch(dir.src + 'js/*.js', ['js']);    // Watch scripts
+    gulp.watch(dir.src + '**/*.js', ['js']);    // Watch scripts
     gulp.watch([                                // Watch config files:
             'config.local.yaml',                // - Chassis configuration
             'local-config.php'                  // - wp-config.php overrides
