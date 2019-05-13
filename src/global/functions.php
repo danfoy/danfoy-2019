@@ -93,13 +93,35 @@ add_action( 'wp_enqueue_scripts', 'danfoy_2019_styles' );
  * Load scripts which will be used on every page
  */
 function danfoy_2019_global_scripts() {
+
+    // Modernizr
     wp_enqueue_script(
         'modernizr',                                            // Handle
-        get_template_directory_uri() . '/js/modernizr.min.js',  // Location
+        get_template_directory_uri() . '/js/modernizr.min.js',  // Source
         array(),                                                // Dependencies
         "3.6.0",                                                // Version
         false                                                   // In footer
     );
+
+    // Masonry
+    wp_register_script(
+        'local-masonry',                                        // Handle
+        get_template_directory_uri() . '/js/masonry.min.js',    // Source
+        array(),                                                // Dependencies
+        '4.2.2',                                                // Version
+        false                                                   // In footer
+    );
+
+    // Gutenberg Galleries
+    wp_register_script(
+        'gutenberg-gallery',                                    // Handle
+        get_template_directory_uri() . '/js/gallery.js',        // Source
+        array('local-masonry'),                                 // Dependencies
+        '1',                                                    // Version
+        true                                                    // In footer
+    );
+
+    wp_enqueue_script('gutenberg-gallery');
 }
 add_action( 'wp_print_scripts', 'danfoy_2019_global_scripts' );
 

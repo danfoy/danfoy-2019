@@ -1,0 +1,24 @@
+/**
+ * Styles for Gutenberg blocks
+ *
+ * Since WordPress v5.0, post authoring has been moved from a TinyMCE-based
+ * editor to WordPress' own native system called Gutenberg.
+ *
+ * Many elements added to a Gutenberg post (images and galleries, for example)
+ * are wrapped with a `.wp-block`-prefixed class, and have their own defaults
+ * applied via a fairly opinionated injected stylesheet. I have disabled this
+ * stylesheet for this theme because it overrides global styles and in several
+ * cases breaks up the vertical flow of the page, e.g. by overriding margins
+ * from the line height to `1em`.
+ *
+ * There are too many to keep overriding, so it seems neater to just make custom
+ * styles for all these blocks.
+ *
+ * This page imports the styles for each block.
+ *
+ * @package     danfoy_2019
+ * @author      Dan Foy <danfoy.com>
+ * @since       1.0.0
+ */
+
+@import "gallery";

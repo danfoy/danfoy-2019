@@ -1,0 +1,125 @@
+/**
+ * Gallery Blocks (Gutenberg)
+ *
+ * Custom styles for galleries inserted by the Gutenberg editor.
+ *
+ * @package     danfoy_2019
+ * @subpackage  gutenberg
+ * @author      Dan Foy <danfoy.com>
+ * @since       1.0.0
+ */
+
+ul.wp-block-gallery { // Element selector required to override _post.scss
+    max-width: initial;
+    margin: $line auto;             // Override list margins
+    list-style-type: none;          // Override list bullets
+    line-height: 0;                 // Clear whitespace
+    display: flex;
+    flex-wrap: wrap;
+    align-items: top;
+
+    img {
+        max-height: calc(100vh - (#{$line}));   // Restrict to viewport
+    }
+
+    .blocks-gallery-item {
+        width: 100%;
+        margin: 0 auto ($line / 2) auto;
+        padding-left: 0;
+        font-size: 0;               // Prevent link from creating a gap
+
+        figure {
+            margin: 0;              // Override UAS
+        }
+
+        figcaption {
+            font-family: $sans-serif;
+            font-size: $text-s;
+            line-height: $text-s;
+            margin: ($line / 2) $line 0 $line;
+            color: $grey500;
+        }
+
+        &.reference {
+            display: none;
+        }
+    }
+
+    /**
+     * Generates styles for formatting an element as a Gutenberg gallery.
+     * @param  number $columns              Number of columns to generates
+     * @param  width  $maxwidth: initial    Max width of grid
+     */
+    @mixin gallery_grid($columns, $maxwidth: initial) {
+        max-width: $maxwidth;
+        margin: (($line / 4) - ($line / 8));
+        // padding: ($line / 8);
+
+        .blocks-gallery-item { // <li>
+            width: calc( (100% / #{$columns}) - (#{$line} / 4));
+            margin: ($line / 8);
+            display: inline-block;
+            cursor: zoom-in;
+
+            &.is-maximized {
+                width: calc(100% - (#{$line / 4}));
+                cursor: zoom-out;
+            }
+
+            img {
+                border-radius: ($text / 8);
+            }
+        }
+
+        @media (min-width: calc(  #{$maxwidth} + (#{$line / 2})  ) ) {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    @media (min-width: ($medium-s + ($line * 2)) ) {
+        &.columns-2 {
+            @include gallery_grid(2, $medium);
+        }
+
+        &.columns-3 {
+            @include gallery_grid(3, $medium);
+        }
+
+        &.columns-4 {
+            @include gallery_grid(4, $medium);
+        }
+
+        &.columns-5 {
+            @include gallery_grid(5, $medium-l);
+        }
+    }
+
+    &.columns-6 {
+        @include gallery_grid(3);
+
+        @media (min-width: $medium-s) {
+            @include gallery_grid(6, $large-s);
+        }
+    }
+
+    &.columns-7 {
+        @include gallery_grid(3);
+
+        @media (min-width: $medium-s) {
+            @include gallery_grid(7, $large-s);
+        }
+    }
+
+    &.columns-8 {
+        @include gallery_grid(3);
+
+        @media (min-width: $medium-s) {
+            @include gallery_grid(6);
+        }
+
+        @media (min-width: $medium-l) {
+            @include gallery_grid(8);
+        }
+    }
+}
